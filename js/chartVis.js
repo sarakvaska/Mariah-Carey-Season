@@ -27,7 +27,6 @@ class ChartVis {
             .append('g')
             .attr('transform', `translate (${vis.margin.left}, ${vis.margin.top})`);
 
-
         // Scales and axes
         vis.x = d3.scaleTime()
             .range([0, vis.width]);
@@ -76,22 +75,23 @@ class ChartVis {
        // filter according to the selected decade
         filteredData = vis.chartData.filter(function(d) { return d.weekid >= initialDate && d.weekid <= finalDate});
 
-        //  helper function to only keep highest peak position in a given
-        function addItem(item) {
-            let index = groupedData.findIndex(x => x.songid == item.songid && x.year == item.year)
-
-            if (index === -1) {
+       // helper function to only keep highest peak position in a given
+       function addItem(item) {
+           let index = groupedData.findIndex(x => x.songid == item.songid && x.year == item.year)
+           if (index === -1) {
                 groupedData.push(item);
             } else { console.log("object already exists") }
         }
 
-        filteredData.forEach(function (d, i) {
-            addItem(d);
-        });
+       // only add items to the array if it's a unique entry in regards to songid && year
+       filteredData.forEach(function (d, i) {
+           addItem(d);
+       });
 
-        vis.displayData = Array.from(d3.group(groupedData, d =>d.songid), ([key, value]) => ({key, value}));
+       // group decade data by songid
+       vis.displayData = Array.from(d3.group(groupedData, d =>d.songid), ([key, value]) => ({key, value}));
 
-        vis.updateVis();
+       vis.updateVis();
     }
 
     updateVis() {
