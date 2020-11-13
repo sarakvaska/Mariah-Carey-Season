@@ -27,8 +27,23 @@
 
                 <!-- content | map -->
                 <div class="row">
+
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <label for="ranking-type">Group by</label>
+                            <select class="form-control" id="ranking-type" onchange="categoryChange()">
+                                <option value="01/01/1960">60s</option>
+                                <option value="01/01/1970">70s</option>
+                                <option value="01/01/1980">80s</option>
+                            </select>
+                        </div>
+                    </form>
+
+
+
+
                     <!-- Visualization placeholders -->
-                    <div id="station-map"></div>
+                    <div id="chart-map"></div>
                 </div>
             </div>
         </div>
@@ -45,6 +60,8 @@
 
     <!-- Load data, create visualizations -->
     <script src="js/main.js"></script>
+    <script src="js/chartVis.js"></script>
+
 
 </body>
 </html>
