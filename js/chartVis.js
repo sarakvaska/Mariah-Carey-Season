@@ -72,10 +72,14 @@ class ChartVis {
        let filteredData = [];
        let groupedData = [];
 
-       // filter according to the selected decade
-        filteredData = vis.chartData.filter(function(d) { return d.weekid >= initialDate && d.weekid <= finalDate});
+       // filter according to the selected decade & sort it by highest peak
+       filteredData = vis.chartData.filter(function(d) { return d.weekid >= initialDate && d.weekid <= finalDate});
+       filteredData = filteredData.sort((a,b) => a.weekid - b.weekid);
 
-       // helper function to only keep highest peak position in a given
+       console.log(filteredData);
+
+
+       // helper function to only add items to the array if it's a unique entry in regards to songid && year
        function addItem(item) {
            let index = groupedData.findIndex(x => x.songid == item.songid && x.year == item.year)
            if (index === -1) {
@@ -83,7 +87,6 @@ class ChartVis {
             } else { console.log("object already exists") }
         }
 
-       // only add items to the array if it's a unique entry in regards to songid && year
        filteredData.forEach(function (d, i) {
            addItem(d);
        });
