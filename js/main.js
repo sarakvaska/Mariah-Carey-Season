@@ -7,6 +7,8 @@
 let myChartVis;
 
 let parseDate = d3.timeParse("%m/%d/%Y");
+let yearParse = d3.timeParse("%Y");
+
 
 d3.csv("data/christmas_songs.csv", (row) => {
     row.day = +row.day
@@ -24,8 +26,14 @@ d3.csv("data/christmas_songs.csv", (row) => {
 });
 
 let selectedCategory = $('#ranking-type').val();
+let birthdayDate = $('#birthdayInput').val();
 
 function categoryChange() {
     selectedCategory = $('#ranking-type').val();
+    myChartVis.wrangleData();
+}
+
+function birthdayChange() {
+    birthdayDate = $('#birthdayInput').val();
     myChartVis.wrangleData();
 }

@@ -21,23 +21,35 @@
 
                     <!-- Headline -->
                     <h1 class="align-self-center">
-                        Mariah Carey - Queen of Christmas
+                        A deep dive into the history of Christmas music
                     </h1>
                 </div>
 
                 <!-- content | map -->
-                <div class="row">
+                <div class="row justify-content-center">
 
-                    <form class="form-inline">
-                        <div class="form-group">
-                            <label for="ranking-type">Group by</label>
-                            <select class="form-control" id="ranking-type" onchange="categoryChange()">
-                                <option value="01/01/1960">60s</option>
-                                <option value="01/01/1970">70s</option>
-                                <option value="01/01/1980">80s</option>
-                            </select>
-                        </div>
-                    </form>
+<!--                    <form class="form-inline">-->
+<!--                        <div class="form-group">-->
+<!--                            <label for="ranking-type">Group by</label>-->
+<!--                            <select class="form-control" id="ranking-type" onchange="categoryChange()">-->
+<!--                                <option value="01/01/1960">60s</option>-->
+<!--                                <option value="01/01/1970">70s</option>-->
+<!--                                <option value="01/01/1980">80s</option>-->
+<!--                                <option value="01/01/1990">90s</option>-->
+<!--                                <option value="01/01/2000">00s</option>-->
+<!--                                <option value="01/01/2010">10s</option>-->
+<!--                            </select>-->
+<!--                        </div>-->
+<!--                    </form>-->
+
+                    <h2>  Before we get to it: which Christmas song do you believe it was the most popular one in your birth year? </h2>
+
+                    <div class="birthdayLabel">
+                        <h3>When was your birthday?</h3>
+                        <input type="number" id="birthdayInput" name="birthdayInput"
+                               min="1932" max="2020" placeholder="1989">
+                        <button type="button" class="btn btn-outline-success" onclick="birthdayChange()">submit</button>
+                    </div>
 
 
 

@@ -63,20 +63,46 @@ class ChartVis {
            finalDate = parseDate("12/31/1969");
        } else if (selectedCategory == "01/01/1970") {
             initialDate = parseDate(selectedCategory);
-            finalDate = parseDate("12/31/1970");
+            finalDate = parseDate("12/31/1979");
         } else if (selectedCategory == "01/01/1980") {
             initialDate = parseDate(selectedCategory);
-            finalDate = parseDate("12/31/1980");
+            finalDate = parseDate("12/31/1989");
+        } else if (selectedCategory == "01/01/1990") {
+           initialDate = parseDate(selectedCategory);
+           finalDate = parseDate("12/31/1999");
+       } else if (selectedCategory == "01/01/2000") {
+           initialDate = parseDate(selectedCategory);
+           finalDate = parseDate("12/31/2009");
+       } else if (selectedCategory == "01/01/2010") {
+           initialDate = parseDate(selectedCategory);
+           finalDate = parseDate("12/31/2019");
+       }
+
+       let birthdayRangeInitial= yearParse(birthdayDate);
+       let birthdayRangeFinal= yearParse(+birthdayDate + 1);
+
+       let newFilteredBirthdayData = [];
+
+        newFilteredBirthdayData = vis.chartData.filter(function(d) { return d.weekid >= birthdayRangeInitial && d.weekid <= birthdayRangeFinal});
+        console.log(newFilteredBirthdayData);
+
+        newFilteredBirthdayData = (newFilteredBirthdayData.sort((a,b) => a.weekid - b.weekid));
+
+        if (newFilteredBirthdayData.length > 0) {
+            newFilteredBirthdayData = newFilteredBirthdayData[0]['song'];
         }
 
-       let filteredData = [];
-       let groupedData = [];
+        console.log(newFilteredBirthdayData);
+
+
+        let filteredData = [];
+        let groupedData = [];
 
        // filter according to the selected decade & sort it by highest peak
        filteredData = vis.chartData.filter(function(d) { return d.weekid >= initialDate && d.weekid <= finalDate});
        filteredData = filteredData.sort((a,b) => a.weekid - b.weekid);
 
-       console.log(filteredData);
+       // console.log(filteredData);
 
 
        // helper function to only add items to the array if it's a unique entry in regards to songid && year
@@ -100,7 +126,7 @@ class ChartVis {
     updateVis() {
         let vis = this;
 
-        console.log(vis.displayData);
+        // console.log(vis.displayData);
 
     }
 

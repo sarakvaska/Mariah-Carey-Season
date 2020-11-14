@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css?family=Red+Hat+Display:900&display=swap');
+
+body {
+    display: grid;
+    place-content: center;
+    font-family: 'Red Hat Display', sans-serif;
+}
+
+h1 {
+    font-size: 5vw;
+    max-width: 80vw;
+    color: #B3000C;
+    padding-top: 30px;
+}
+
+span {
+    background-size: 0;
+    background-repeat: no-repeat;
+    display: inline;
+    transition: 0.5s ease;
+}
+
+h2 {
+    font-size: 2.5vw;
+    max-width: 80vw;
+    color: black;
+    padding-top: 30px;
+}
+
+h3 {
+    font-size: 1.5vw;
+    max-width: 80vw;
+    color: #28a745;
+    padding-top: 30px;
+}
+
+
+#birthdayInput {
+    background: white;
+    border: 1px solid #28a745;
+    width: 60px;
+    height: 38px;
+    border-radius: 5px;
+    margin-left: 45px;
+    padding-left: 4.5px;
+    color: #28a745;
+}
+
+::placeholder {
+    color: #28a745;
+    text-align: center;
+    opacity: 0.5;
+}
