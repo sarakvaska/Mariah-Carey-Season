@@ -1,0 +1,61 @@
+.center {
+    text-align: center
+}
+
+svg {
+    position: absolute;
+    z-index: -1;
+}
+
+h1 {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Mountains of Christmas', cursive;
+    display: block;
+    background-color: white;
+    padding:10px;
+    border-bottom-right-radius: 50px 20px;
+    border-top-left-radius: 50px 20px;
+    -webkit-animation: fadein 3s;
+}
+
+h2 {
+    margin: 0;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Mountains of Christmas', cursive;
+    display: block;
+    background-color: white;
+    font-size: 25px;
+    padding:10px;
+    border-bottom-right-radius: 50px 20px;
+    border-top-left-radius: 50px 20px;
+    -webkit-animation: fadein 3s;
+}
+
+body {
+    background-image:url("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.com%2Fpin%2F229824387212362011%2F&psig=AOvVaw2euEKIh3dsPLSwfQ61S0a6&ust=1605382280198000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPCfzZahgO0CFQAAAAAdAAAAABAJ");
+}
+
+.center-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:175px;
+    height:150px;
+    padding-bottom: 0px;
+    -webkit-animation: fadein 3s;
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
