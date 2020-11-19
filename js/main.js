@@ -24,6 +24,7 @@ let promises = [
         return row;
     })
 ]
+
 Promise.all(promises)
     .then( function(data){ initMapPage(data) })
     .catch( function (err){console.log(err)} );
@@ -46,5 +47,4 @@ function initMapPage(data) {
     console.log('check out the data', data);
 
     christmasMap = new ChristmasMap("mapVis", data[0], data[1]);
-
 }

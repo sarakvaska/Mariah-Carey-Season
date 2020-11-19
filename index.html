@@ -55,6 +55,59 @@
         <h2 class="center">An Interactive Visualization of the Top Christmas Songs</h2>
         <div id="initialPage" style="width: 100%; height: 75vh;"></div>
         <div id="mapVis" style="width:100%; height: 100vh;"></div>
+
+<!--        <div class="row justify-content-center lyricContainer">-->
+<!--            <div class="col-auto text-center">-->
+<!--                <div id="lyricDiv1">One of three columns</div>-->
+<!--                <div id="lyricDiv2">One of three columns</div>-->
+<!--                <div id="lyricDiv3">One of three columns</div>-->
+<!--                <div id="lyricDiv4">One of three columns</div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+        <div class="row justify-content-center lyricContainer2">
+            <div class="col-auto text-center">
+
+                <div class="row justify-content-center christmasButtonDiv">
+                    <a href="#" class="christmasButton" onclick="generateLyrics(event)">My Christmas song</a>
+                </div>
+
+
+                <div class="row justify-content-center lyricLine">
+                    <h3>
+                        <div class="goo" contenteditable="true" id="lyricDiv1">Writing</div>
+                    </h3>
+                </div>
+
+                <div class="row justify-content-center lyricLine">
+                    <h3>
+                        <div class="goo" contenteditable="true" id="lyricDiv2">your</div>
+                    </h3>
+                </div>
+
+                <div class="row justify-content-center lyricLine">
+                    <h3>
+                        <div class="goo" contenteditable="true" id="lyricDiv3">unique</div>
+                    </h3>
+                </div>
+
+                <div class="row justify-content-center lyricLine">
+                    <h3>
+                        <div class="goo" contenteditable="true" id="lyricDiv4">song...</div>
+                    </h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter: https://css-tricks.com/gooey-effect/ -->
+        <svg style="visibility: hidden; position: absolute;" width="0" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1">
+            <defs>
+                <filter id="goo"><feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
+                    <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+                </filter>
+            </defs>
+        </svg>
     </div>
 
     <!-- Load JS libraries: jQuery, bootstrap, D3 -->
@@ -73,5 +126,6 @@
     <script src="js/main.js"></script>
     <script src="js/initialPage.js"></script>
     <script src="js/mapVis.js"></script>
+    <script src="js/lyricGenerator.js"></script>
 </body>
 </html>
