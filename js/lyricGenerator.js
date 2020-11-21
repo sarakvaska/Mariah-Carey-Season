@@ -97,8 +97,8 @@ function generateLyrics(event) {
         });
 }
 
-function updateInputDiv(wordList, artist = false) {
-    // Add list of words to input-dropdown
+function updateInputDiv(wordList, wordListFiltered, artist = false) {
+    // Add full list of words to input-dropdown
     let wordOptions = '';
     let wordInputDiv = document.getElementById("words");
     wordList.forEach(d => {
@@ -106,11 +106,11 @@ function updateInputDiv(wordList, artist = false) {
     });
     wordInputDiv.innerHTML = wordOptions;
 
-    // Add top word and word count for current artist
+    // Add filtered top word and word count for the current artist
     let topWordSpan = document.getElementById("topWordSpan");
     let topWordCountSpan = document.getElementById("topWordCountSpan");
-    topWordSpan.innerHTML = "&nbsp;" + wordList[0].word;
-    topWordCountSpan.innerHTML = "&nbsp;" + wordList[0].count + "&nbsp;";
+    topWordSpan.innerHTML = "&nbsp;" + wordListFiltered[0].word;
+    topWordCountSpan.innerHTML = "&nbsp;" + wordListFiltered[0].count + "&nbsp;";
 }
 
 function setArtistSelect(fullLyricData) {
