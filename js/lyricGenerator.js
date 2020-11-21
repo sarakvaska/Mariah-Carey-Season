@@ -104,6 +104,7 @@ function generateLyrics(event) {
                 .replace(/ christmas /g, " Christmas ")
                 .replace(/ ill /g, " I'll ")
                 .replace(/ wont /g, " won't ")
+                .replace(/ hed /g, " he'd ")
                 .replace(/ santas /g, " santa's ")
                 .replace(/ theyll /g, " they'll ")
                 .replace(/ dont /g, " don't ")
