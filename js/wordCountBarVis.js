@@ -7,7 +7,7 @@ class WordCountBarVis {
 
     constructor(parentElement, data){
         this.parentElement = parentElement;
-        this.displayData = data;
+        this.fullLyricData = data;
         this.filteredData = [];
 
         this.initVis()
@@ -69,59 +69,54 @@ class WordCountBarVis {
         this.wrangleData();
     }
 
-    wrangleData(){
+    wrangleData(artist = false){
         let vis = this;
+        // artist = "Bobby Helms";
 
-        // // if there is a region selected
-        // if (selectedTimeRange.length !== 0){
-        //     // console.log('region selected', vis.selectedTimeRange, vis.selectedTimeRange[0].getTime() )
-        //
-        //     // iterate over all rows the csv (dataFill)
-        //     vis.covidData.forEach( row => {
-        //         // and push rows with proper dates into filteredData
-        //         if (selectedTimeRange[0].getTime() <= vis.parseDate(row.submission_date).getTime() && vis.parseDate(row.submission_date).getTime() <= selectedTimeRange[1].getTime() ){
-        //             filteredData.push(row);
-        //         }
-        //     });
-        // } else {
-        //     filteredData = vis.covidData;
-        // }
+        // Filter all lyric text by artist
+        vis.filteredData = artist ? vis.fullLyricData.filter(d => d.artist === artist) : vis.fullLyricData;
+        console.log("fullLyricData = ", vis.fullLyricData);
+        console.log("filteredData = ", vis.filteredData);
 
-        vis.filteredData = vis.displayData;
+        // Create an array of words from the lyric text
+        let lyricText = '';
+        vis.filteredData.forEach(d => {
+            lyricText += d.track_n.match(/(?:"[^"]*"|^[^"]*$)/)[0].replace(/"/g, "") + " ";
+        });
+        let lyricCleanedArray = lyricText.toLowerCase().match(/\b[\w']+\b/g);
+        console.log("lyricCleanedArray = ", lyricCleanedArray);
 
-        console.log('js final data structure', vis.filteredData);
+        // Create word list with count from filtered array of words
+        let lyricWordCountMap = new Map();
+        lyricCleanedArray.forEach(word => {
+            lyricWordCountMap.has(word) ? lyricWordCountMap.set(word, (lyricWordCountMap.get(word) + 1)) : lyricWordCountMap.set(word, 1);
+        });
+        let lyricWordCountArray = Array.from(lyricWordCountMap, ([word, count]) => ({ word, count }));
+        orderedlyricWordCountArr = lyricWordCountArray.sort( (a,b) => b.count - a.count);
+        vis.displayData = orderedlyricWordCountArr;
+
+        console.log('js final data structure', vis.displayData);
+
+        updateInputDiv(orderedlyricWordCountArr);
 
         vis.updateVis()
 
     }
 
-    updateVis(word = '') {
+    updateVis(word = false) {
         let vis = this;
-        // vis.selectedCategory = selectedCategory;
 
-        // if (vis.descending){
-        //     vis.stateInfo.sort((a,b) => {return b[vis.selectedCategory] - a[vis.selectedCategory]})
-        // } else {
-        //     vis.stateInfo.sort((a,b) => {return a[vis.selectedCategory] - b[vis.selectedCategory]})
-        // }
-        vis.topTenData = vis.filteredData.slice(0, 10);
-        word.length > 0 ? vis.topTenData.push(vis.filteredData.find(d => d.word === word)) : null;
+        // Get top 10 words
+        vis.topTenData = vis.displayData.slice(0, 10);
+
+        // Add the user input word as #11
+        let inputWordInLyricData = vis.displayData.find(d => d.word === word);
+        word && inputWordInLyricData ? vis.topTenData.push(inputWordInLyricData) : null;
         console.log("vis.topTenData = ", vis.topTenData);
 
         // Update axes
         vis.y.domain([0, d3.max(vis.topTenData, d => d.count)]);
         vis.x.domain(vis.topTenData.map( d => d.word));
-
-        // vis.yAxis
-        //     .tickFormat(d => {
-        //         if(selectedCategory === "relCases" || selectedCategory === "relDeaths") {
-        //             return d + "%";
-        //         } else {
-        //             if(d >= 1000000) return ((d/1000000) + "M");
-        //             if(d >= 1000) return ((d/1000) + "K");
-        //             return d;
-        //         };
-        //     });
 
 
         // Draw bars
@@ -133,7 +128,6 @@ class WordCountBarVis {
         vis.bars.enter().append("rect")
             .attr("class", "bars")
             .on('mouseover', function(event, d){
-                // console.log("d = ", d);
                 // Selects the current bar, recolors it, and draws an outline around it
                 d3.select(this)
                     .attr('stroke-width', '2px')
@@ -164,7 +158,6 @@ class WordCountBarVis {
                     .style("top", 0)
                     .html(``);
             })
-
 
             // Update all bars
             .merge(vis.bars)

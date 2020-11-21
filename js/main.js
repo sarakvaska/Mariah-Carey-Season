@@ -1,6 +1,7 @@
 // TODO: first read in data
 let initialPage;
 let christmasMap;
+// let lyrics;
 
 let promises = [
    // d3.json("https://cdn.jsdelivr.net/npm/us-atlas@3/states-albers-10m.json"), // already projected -> you can just scale it to ft your browser window
@@ -22,11 +23,15 @@ let promises = [
         row.weeks_on_chart = +row.weeks_on_chart;
 
         return row;
-    })
+    }),
+    d3.tsv("data/christmas_lyrics.tsv")
 ]
 
 Promise.all(promises)
-    .then( function(data){ initMapPage(data) })
+    .then( function(data){
+        initMapPage(data);
+        console.log("LOG data = ", data);
+    })
     .catch( function (err){console.log(err)} );
 
 function initMapPage(data) {
@@ -47,4 +52,6 @@ function initMapPage(data) {
     console.log('check out the data', data);
 
     christmasMap = new ChristmasMap("mapVis", data[0], data[1]);
+    wordCountBarVis = new WordCountBarVis("wordCountBarDiv", data[2]);
+    setArtistSelect(data[2]);
 }

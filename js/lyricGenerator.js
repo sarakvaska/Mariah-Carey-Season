@@ -29,45 +29,6 @@ let lyricElements = `                <div class="row justify-content-center lyri
                     <h3><div class="goo" contenteditable="true" id="lyricDiv4">song...</div></h3>
                 </div>`;
 
-// let lyricBank = "jingle bell, jingle bell, jingle bell rock Jingle bells swing and jingle bells ring Snowin' and blowin' up bushels of fun Now, the jingle hop has begun Jingle bell, jingle bell, jingle bell rock Jingle bells chime in jingle bell time Dancin' and prancin' in Jingle Bell Square In the frosty air What a bright time, it's the right time To rock the night away Jingle bell time is a swell time To go glidin' in a one-horse sleigh Giddy-up jingle horse, pick up your feet Jingle around the clock Mix and a-mingle in the jinglin' feet That's the jingle bell rock Jingle bell, jingle bell, jingle bell rock Jingle bells chime in jingle bell time Dancin' and prancin' in Jingle Bell Square In the frosty air What a bright time, it's the right time To rock the night away Jingle bell time is a swell time To go glidin' in a one-horse sleigh Giddy-up jingle horse, pick up your feet Jingle around the clock Mix and a-mingle in the jinglin' feet That's the jingle bell That's the jingle bell That's the jingle bell rock Silent night, holy night all is calm, all is bright Round yon virgin, mother and child Holy infant so tender and mild Sleep in heavenly peace, sleep in heavenly peace Silent night, holy night all is calm, all is bright Round yon virgin, mother and child Holy infant so tender and mild Sleep in heavenly peace, sleep in heavenly peace Adeste fideles Laeti triumphantes Venite, venite in ";
-// console.log("lyricBank = ", lyricBank);
-//
-// let lyricBankArr = lyricBank.toLowerCase().match(/\b[\w']+\b/g);
-// console.log("lyricBankArr = ", lyricBankArr);
-//
-// let lyricMap = new Map();
-// lyricBankArr.forEach(word => {
-//     lyricMap.has(word) ? lyricMap.set(word, (lyricMap.get(word) + 1)) : lyricMap.set(word, 1);
-// });
-// let lyricWordCountArr = Array.from(lyricMap, ([word, count]) => ({ word, count }));
-// console.log("lyricMap = ", lyricMap);
-// let orderedlyricWordCountArr = lyricWordCountArr.sort( (a,b) => b.count - a.count);
-// console.log("orderedlyricWordCountArr = ", orderedlyricWordCountArr);
-//
-// wordCountBarVis = new WordCountBarVis("wordCountBarDiv", orderedlyricWordCountArr);
-
-d3.text("data/christmas_lyrics.txt").then(data => {
-    console.log("LYRICS TEXT = ", data);
-    let lyricBank = data;
-    console.log("lyricBank = ", lyricBank);
-
-    let lyricBankArr = lyricBank.toLowerCase().match(/\b[\w']+\b/g);
-    console.log("lyricBankArr = ", lyricBankArr);
-
-    let lyricMap = new Map();
-    lyricBankArr.forEach(word => {
-        lyricMap.has(word) ? lyricMap.set(word, (lyricMap.get(word) + 1)) : lyricMap.set(word, 1);
-    });
-    let lyricWordCountArr = Array.from(lyricMap, ([word, count]) => ({ word, count }));
-    console.log("lyricMap = ", lyricMap);
-    orderedlyricWordCountArr = lyricWordCountArr.sort( (a,b) => b.count - a.count);
-    console.log("orderedlyricWordCountArr = ", orderedlyricWordCountArr);
-
-    updateTextDiv();
-
-    wordCountBarVis = new WordCountBarVis("wordCountBarDiv", orderedlyricWordCountArr);
-});
-
 
 function generateLyrics(event) {
 
@@ -123,12 +84,6 @@ function generateLyrics(event) {
             let line3 = formattedLyricArr.slice(15,22).join(" ");
             let line4 = formattedLyricArr.slice(22,31).join(" ");
 
-            // console.log("line1 = ", line1);
-            // console.log("line2 = ", line2);
-            // console.log("line3 = ", line3);
-            // console.log("line4 = ", line4);
-            // console.log("LYRIC = ", lyric);
-
             // Fill in lyrics
             lyricDiv1.innerHTML = line1;
             lyricDiv2.innerHTML = line2;
@@ -142,51 +97,57 @@ function generateLyrics(event) {
         });
 }
 
+function updateInputDiv(wordList, artist = false) {
+    // Add list of words to input-dropdown
+    let wordOptions = '';
+    let wordInputDiv = document.getElementById("words");
+    wordList.forEach(d => {
+        wordOptions += `<option value="${d.word}"/>`
+    });
+    wordInputDiv.innerHTML = wordOptions;
 
-function onTextChanged() {
-    // console.log("data = ", event);
-    let inputElement = document.getElementById("inputDiv");
-    let inputText = inputElement.value
-    console.log("input = ", inputText);
-    updateTextDiv(inputText);
+    // Add top word and word count for current artist
+    let topWordSpan = document.getElementById("topWordSpan");
+    let topWordCountSpan = document.getElementById("topWordCountSpan");
+    topWordSpan.innerHTML = "&nbsp;" + wordList[0].word;
+    topWordCountSpan.innerHTML = "&nbsp;" + wordList[0].count + "&nbsp;";
 }
 
-function updateTextDiv(input = '') {
-    let allWordsDiv = document.getElementById("scrollDiv");
-    // allWordsDiv.innerHTML = orderedlyricWordCountArr.word.toString();
-    let allWordsDivList = orderedlyricWordCountArr;
-    input.length > 0 ? allWordsDivList = orderedlyricWordCountArr.filter(d => d.word.startsWith(input)) : null;
-
-    allWordsDiv.innerHTML = allWordsDivList.map(d =>
-        `<p onclick="onTextClick(this.innerHTML)">${d.word}</p>`).join('');
+function setArtistSelect(fullLyricData) {
+    // Add list of artists to dropdown
+    console.log("setArtistSelect");
+    // Gets all unique artists by keeping only the first occurrence of each value
+    let allArtists = fullLyricData.map(d => d.artist);
+    let uniqueArtists = allArtists.filter((value, index, self) => self.indexOf(value) == index);
+    console.log("allArtists = ", allArtists);
+    console.log("uniqueArtists = ", uniqueArtists);
+    let artistOptions = '';
+    artistOptions += `<option selected value>All artists</option>`;
+    let artistSelectEl = document.getElementById("artistSelectEl");
+    uniqueArtists.forEach(artist => {
+        artistOptions += `<option value="${artist}">${artist}</option>`
+    });
+    artistSelectEl.innerHTML = artistOptions;
 }
 
-function onTextClick(value) {
-    console.log("value = ", value);
+
+function onWordInput(value = false) {
+    console.log("Changed, value = ", value);
+    // let topCountResultSpan = document.getElementById("topCountResultSpan");
+    // topCountResultSpan.innerHTML = value;
+    let wordInputResultEl = document.getElementById("wordInputResultEl");
+    let inputWordInLyric = orderedlyricWordCountArr.find(d => d.word === value);
+    wordInputResultEl.innerHTML =
+        value && inputWordInLyric ? inputWordInLyric.count : 0;
+
     wordCountBarVis.updateVis(value);
 }
 
-
-// let xhttp = new XMLHttpRequest();
-// xhttp.onreadystatechange = function() {
-//     if (this.readyState == 4 && this.status == 200) {
-//         // Typical action to be performed when the document is ready:
-//         // document.getElementById("demo").innerHTML = xhttp.responseText;
-//         console.log("RESPONSE = ", xhttp.responseText)
-//     }
-// };
-// xhttp.open("GET", "https://christmas-lyrics-script.nn.r.appspot.com/new", true);
-// // xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
-// xhttp.send();
-
-// fetch("https://christmas-lyrics-script.nn.r.appspot.com/new")
-//     .then(response => response.json())
-//     .then(response => response.json())
-//     .then(lyric => console.log("LYRIC = ",lyric));
-//
-//
-// fetch(url, function(d){
-//     console.log(d)
-// })
-//     .then(response => response.json())
-//     .then(data => { gettingStarted(data)});
+function onArtistSelect(artist = false) {
+    console.log("onArtistSelect, artist = ", artist);
+    wordCountBarVis.wrangleData(artist);
+    // onWordInput(document.getElementById("wordInputResultEl").value);
+    let currentInputValue = document.getElementById("wordInputEl").value;
+    console.log(currentInputValue);
+    onWordInput(currentInputValue);
+}

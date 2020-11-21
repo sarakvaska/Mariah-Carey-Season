@@ -177,6 +177,12 @@ h4 {
     #background: var(--color-bg);
 }
 
+#wordInputEl {
+    /*width: 50px;*/
+    background-color: transparent;
+    /*border: snow;*/
+}
+
 /*CHRISTMAS BUTTON*/
 .christmasButton {
     display: inline-block;
