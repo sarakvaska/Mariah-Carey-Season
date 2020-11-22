@@ -1,33 +1,33 @@
 let url = "https://christmas-lyrics-script.nn.r.appspot.com/new";
 
-let wordCountBarVis, orderedlyricWordCountArr;
+let originalLyrics, wordCountBarVis, orderedlyricWordCountArr;
 
 let loadingSpinner = `<div class="row justify-content-center">
-                    <div class="loader">
-                        <div class="face">
-                            <div class="circle"></div>
-                        </div>
-                        <div class="face">
-                            <div class="circle"></div>
+                        <div class="loader" style="padding-bottom: 50px">
+                            <div class="face">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="face">
+                                <div class="circle"></div>
+                            </div>
                         </div>
                     </div>
-                </div>`;
+                    <div class="row justify-content-center">
+                         <p>Rodney is thinking and writing your song in his jingles notebook...</p>
+                    </div>`;
 
-let lyricElements = `                <div class="row justify-content-center lyricLine">
-                    <h3><div class="goo" contenteditable="true" id="lyricDiv1">Writing</div></h3>
-                </div>
-
-                <div class="row justify-content-center lyricLine">
-                    <h3><div class="goo" contenteditable="true" id="lyricDiv2">your</div></h3>
-                </div>
-
-                <div class="row justify-content-center lyricLine">
-                    <h3><div class="goo" contenteditable="true" id="lyricDiv3">unique</div></h3>
-                </div>
-
-                <div class="row justify-content-center lyricLine">
-                    <h3><div class="goo" contenteditable="true" id="lyricDiv4">song...</div></h3>
-                </div>`;
+let lyricElements = `<div class="row justify-content-center lyricLine">
+                                    <h3 class="neon" contenteditable="true" id="lyricDiv1">Generate</h3>
+                                </div>
+                                <div class="row justify-content-center lyricLine">
+                                    <h3 class="neon" contenteditable="true" id="lyricDiv2">your</h3>
+                                </div>
+                                <div class="row justify-content-center lyricLine">
+                                    <h3 class="neon" contenteditable="true" id="lyricDiv3">unique</h3>
+                                </div>
+                                <div class="row justify-content-center lyricLine">
+                                    <h3 class="neon" contenteditable="true" id="lyricDiv4">jingle...</h3>
+                                </div>`;
 
 
 function generateLyrics(event) {
@@ -54,9 +54,13 @@ function generateLyrics(event) {
     // lyricDiv4.style.visibility = "visible";
 
     fetch(url)
-        .then(response => response.text())
+        .then(response => {console.log("response = ", response); return response.text()})
         .then(lyric => {
-            let formattedLyricArr = lyric
+            console.log("lyric before split = ", lyric);
+            lyric = lyric.toString().split("|");
+            console.log("lyric after split = ", lyric);
+            originalLyrics = lyric[0];
+            let formattedLyricArr = lyric[1]
                 .replace(/ ill /g, " I'll ")
                 .replace(/ i /g, " I ")
                 .replace(/ christ /g, " Christ ")
@@ -90,10 +94,16 @@ function generateLyrics(event) {
             lyricDiv3.innerHTML = line3;
             lyricDiv4.innerHTML = line4;
 
+            // Fill in original lyrics
+            let originalLyricsDiv = document.getElementById("originalLyricsEl");
+            originalLyricsDiv.innerHTML = originalLyrics;
+
         })
         .catch( function (err){
             console.log(err);
             lyricInnerContainerDiv.innerHTML = lyricElements;
+            let originalLyricsDiv = document.getElementById("originalLyricsEl");
+            originalLyricsDiv.innerHTML = "";
         });
 }
 
