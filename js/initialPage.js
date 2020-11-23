@@ -542,64 +542,72 @@ class InitialPage {
         }
 
         d3.select("#all").on('click', function() {
-            // if this button is clicked, change the clickedAll variable to true
-            vis.clickedAll = 'true';
-            vis.clickedDecade = 'false';
-            vis.clickedInstance = 'false';
-            vis.clickedWeeks = 'false';
-            // d3.select(".col-4").append('p').text('You clicked the All button!');
-            // add html
-            removeText('all');
-            showText('all')
-            vis.simulation
-                .force('x', vis.forceXAll)
-                .force('y', vis.forceYAll)
-                .alphaTarget(1)
-                .restart()
-            hideTitles();
+            if(vis.clickedAll != 'true') {
+                // if this button is clicked, change the clickedAll variable to true
+                vis.clickedAll = 'true';
+                vis.clickedDecade = 'false';
+                vis.clickedInstance = 'false';
+                vis.clickedWeeks = 'false';
+                // d3.select(".col-4").append('p').text('You clicked the All button!');
+                // add html
+                removeText('all');
+                showText('all')
+                vis.simulation
+                    .force('x', vis.forceXAll)
+                    .force('y', vis.forceYAll)
+                    .alphaTarget(1)
+                    .restart()
+                hideTitles();
+            }
         })
         d3.select("#weeks_on_chart").on('click', function() {
-            vis.clickedWeeks = 'true';
-            vis.clickedAll = 'false';
-            vis.clickedDecade = 'false';
-            vis.clickedInstance = 'false';
+            if(vis.clickedWeeks != 'true') {
+                vis.clickedWeeks = 'true';
+                vis.clickedAll = 'false';
+                vis.clickedDecade = 'false';
+                vis.clickedInstance = 'false';
 
-            removeText('weeks_on_chart');
-            showTitles('weeks_on_chart')
-            showText('weeks_on_chart')
-            vis.simulation
-                .force('x', vis.forceXWeeks)
-                .force('y', vis.forceYWeeks)
-                .alphaTarget(1)
-                .restart()
+                removeText('weeks_on_chart');
+                showTitles('weeks_on_chart')
+                showText('weeks_on_chart')
+                vis.simulation
+                    .force('x', vis.forceXWeeks)
+                    .force('y', vis.forceYWeeks)
+                    .alphaTarget(1)
+                    .restart()
+            }
         })
         d3.select("#year").on('click', function() {
-            vis.clickedDecade = 'true';
-            vis.clickedAll = 'false';
-            vis.clickedInstance = 'false';
-            vis.clickedWeeks = 'false';
-            removeText('year');
-            vis.simulation
-                .force('x', vis.forceXDecade)
-                .force('y', vis.forceYDecade)
-                .alphaTarget(1)
-                .restart()
-            showTitles('year')
-            showText('year')
+            if(vis.clickedDecade != 'true') {
+                vis.clickedDecade = 'true';
+                vis.clickedAll = 'false';
+                vis.clickedInstance = 'false';
+                vis.clickedWeeks = 'false';
+                removeText('year');
+                vis.simulation
+                    .force('x', vis.forceXDecade)
+                    .force('y', vis.forceYDecade)
+                    .alphaTarget(1)
+                    .restart()
+                showTitles('year')
+                showText('year')
+            }
         })
         d3.select("#instance").on('click', function() {
-            vis.clickedInstance = 'true';
-            vis.clickedDecade = 'false';
-            vis.clickedWeeks = 'false';
-            vis.clickedAll = 'false';
-            removeText('instance');
-            vis.simulation
-                .force('x', vis.forceXInstance)
-                .force('y', vis.forceYInstance)
-                .alphaTarget(1)
-                .restart()
-            showTitles('instance')
-            showText('instance')
+            if(vis.clickedInstance != 'true') {
+                vis.clickedInstance = 'true';
+                vis.clickedDecade = 'false';
+                vis.clickedWeeks = 'false';
+                vis.clickedAll = 'false';
+                removeText('instance');
+                vis.simulation
+                    .force('x', vis.forceXInstance)
+                    .force('y', vis.forceYInstance)
+                    .alphaTarget(1)
+                    .restart()
+                showTitles('instance')
+                showText('instance')
+            }
         })
 
         vis.simulation.nodes(vis.christmasSongs)

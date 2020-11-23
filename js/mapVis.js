@@ -14,7 +14,7 @@ class ChristmasMap {
 
     initVis() {
         let vis = this;
-        vis.margin = {top: 10, right: 150, bottom: 0, left: 150};
+        vis.margin = {top: -70, right: 150, bottom: 70, left: 150};
         vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right;
         vis.height = $("#" + vis.parentElement).height() - vis.margin.top - vis.margin.bottom;
 
@@ -36,7 +36,10 @@ class ChristmasMap {
         // convert your TopoJSON data into GEOJSON data structure
         vis.world = topojson.feature(vis.geoData, vis.geoData.objects.countries).features
 
-        //console.log("world", vis.world)
+        // tooltip
+        vis.tooltip = d3.select("body").append('div')
+            .attr('class', "tooltip")
+            .attr('id', 'mapTooltip')
 
         vis.svg.append("path")
             .datum({type: "Sphere"})
@@ -45,14 +48,6 @@ class ChristmasMap {
             .attr('fill', '#DC143C')
             .attr("stroke","rgba(129,129,129,0.35)")
             .attr("d", vis.path);
-
-        // graticule
-        // vis.svg.append("path")
-        //     .datum(d3.geoGraticule())
-        //     .attr("class", "graticule")
-        //     // .attr('fill', '#ADDEFF')
-        //     .attr("stroke","rgba(129,129,129,0.35)")
-        //     .attr("d", vis.path);
 
         var gradient = vis.svg.append("svg:defs")
             .append("svg:linearGradient")
@@ -81,59 +76,6 @@ class ChristmasMap {
             .attr('fill', 'url(#gradient)')
             .attr("d", vis.path)
 
-        // append tooltip
-        vis.tooltip = d3.select("body").append('div')
-            .attr('class', "tooltip")
-            .attr('id', 'worldTooltip')
-
-        vis.svg.selectAll("circle")
-            .data(vis.places)
-            .enter()
-            .append("circle")
-            .attr("cx", function(d) {
-                return vis.projection([d.longitude, d.latitude])[0];
-            })
-            .attr("cy", function(d) {
-                return vis.projection([d.longitude, d.latitude])[1];
-            })
-            .attr("r", 5)
-            .style("fill", "yellow")
-            .style("opacity", 0.75);
-
-        // create a legend group
-        // vis.legend = vis.svg.append("g")
-        //     .attr('class', 'legend')
-        //     .attr('transform', `translate(${vis.width * 2.8 / 4.2}, ${vis.height - 20})`)
-        //
-        // // create a legendScale
-        // vis.x1 = d3.scaleLinear()
-        //     .domain([0, 100])
-        //     // legend width is expressed in terms of the bounding box width
-        //     .range([0, 100]);
-        //
-        // vis.legendAxis = d3.axisBottom()
-        //     .ticks(3)
-        //     .scale(vis.x1)
-        //
-        // vis.legend.selectAll("rect")
-        //     .data(vis.colorScale)
-        //     .enter()
-        //     .append("rect")
-        //     .attr("height", 20)
-        //     .attr("x", function(d, i) { return i*25 })
-        //     .attr("y", -20)
-        //     .attr("width", function(d) { return 25 })
-        //     .style("fill", function(d, i) { return d });
-        //
-        // // call the legend axis inside the legend axis group
-        // vis.svg.append("g")
-        //     .attr("class", "x-axis axis")
-        //     .attr('transform', `translate(${vis.width * 2.8 / 4.2}, ${vis.height - 20})`)
-        //
-        // vis.svg.select(".x-axis").call(vis.legendAxis)
-
-        //legend.call(vis.legendAxis)
-
         let m0,
             o0;
 
@@ -155,7 +97,10 @@ class ChristmasMap {
                     // Update the map
                     vis.path = d3.geoPath().projection(vis.projection);
                     d3.selectAll(".country").attr("d", vis.path)
-                    d3.selectAll(".graticule").attr("d", vis.path)
+
+                    d3.selectAll(".airport")
+                        .attr('cx', d => vis.projection([d.longitude, d.latitude])[0])
+                        .attr('cy', d => vis.projection([d.longitude, d.latitude])[1])
                 })
         )
         vis.wrangleData()
@@ -175,6 +120,56 @@ class ChristmasMap {
 
     updateVis() {
         let vis = this;
+
+        vis.airports = vis.svg.selectAll('.airport')
+            .data(vis.places)
+            .enter().append('circle')
+            .attr('class', 'airport')
+            // .merge(vis.airports)
+            .attr('cx', d => vis.projection([d.longitude, d.latitude])[0])
+            .attr('cy', d => vis.projection([d.longitude, d.latitude])[1])
+            //.attr('cx', d => vis.projection())
+            .attr('r', function (d,i) {
+                return 5
+            })
+            .style('fill', '#b9f2ff')
+            .style('stroke', 'black')
+            .style('opacity', function(d) {
+                const coordinate = [d.longitude, d.latitude];
+                let gdistance = d3.geoDistance(coordinate, vis.projection.invert([vis.width/2, vis.height/2]));
+                return gdistance > 1.57 ? 'none' : '1';})
+
+        // vis.airports.exit().remove()
+        vis.airports
+            .on('mouseover', function (event, d) {
+                d3.select(this)
+                    .attr("fill", 'rgba(181,0,0,0.48)')
+                    .attr("stroke", 'darkred')
+
+                console.log(d)
+                vis.tooltip
+                    .style("opacity", 1)
+                    .style("left", event.pageX + 20 + "px")
+                    .style("top", event.pageY + "px")
+                    .html(`<div style="border: thin solid grey; border-radius: 5px; background: white; padding: 5px;">
+                        <h3>Performer: <strong>${d.performer}</strong><h3>
+                        <h3>Country: <strong>${d.country}</strong><h3>
+                        <h3>State: <strong>${d.state}</strong><h3>
+                        <h3>City: <strong>${d.city}</strong><h3></div>`);
+            })
+            .on('mouseout', function (event, d) {
+                d3.select(this)
+                    .attr('fill', 'url(#gradient)')
+                    .attr("stroke", 'transparent')
+
+                vis.tooltip
+                    .style("opacity", 0)
+                    .style("left", 0 +"px")
+                    .style("top", 0+ "px")
+            })
+            .transition()
+            .duration(500)
+            .attr('fill', 'url(#gradient)')
 
     }
 }
