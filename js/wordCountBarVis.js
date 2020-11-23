@@ -76,17 +76,19 @@ class WordCountBarVis {
         // artist = "Bobby Helms";
 
         // Filter all lyric text by artist
-        vis.filteredData = artist ? vis.fullLyricData.filter(d => d.artist === artist) : vis.fullLyricData;
+        vis.filteredData = artist ? vis.fullLyricData.filter(d => d.performer === artist) : vis.fullLyricData;
+        // vis.filteredData = artist ? vis.fullLyricData.filter(d => d.artist === artist) : vis.fullLyricData;
         console.log("fullLyricData = ", vis.fullLyricData);
         console.log("filteredData = ", vis.filteredData);
 
         // Create an array of words from the lyric text
         let lyricText = '';
         vis.filteredData.forEach(d => {
-            lyricText += d.track_n.match(/(?:"[^"]*"|^[^"]*$)/)[0].replace(/"/g, "") + " ";
+            lyricText += d.lyrics + " ";
+            // lyricText += d.track_n.match(/(?:"[^"]*"|^[^"]*$)/)[0].replace(/"/g, "") + " ";
         });
         let lyricCleanedArray = lyricText.toLowerCase().match(/\b[\w']+\b/g);
-        console.log("lyricCleanedArray = ", lyricCleanedArray);
+        // console.log("lyricCleanedArray = ", lyricCleanedArray);
 
         // Create word list with count from filtered array of words
         let lyricWordCountMap = new Map();
@@ -192,3 +194,4 @@ class WordCountBarVis {
     }
 
 }
+

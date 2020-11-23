@@ -125,11 +125,12 @@ function updateInputDiv(wordList, wordListFiltered, artist = false) {
 
 function setArtistSelect(fullLyricData) {
     // Add list of artists to dropdown
-    console.log("setArtistSelect");
+    // console.log("setArtistSelect");
     // Gets all unique artists by keeping only the first occurrence of each value
-    let allArtists = fullLyricData.map(d => d.artist);
+    let allArtists = fullLyricData.map(d => d.performer);
+    // let allArtists = fullLyricData.map(d => d.artist);
     let uniqueArtists = allArtists.filter((value, index, self) => self.indexOf(value) == index);
-    console.log("allArtists = ", allArtists);
+    // console.log("allArtists = ", allArtists);
     console.log("uniqueArtists = ", uniqueArtists);
     let artistOptions = '';
     artistOptions += `<option selected value>All artists</option>`;
