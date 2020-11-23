@@ -53,6 +53,24 @@ let promises = [
         row.latitude = +row.latitude;
         row.longitude = +row.longitude;
         return row;
+    }),
+    d3.csv("data/christmas_songs_with_lyrics.csv", (row) => {
+        // convert all numeric values to numbers
+        row.day = +row.day;
+        row.instance = +row.instance;
+        row.month = +row.month;
+        row.peak_position = +row.peak_position;
+        row.previous_peak_position = +row.previous_peak_position;
+        row.week_position = +row.week_position;
+
+        let timeParse = d3.timeParse("%m/%d/%Y");
+        //row.weekid = timeParse(row.weekid);
+        let timeParseYear = d3.timeParse("%Y");
+        row.year = timeParseYear(row.year);
+
+        row.weeks_on_chart = +row.weeks_on_chart;
+
+        return row;
     })
 ]
 Promise.all(promises)
@@ -84,6 +102,9 @@ function initMapPage(data) {
     initialPage = new InitialPage("initialPage", data[1], group);
 
     christmasMap = new ChristmasMap("mapVis", data[0], data[1], data[2]);
+
+    wordCountBarVis = new WordCountBarVis("wordCountBarDiv", data[3]);
+    setArtistSelect(data[3]);
 
 }
 
