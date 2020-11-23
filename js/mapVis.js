@@ -1,9 +1,10 @@
 class ChristmasMap {
 
-    constructor(parentElement, geoData, christmasSongs) {
+    constructor(parentElement, geoData, christmasSongs, places) {
         this.parentElement = parentElement;
         this.geoData = geoData;
         this.christmasSongs = christmasSongs
+        this.places = places;
         this.displayData = [];
 
         this.colorScale = ['#fddbc7','#f4a582','#d6604d','#b2182b']
@@ -35,34 +36,69 @@ class ChristmasMap {
         // convert your TopoJSON data into GEOJSON data structure
         vis.world = topojson.feature(vis.geoData, vis.geoData.objects.countries).features
 
-        console.log("world", vis.world)
+        //console.log("world", vis.world)
 
         vis.svg.append("path")
             .datum({type: "Sphere"})
             .attr("class", "graticule")
-            .attr('fill', '#ADDEFF')
+            // .attr('fill', '#ADDEFF')
+            .attr('fill', '#DC143C')
             .attr("stroke","rgba(129,129,129,0.35)")
             .attr("d", vis.path);
 
         // graticule
-        vis.svg.append("path")
-            .datum(d3.geoGraticule())
-            .attr("class", "graticule")
-            .attr('fill', '#ADDEFF')
-            .attr("stroke","rgba(129,129,129,0.35)")
-            .attr("d", vis.path);
+        // vis.svg.append("path")
+        //     .datum(d3.geoGraticule())
+        //     .attr("class", "graticule")
+        //     // .attr('fill', '#ADDEFF')
+        //     .attr("stroke","rgba(129,129,129,0.35)")
+        //     .attr("d", vis.path);
+
+        var gradient = vis.svg.append("svg:defs")
+            .append("svg:linearGradient")
+            .attr("id", "gradient")
+            .attr("x1", "0%")
+            .attr("y1", "0%")
+            .attr("x2", "100%")
+            .attr("y2", "100%")
+            .attr("spreadMethod", "pad");
+
+        gradient.append("svg:stop")
+            .attr("offset", "0%")
+            .attr("stop-color", "white")
+            .attr("stop-opacity", 1);
+
+        gradient.append("svg:stop")
+            .attr("offset", "100%")
+            .attr("stop-color", "#D4AF37")
+            .attr("stop-opacity", 1);
 
         // draw countries
         vis.countries = vis.svg.selectAll(".country")
             .data(vis.world)
             .enter().append("path")
             .attr('class', 'country')
+            .attr('fill', 'url(#gradient)')
             .attr("d", vis.path)
 
         // append tooltip
         vis.tooltip = d3.select("body").append('div')
             .attr('class', "tooltip")
             .attr('id', 'worldTooltip')
+
+        vis.svg.selectAll("circle")
+            .data(vis.places)
+            .enter()
+            .append("circle")
+            .attr("cx", function(d) {
+                return vis.projection([d.longitude, d.latitude])[0];
+            })
+            .attr("cy", function(d) {
+                return vis.projection([d.longitude, d.latitude])[1];
+            })
+            .attr("r", 5)
+            .style("fill", "yellow")
+            .style("opacity", 0.75);
 
         // create a legend group
         // vis.legend = vis.svg.append("g")
@@ -132,7 +168,7 @@ class ChristmasMap {
 
         // prepare music data by grouping all rows by state
         let musicDataByState = Array.from(d3.group(filteredData, d =>d.state), ([key, value]) => ({key, value}))
-        console.log(musicDataByState);
+        //console.log(musicDataByState);
 
         vis.updateVis();
     }
