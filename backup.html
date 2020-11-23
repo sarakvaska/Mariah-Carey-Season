@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;" charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mariah Carey Season</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas&display=swap">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<div class="snowflake">
+    ❅
+</div>
+<div class="snowflake">
+    ❆
+</div>
+<div class="snowflake">
+    ❅
+</div>
+<div class="snowflake">
+    ❆
+</div>
+<div class="snowflake">
+    ❅
+</div>
+<div class="snowflake">
+    ❆
+</div>
+<div class="snowflake">
+    ❅
+</div>
+<div class="snowflake">
+    ❆
+</div>
+<div class="snowflake">
+    ❅
+</div>
+<div class="snowflake">
+    ❆
+</div>
+<div class="snowflake">
+    ❅
+</div>
+<div class="snowflake">
+    ❆
+</div>
+<div class="container-fluid snowflakes" style="width: 100%; height: 100%;" aria-hidden="true">
+    <h1 class="center">Mariah Carey Season</h1>
+    <br>
+    <h2 class="center">An Interactive Visualization of the Top Christmas Songs</h2>
+    <div id="initialPage" style="width: 100%; height: 75vh;"></div>
+    <div id="mapVis" style="width:100%; height: 100vh;"></div>
+    <div id="birthdayVis" style="width:100%; height: 100vh;">
+        <h4 class="center">Let's deep dive into the history of Christmas music. Nothing is as magical as one's birthday. <br>
+            Can you guess what was the top Christmas song in your birthyear?</h4>
+        <h4 class="center">Enter your birthyear (or any other year!) to see its top song </h4>
+        <input type="number" id="birthdayInput" name="birthdayInput"
+               min="1958" max="2019" placeholder="1989">
+        <button type="button" class="btn btn-dark" onclick="birthdayChange()">submit</button>
+        <img id="performer">
+    </div>
+    <div id="globalStreamsVis" style="width:100%; height: 100vh;">
+        <h4 class="center"> Remember our interactive component which showed the top Christmas song of any year?
+            </br>In case you didn't notice, "All I Want For Christmas?" by Mariah Carey <br>
+            is the top Christmas song for the past 7 years, since 2013.</h4>
+        <h4 class="center"> Check out the number of streams of Mariah's hit over the month of December.</h4>
+    </div>
+
+    <h4 class="center"> The sheer number of streams is impressive: 92 millions of streams within a month.</h4>
+    <h4 class="center"> Notably, however, no other Christmas song reaches a similar level.
+        </br>Let's compare the number of streams of "All I Want For Christmas?" with top 5 most popular songs from 2017</h4>
+
+    <div id="weeklyTopVis" style="width:100%; height: 100vh;"></div>
+
+    <div id="mariahVideo"  style="text-align:center;">
+        <h4 class="center"> Oh well, there is no doubt that Mariah is the Queen of Christmas.
+            <br> Let us wish you Happy Holidays with the season's most emblematic song</h4>
+
+        <iframe width="700" height=" 393.75" src="https://www.youtube.com/embed/aAkMkVFwAoo" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+    </div>
+
+
+
+
+
+
+
+</div>
+
+<!-- Load JS libraries: jQuery, bootstrap, D3 -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+<!-- d3 -->
+<script src="https://d3js.org/d3.v6.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+<script src="https://d3js.org/topojson.v2.min.js"></script>
+<script src="https://d3js.org/d3-geo.v1.min.js"></script>
+
+<!-- own js files -->
+<script src="js/main.js"></script>
+<script src="js/BirthdayVis.js"></script>
+<script src="js/globalStreamsVis.js"></script>
+<script src="js/weeklyVis.js"></script>
+
+</body>
+</html>
