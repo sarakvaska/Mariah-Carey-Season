@@ -1,5 +1,15 @@
+// init global variables & switches
 let initialPage;
 let christmasMap;
+let myChartVis;
+let myBirthdayVis;
+let myGlobalStreamsVis;
+let myWeeklyVis;
+
+let parseDate = d3.timeParse("%m/%d/%Y");
+let yearParse = d3.timeParse("%Y");
+let bisectDate = d3.bisector(function(d) { return d.day; }).left;
+
 // Wrap every letter in a span
 var textWrapper = document.querySelector('.ml9 .letters');
 textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
@@ -75,4 +85,28 @@ function initMapPage(data) {
 
     christmasMap = new ChristmasMap("mapVis", data[0], data[1], data[2]);
 
+}
+
+// Section: Interactive Birthday
+d3.csv("data/christmas_songs_birthday.csv", (row) => {
+    row.day = +row.day
+    row.instance = +row.instance;
+    row.month = +row.month;
+    row.peak_position = +row.peak_position;
+    row.week_position = +row.week_position;
+    row.previous_week_position = +row.previous_week_position;
+    row.weeks_on_chart = +row.weeks_on_chart;
+    row.year = +row.year;
+    row.weekid = parseDate(row.weekid);
+    return row;
+}).then( (data) => {
+    // myChartVis = new ChartVis('chart-map', data);
+    myBirthdayVis = new BirthdayVis('birthdayVis', data);
+});
+
+let birthdayDate = 2019;
+
+function birthdayChange() {
+    birthdayDate = $('#birthdayInput').val();
+    myBirthdayVis.updateVis();
 }

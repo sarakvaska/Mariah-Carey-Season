@@ -83,6 +83,25 @@
         </div>
         <div class="section">
         <!--    Gustavo's section -->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-8" id="birthdayVis" style="height: 100%; width:100%;">
+                        <img id="performer">
+                    </div>
+                    <div class="col-4" id="birthdayTextVis">
+                        <h4 class="center">Let's deep dive into the history of Christmas music.
+                             </h4>
+                        <h4 id="canYouGuess"> Nothing is as magical as one's birthday. Can you guess what was the top Christmas song in your birthyear?</h4>
+
+                        <h4 id="birthdayTextExample"> For instance, "All I Want For Christmas" was <br> the most popular song in 2019</h4>
+
+                        <div><h4 class="center">Enter your birthyear (or any other year!) to see its top song </h4>
+                            <input type="number" id="birthdayInput" name="birthdayInput"
+                                   min="1958" max="2019" placeholder="2019">
+                            <button id="birthdayButton" class="button active" onclick="birthdayChange()" >submit</button></div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="section" id="starshine">
             <div class="template shine"></div>
@@ -177,5 +196,6 @@
     <script src="js/main.js"></script>
     <script src="js/initialPage.js"></script>
     <script src="js/mapVis.js"></script>
+    <script src="js/birthdayVis.js"></script>
 </body>
 </html>

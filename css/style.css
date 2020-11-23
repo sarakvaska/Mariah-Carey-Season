@@ -403,3 +403,45 @@ h3 {
         opacity: 0;
     }
 }
+
+#canYouGuess {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+#birthdayButton {
+    top: 66%;
+    right: 55%;
+}
+#birthdayInput {
+    margin-top: 30px;
+}
+
+#birthdayTextExample {
+    color:whitesmoke;
+    padding-bottom: 20px;
+}
+
+#birthdayTextVis {
+    margin-top: 60px;
+}
+
+input[type=number] {
+    transform: scale(2);
+}
+
+.birthdayText {
+    font-family: 'Mountains of Christmas', cursive;
+    color: white;
+    font-size: 30px;
+    /*margin-left:-104px;*/
+    /*position: absolute;*/
+}
+
+.birthdayTextSmaller {
+    font-family: 'Mountains of Christmas', cursive;
+    color: white;
+    font-size: 20px;
+    /*margin-left:-104px;*/
+    /*position: absolute;*/
+}
