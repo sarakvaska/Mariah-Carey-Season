@@ -163,19 +163,15 @@ p {
 }
 #all {
     top: 25%;
-    left: -50%;
+    left: -35%;
 }
 #weeks_on_chart {
     top: 25%;
-    left: -25%;
-}
-#instance {
-    top: 25%;
-    left: 15%;
+    left: -10%;
 }
 #year {
     top: 25%;
-    left: 44%;
+    left: 30%;
 }
 
 .button::before {

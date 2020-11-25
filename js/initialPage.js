@@ -8,7 +8,6 @@ class InitialPage {
         this.circleColors = ['#00B32C','#D8D8D8','#B3000C','#E40010'];
         //'#00B32C'
         this.clickedWeeks = 'false';
-        this.clickedInstance = 'false';
         this.clickedDecade = 'false';
         this.clickedAll = 'true';
 
@@ -62,26 +61,6 @@ class InitialPage {
                             return 390;
                         }
                     }
-                    else if(i < 6 && byVar == 'instance') {
-                        if(i == 0) {
-                            return 50;
-                        }
-                        if(i == 1) {
-                            return 345;
-                        }
-                        if(i == 2) {
-                            return 400;
-                        }
-                        if(i == 3) {
-                            return 430;
-                        }
-                        if(i == 4) {
-                            return 425;
-                        }
-                        if(i == 5) {
-                            return 410;
-                        }
-                    }
                     else if (i < 6 && byVar == 'year') {
                         if(i == 0) {
                             return 40;
@@ -116,26 +95,6 @@ class InitialPage {
                         }
                         if(i == 3) {
                             return 370;
-                        }
-                    }
-                    else if(byVar == 'instance' && i < 6) {
-                        if(i == 0) {
-                            return 100;
-                        }
-                        if(i == 1) {
-                            return 50;
-                        }
-                        if(i == 2) {
-                            return 175;
-                        }
-                        if(i == 3) {
-                            return 290;
-                        }
-                        if(i == 4) {
-                            return 415;
-                        }
-                        if(i == 5) {
-                            return 500;
                         }
                     }
                     else if (i < 6 && byVar == 'year') {
@@ -177,26 +136,6 @@ class InitialPage {
                         }
                         if(i == 3) {
                             return '16-20 Weeks';
-                        }
-                    }
-                    else if(i < 6 && byVar == 'instance') {
-                        if(i == 0) {
-                            return '1st Instance';
-                        }
-                        if(i == 1) {
-                            return '2nd Instance';
-                        }
-                        if(i == 2) {
-                            return '3rd Instance';
-                        }
-                        if(i == 3) {
-                            return '4th Instance';
-                        }
-                        if(i == 4) {
-                            return '5th Instance';
-                        }
-                        if(i == 5) {
-                            return '6th Instance';
                         }
                     }
                     else if(i < 6 && byVar == 'year') {
@@ -299,47 +238,6 @@ class InitialPage {
             }
         }).strength(0.08)
 
-        vis.forceXInstance = d3.forceX(function(d) {
-            if(d.instance == 1) {
-                return 205;
-            }
-            else if(d.instance == 2) {
-                return 400;
-            }
-            else if(d.instance == 3) {
-                return 400;
-            }
-            else if(d.instance == 4) {
-                return 400;
-            }
-            else if (d.instance == 5) {
-                return 400;
-            }
-            else if(d.instance == 6){
-                return 400;
-            }
-        }).strength(0.073)
-
-        vis.forceYInstance = d3.forceY(function(d) {
-            if(d.instance == 1) {
-                return 300;
-            }
-            else if(d.instance == 2) {
-                return 150;
-            }
-            else if(d.instance == 3) {
-                return 225;
-            }
-            else if(d.instance == 4) {
-                return 300;
-            }
-            else if (d.instance == 5) {
-                return 375;
-            }
-            else if(d.instance == 6) {
-                return 425;
-            }
-        }).strength(0.07)
 
         vis.forceXAll = d3.forceX(vis.width / 2).strength(0.05)
         vis.forceYAll = d3.forceY(vis.height / 2).strength(0.05)
@@ -408,11 +306,6 @@ class InitialPage {
                     d3.select(".col-4").append('p').html(`<p style="font-size: 24px; color:#237249; margin-right: 75px; width: 700px; text-align: center;"><em><b>"${d.song.toLowerCase()}"</b></em> by ${d.performer} appeared on the Billboard chart on <u>${d.weekid}</u> and reached a peak position of ${d.peak_position}.<p></div>`)
                         .attr("class", 'decade-fact')
                 }
-                else if(vis.clickedInstance == 'true') {
-                    d3.select(".instance-fact-placeholder").remove();
-                    d3.select(".col-4").append('p').html(`<p style="font-size: 24px; color:#237249; margin-right: 75px; width: 700px; text-align: center;"><em><b>"${d.song.toLowerCase()}"</b></em> by ${d.performer} appears on the chart in the year ${d.year}, its <u>${d.instance} time</u> since its release.<p></div>`)
-                        .attr("class", 'instance-fact')
-                }
             })
             .on('mouseout', function(event, d){
                 d3.select(this)
@@ -420,7 +313,6 @@ class InitialPage {
 
                 d3.select(".weeks-fact").remove();
                 d3.select(".decade-fact").remove();
-                d3.select(".instance-fact").remove();
 
                 if(vis.clickedAll == 'true') {
                     vis.tooltip
@@ -468,19 +360,6 @@ class InitialPage {
                 d3.select(".col-4").append('p').html(`<p style="font-size: 24px; color:#237249; margin-right: 75px; width: 700px; text-align: center;"><em>"all i want for christmas is you"</em> by Mariah Carey spent <u>20 weeks</u> on the chart and reached a peak position of 11.<p></div>`)
                     .attr("class", "weeks-fact-placeholder")
             }
-            if(byVar == 'instance') {
-                d3.select(".col-4").append('p').text('This grouping represents the number of instances a song has appeared on the chart. Most songs have only appeared once, but some have been on it up to six times!')
-                    .attr('class', 'extraStory2')
-                    .style('margin-top', '120px')
-                    .style('margin-right', '75px')
-                    .style('width', '700px')
-                    .style('text-align', 'center')
-                    .style('color', '#B51541');
-
-                // placeholder: interesting insight
-                d3.select(".col-4").append('p').html(`<p style="font-size: 24px; color:#237249; margin-right: 75px; width: 700px; text-align: center;"><em>"all i want for christmas is you"</em> by Mariah Carey appears on the Billboard chart in the year 2017, its <u>6 time</u> since it was released.<p></div>`)
-                    .attr("class", "instance-fact-placeholder")
-            }
             if(byVar == 'year') {
                 d3.select(".col-4").append('p').text("This grouping represents each decade the top songs were on the Billboard chart. It seems that most Christmas songs appeared on the chart in the 1950s through the 1960s, but recently they're making a comeback.")
                     .attr('class', 'extraStory3')
@@ -498,7 +377,6 @@ class InitialPage {
         function removeText(byVar) {
             console.log(byVar)
             if(byVar == 'all') {
-                d3.select(".instance-fact-placeholder").remove();
                 d3.select(".decade-fact-placeholder").remove();
                 d3.select(".weeks-fact-placeholder").remove();
                 d3.select(".extraStory3").remove();
@@ -512,21 +390,9 @@ class InitialPage {
                 d3.select(".filler2").remove();
                 d3.select(".extraStory0").remove();
                 d3.select(".extraStory01").remove();
-                d3.select(".instance-fact-placeholder").remove();
                 d3.select(".decade-fact-placeholder").remove();
                 d3.select(".extraStory3").remove();
                 d3.select(".extraStory2").remove();
-            }
-            if(byVar == 'instance') {
-                d3.select(".filler1").remove();
-                d3.select(".filler2").remove();
-                d3.select(".extraStory0").remove();
-                d3.select(".extraStory01").remove();
-                d3.select(".extraStory1").remove();
-                d3.select(".extraStory02").remove();
-                d3.select(".decade-fact-placeholder").remove();
-                d3.select(".weeks-fact-placeholder").remove();
-                d3.select(".extraStory3").remove();
             }
             if(byVar == 'year') {
                 d3.select(".filler1").remove();
@@ -536,7 +402,6 @@ class InitialPage {
                 d3.select(".extraStory2").remove();
                 d3.select(".extraStory1").remove();
                 d3.select(".extraStory02").remove();
-                d3.select(".instance-fact-placeholder").remove();
                 d3.select(".weeks-fact-placeholder").remove();
             }
         }
@@ -546,7 +411,6 @@ class InitialPage {
                 // if this button is clicked, change the clickedAll variable to true
                 vis.clickedAll = 'true';
                 vis.clickedDecade = 'false';
-                vis.clickedInstance = 'false';
                 vis.clickedWeeks = 'false';
                 // d3.select(".col-4").append('p').text('You clicked the All button!');
                 // add html
@@ -565,7 +429,6 @@ class InitialPage {
                 vis.clickedWeeks = 'true';
                 vis.clickedAll = 'false';
                 vis.clickedDecade = 'false';
-                vis.clickedInstance = 'false';
 
                 removeText('weeks_on_chart');
                 showTitles('weeks_on_chart')
@@ -581,7 +444,6 @@ class InitialPage {
             if(vis.clickedDecade != 'true') {
                 vis.clickedDecade = 'true';
                 vis.clickedAll = 'false';
-                vis.clickedInstance = 'false';
                 vis.clickedWeeks = 'false';
                 removeText('year');
                 vis.simulation
@@ -591,22 +453,6 @@ class InitialPage {
                     .restart()
                 showTitles('year')
                 showText('year')
-            }
-        })
-        d3.select("#instance").on('click', function() {
-            if(vis.clickedInstance != 'true') {
-                vis.clickedInstance = 'true';
-                vis.clickedDecade = 'false';
-                vis.clickedWeeks = 'false';
-                vis.clickedAll = 'false';
-                removeText('instance');
-                vis.simulation
-                    .force('x', vis.forceXInstance)
-                    .force('y', vis.forceYInstance)
-                    .alphaTarget(1)
-                    .restart()
-                showTitles('instance')
-                showText('instance')
             }
         })
 
