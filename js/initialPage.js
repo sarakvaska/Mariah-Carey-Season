@@ -1,23 +1,27 @@
 class InitialPage {
     // constructor method to initialize initial visualization
-    constructor(parentElement, christmasSongs, group) {
+    constructor(parentElement, christmasSongs, group, unique) {
         this.parentElement = parentElement;
         this.christmasSongs = christmasSongs;
         this.group = group;
-        this.displayData = [];
-        this.circleColors = ['#00B32C','#D8D8D8','#B3000C','#E40010'];
-        //'#00B32C'
+        this.highestInstances = unique;
+        //this.circleColors = ['#D8D8D8','#237249','#E40010', '#B3000C'];
+        //this.circleColors = ['#f0f9e8','#bae4bc','#7bccc4', '#2b8cbe'];
+        //this.circleColors = ['#f1eef6', '#d7b5d8', '#df65b0', '#ce1256'];
+        // this.circleColors = ['#f1eef6', '#bdc9e1', '#74a9cf', '#0570b0'];
+        this.circleColors = ['#fee5d9', '#fcae91', '#ec746a', '#cb181d'];
+        //this.circleColors = ['#edf8e9', '#bae4b3', '#74c476', '#238b45'];
         this.clickedWeeks = 'false';
-        this.clickedInstance = 'false';
         this.clickedDecade = 'false';
         this.clickedAll = 'true';
+        this.clickedInstance = 'false';
 
         this.initVis()
     }
 
     initVis() {
         let vis = this;
-        console.log(vis.christmasSongs)
+        //console.log(vis.christmasSongs)
         vis.margin = {top: 10, right: 10, bottom: 10, left:10};
         //vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right;
         vis.width = 650;
@@ -36,134 +40,129 @@ class InitialPage {
             .attr("class", "tooltip")
             .attr("id", "myTooltip")
 
-        function hideTitles() {
-            vis.svg.selectAll('.title').remove();
-        }
-
         function showTitles(byVar, groupNumber) {
-            var titles = vis.svg.selectAll('.title')
+            vis.titles = vis.svg.selectAll('.title')
                 .data(vis.christmasSongs)
 
-            titles.enter().append('text')
+            vis.titles.enter().append('text')
                 .attr('class', 'title')
-                .merge(titles)
+                .merge(vis.titles)
                 .attr('x', function (d, i) {
                     if (i < 4 && byVar == 'weeks_on_chart') {
                         if(i == 0) {
-                            return 50;
+                            return 140;
                         }
                         if(i == 1) {
-                            return 390;
+                            return 410;
                         }
                         if(i == 2) {
-                            return 50;
+                            return 140;
                         }
                         if(i == 3) {
-                            return 390;
+                            return 410;
                         }
                     }
                     else if(i < 6 && byVar == 'instance') {
                         if(i == 0) {
-                            return 50;
+                            return 120;
                         }
                         if(i == 1) {
-                            return 345;
+                            return 340;
                         }
                         if(i == 2) {
                             return 400;
                         }
                         if(i == 3) {
-                            return 430;
+                            return 420;
                         }
                         if(i == 4) {
-                            return 425;
+                            return 415;
                         }
                         if(i == 5) {
-                            return 410;
+                            return 380;
                         }
                     }
                     else if (i < 6 && byVar == 'year') {
                         if(i == 0) {
-                            return 40;
+                            return 130;
                         }
                         if(i == 1) {
-                            return 360;
+                            return 400;
                         }
                         if(i == 2) {
-                            return 40;
+                            return 130;
                         }
                         if(i == 3) {
-                            return 350;
+                            return 400;
                         }
                         if(i == 4) {
-                            return 40;
+                            return 130;
                         }
                         if(i == 5) {
-                            return 350;
+                            return 400;
                         }
                     }
                 })
                 .attr('y',  function (d, i) {
                     if (i < 4 && byVar == 'weeks_on_chart') {
                         if(i == 0) {
-                            return 25;
+                            return 170;
                         }
                         if(i == 1) {
-                            return 25;
+                            return 170;
                         }
                         if(i == 2) {
-                            return 370;
+                            return 430;
                         }
                         if(i == 3) {
-                            return 370;
+                            return 430;
                         }
                     }
                     else if(byVar == 'instance' && i < 6) {
                         if(i == 0) {
-                            return 100;
+                            return 310;
                         }
                         if(i == 1) {
-                            return 50;
+                            return 70;
                         }
                         if(i == 2) {
                             return 175;
                         }
                         if(i == 3) {
-                            return 290;
+                            return 310;
                         }
                         if(i == 4) {
-                            return 415;
+                            return 440;
                         }
                         if(i == 5) {
-                            return 500;
+                            return 540;
                         }
                     }
                     else if (i < 6 && byVar == 'year') {
                         if(i == 0) {
-                            return 50;
+                            return 160;
                         }
                         if(i == 1) {
-                            return 50;
+                            return 160;
                         }
                         if(i == 2) {
-                            return 300;
+                            return 330;
                         }
                         if(i == 3) {
-                            return 300;
+                            return 330;
                         }
                         if(i == 4) {
-                            return 410;
+                            return 470;
                         }
                         if(i == 5) {
-                            return 410;
+                            return 470;
                         }
                     }
                 })
-                .style("font-size", "22px")
-                .style("fill", "#022F89")
-                .style("font-weight", "bold")
+                .style("font-size", "25px")
+                .style("fill", "white")
                 .style("font-family", 'Mountains of Christmas')
-                .attr('text-anchor', 'middle')
+                .style('text-shadow', ' -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black')
                 .text(function (d, i) {
                     if (i < 4 && byVar == 'weeks_on_chart') {
                         if(i == 0) {
@@ -219,13 +218,22 @@ class InitialPage {
                             return '2008 - 2017';
                         }
                     }
-                });
+                })
+                .on('mouseover', function(event, d) {
+                    d3.select(this).style('visibility', 'hidden')
+                })
+                .on('mouseout', function(event, d) {
+                    d3.select(this).transition().delay(2000).style('visibility', 'visible')
+                })
 
-            titles.exit().remove()
+            vis.titles.exit().remove()
         }
 
-        // radius scaled according to peak position
-        vis.radiusScale = d3.scaleSqrt().domain([1, 100]).range([1, 15])
+        function hideTitles() {
+            vis.svg.selectAll('.title').remove();
+        }
+
+        vis.radiusScale = d3.scaleSqrt().domain([0, 1/7]).range([1, 30])
 
         vis.forceXWeeks = d3.forceX(function(d) {
             if(d.weeks_on_chart <= 5) {
@@ -235,10 +243,10 @@ class InitialPage {
                 return 390 ;
             }
             else if(d.weeks_on_chart > 10 && d.weeks_on_chart <= 15) {
-                return 200;
+                return 220;
             }
             else if(d.weeks_on_chart > 15 && d.weeks_on_chart <= 20) {
-                return 420;
+                return 400;
             }
         }).strength(0.06)
 
@@ -265,13 +273,13 @@ class InitialPage {
                 return 400;
             }
             if(d.year > 1978 && d.year <= 1988) {
-                return 200;
+                return 210;
             }
             if(d.year > 1988 && d.year <= 1998) {
-                return 410;
+                return 400;
             }
             else if (d.year > 1988 && d.year <= 2008) {
-                return 200;
+                return 210;
             }
             else {
                 return 410;
@@ -283,40 +291,40 @@ class InitialPage {
                 return 200;
             }
             if(d.year > 1968 && d.year <= 1978) {
-                return 185;
+                return 200;
             }
             if(d.year > 1978 && d.year <= 1988) {
                 return 300;
             }
             if(d.year > 1988 && d.year <= 1998) {
-                return 330;
+                return 350;
             }
             else if (d.year > 1988 && d.year <= 2008) {
-                return 400;
+                return 420;
             }
             else {
-                return 420;
+                return 430;
             }
         }).strength(0.08)
 
         vis.forceXInstance = d3.forceX(function(d) {
             if(d.instance == 1) {
-                return 205;
+                return 190;
             }
             else if(d.instance == 2) {
-                return 400;
+                return 300;
             }
             else if(d.instance == 3) {
-                return 400;
+                return 320;
             }
             else if(d.instance == 4) {
-                return 400;
+                return 330;
             }
             else if (d.instance == 5) {
-                return 400;
+                return 340;
             }
             else if(d.instance == 6){
-                return 400;
+                return 335;
             }
         }).strength(0.073)
 
@@ -328,7 +336,7 @@ class InitialPage {
                 return 150;
             }
             else if(d.instance == 3) {
-                return 225;
+                return 215;
             }
             else if(d.instance == 4) {
                 return 300;
@@ -337,9 +345,10 @@ class InitialPage {
                 return 375;
             }
             else if(d.instance == 6) {
-                return 425;
+                return 440;
             }
         }).strength(0.07)
+
 
         vis.forceXAll = d3.forceX(vis.width / 2).strength(0.05)
         vis.forceYAll = d3.forceY(vis.height / 2).strength(0.05)
@@ -350,10 +359,10 @@ class InitialPage {
             .force('x', vis.forceXAll)
             .force('y', vis.forceYAll)
             .force("collide",d3.forceCollide(function(d){
-                return vis.radiusScale(d.peak_position) + 1})
+                return vis.radiusScale(1/d.peak_position)})
             )
             .force("charge", d3.forceManyBody().strength(function(d){
-                return vis.radiusScale(d.peak_position) *-1})
+                return vis.radiusScale(1/d.peak_position) * -1.50})
             );
 
         vis.circles = vis.svg.selectAll("circle")
@@ -361,11 +370,12 @@ class InitialPage {
             .enter().append("circle")
             .attr("class", "song")
             .attr("r", function(d) {
-                return vis.radiusScale(d.peak_position);
+                return vis.radiusScale(1/d.peak_position);
             })
             .attr("fill", function(d) {
                 if (d.weeks_on_chart <= 5) {
                     return vis.circleColors[0]
+                    //return "url(#img/exampleOrnament.png)"
                 }
                 if (d.weeks_on_chart > 5 && d.weeks_on_chart <= 10) {
                     return vis.circleColors[1]
@@ -377,40 +387,80 @@ class InitialPage {
                     return vis.circleColors[3]
                 }
             })
-        // placeholder variable before anything is clicked
 
         vis.circles
             .on('mouseover', function(event, d){
                 d3.select(this)
                     .attr('stroke-width', '2px')
                     .attr('stroke', 'black')
-                //console.log(vis.clickedAll);
+                if (d.instance == 1) {
+                    vis.keyWord = 'first'
+                }
+                else if (d.instance == 2) {
+                    vis.keyWord = 'second'
+                }
+                else if (d.instance == 3) {
+                    vis.keyWord = 'third'
+                }
+                else if (d.instance == 4) {
+                    vis.keyWord = 'fourth'
+                }
+                else if (d.instance == 5) {
+                    vis.keyWord = 'fifth'
+                }
+                else if (d.instance == 6) {
+                    vis.keyWord = 'sixth'
+                }
+                if(d.performer == 'Ariana Grande') {
+                    vis.newText = 'LASTCHRISTMASARIANA.jpg'
+                }
+                else if(d.performer == 'Wham!') {
+                    vis.newText = 'LASTCHRISTMASWHAM!.jpg'
+                }
+                else if(d.performer == 'Michael Buble' && d.song == 'ALL I WANT FOR CHRISTMAS IS YOU') {
+                    vis.newText = 'ALLIWANTFORCHRISTMASISYOUMICHAELBUBLE.jpg'
+                }
+                else if(d.performer == 'The Drifters Featuring Clyde McPhatter And Bill Pinkney') {
+                    vis.newText = 'WHITECHRISTMASDRIFTERS.jpg'
+                }
+                else if(d.performer == 'Colbie Caillat') {
+                    vis.newText = 'MISTLETOECOLBIE.jpg'
+                }
+                else {
+                    vis.newText = d.song.split(" ").join("") + '.jpg'
+                    vis.newText = vis.newText.replace(/\?/g, '');
+                }
+                vis.yourImagePath = vis.newText
                 if (vis.clickedAll == 'true'){
-                    vis.tooltip
-                        .style("opacity", 0.9)
-                        .style("left", event.pageX + 20 + "px")
-                        .style("top", event.pageY + "px")
-                        .html(`<div style="border: thin solid grey; border-radius: 5px; background: white; padding: 5px;">
-                        <h3>Song: <strong>"${d.song.toLowerCase()}"</strong><h3>
-                        <h3>Performer: <strong>${d.performer}</strong><h3>
-                        <h3>Peak Position: <strong>#${d.peak_position}</strong><h3>
-                        <h3>Date on Chart: <strong>${d.weekid}</strong><h3></div>`);
+                    d3.select(".col-4").append('p').html(`<div><p style="font-size: 25px; color:black; margin-right: 70px; width: 700px; text-align: center; border:thin solid black; border-radius: 5px; background:rgba(255, 255, 255, 0.9); padding:5px;"><b style="color: #B3000C"><img style="width:100px; height:100px; border:thin solid black; border-radius: 5px; float: left" src="img/${vis.yourImagePath}" /> "${d.song.toLowerCase()}"</b> by ${d.performer} reached a peak position of <b>${d.peak_position}</b> in <b>${d.year}</b>, its ${vis.keyWord} time on the chart.<p>`)
+                        .attr("class", 'weeks-all')
                 }
                 else if(vis.clickedWeeks == 'true') {
+                    if(d.weeks_on_chart > 1) {
+                        vis.weeksWord = 'weeks';
+                    }
+                    else {
+                        vis.weeksWord = 'week'
+                    }
                     // add placeholder before mouseover
+                    d3.select(".extraStory6").remove();
+                    d3.selectAll('bounce arrow').remove();
                     d3.select(".weeks-fact-placeholder").remove();
-                    d3.select(".col-4").append('p').html(`<p style="font-size: 24px; color:#237249; margin-right: 75px; width: 700px; text-align: center;"><em><b>"${d.song.toLowerCase()}"</b></em> by ${d.performer} spent <u>${d.weeks_on_chart} weeks</u> on the chart and reached a peak position of ${d.peak_position}.<p></div>`)
+                    d3.select(".col-4").append('p').html(`<p style="font-size: 22px; color:black; margin-right: 75px; width: 700px; text-align: center; border:thin solid black; border-radius: 5px; background:rgba(255, 255, 255, 0.9); padding: 5px;"><em><b  style="color: #B3000C"><img style="width:100px; height:100px; border:thin solid black; border-radius: 5px; float: left" src="img/${vis.yourImagePath}" /> "${d.song.toLowerCase()}"</b></em> by ${d.performer} spent <u>${d.weeks_on_chart} ${vis.weeksWord}</u> on the chart in ${d.year} and reached a peak position of ${d.peak_position}.<p>`)
                         .attr("class", 'weeks-fact')
                 }
                 else if (vis.clickedDecade == 'true') {
                     // add placeholder before mouseover
                     d3.select(".decade-fact-placeholder").remove();
-                    d3.select(".col-4").append('p').html(`<p style="font-size: 24px; color:#237249; margin-right: 75px; width: 700px; text-align: center;"><em><b>"${d.song.toLowerCase()}"</b></em> by ${d.performer} appeared on the Billboard chart on <u>${d.weekid}</u> and reached a peak position of ${d.peak_position}.<p></div>`)
+                    d3.select(".extraStory4").remove();
+                    d3.select(".col-4").append('p').html(`<p style="font-size: 22px; color:black; margin-right: 75px; width: 700px; text-align: center; border:thin solid black; border-radius: 5px; background:rgba(255, 255, 255, 0.9); padding: 5px;"><em><b  style="color: #B3000C"><img style="width:100px; height:100px; border:thin solid black; border-radius: 5px; float: left" src="img/${vis.yourImagePath}" /> "${d.song.toLowerCase()}"</b></em> by ${d.performer} appeared on the Billboard chart <u>${d.weekid}</u> and reached a peak position of ${d.peak_position}.<p>`)
                         .attr("class", 'decade-fact')
                 }
                 else if(vis.clickedInstance == 'true') {
+                    d3.selectAll('.bounce arrow').remove();
+                    d3.select(".extraStory5").remove();
                     d3.select(".instance-fact-placeholder").remove();
-                    d3.select(".col-4").append('p').html(`<p style="font-size: 24px; color:#237249; margin-right: 75px; width: 700px; text-align: center;"><em><b>"${d.song.toLowerCase()}"</b></em> by ${d.performer} appears on the chart in the year ${d.year}, its <u>${d.instance} time</u> since its release.<p></div>`)
+                    d3.select(".col-4").append('p').html(`<p style="font-size: 22px; color:black; margin-right: 75px; width: 700px; text-align: center; border:thin solid black; border-radius: 5px; background:rgba(255, 255, 255, 0.9); padding: 5px;"><em><b  style="color: #B3000C"><img style="width:100px; height:100px; border:thin solid black; border-radius: 5px; float: left" src="img/${vis.yourImagePath}" /> "${d.song.toLowerCase()}"</b></em> by ${d.performer} appeared on the chart in ${d.year}, its <u>${vis.keyWord} time</u> since it was released.<p>`)
                         .attr("class", 'instance-fact')
                 }
             })
@@ -418,6 +468,7 @@ class InitialPage {
                 d3.select(this)
                     .attr('stroke-width', '0px')
 
+                d3.select(".weeks-all").remove();
                 d3.select(".weeks-fact").remove();
                 d3.select(".decade-fact").remove();
                 d3.select(".instance-fact").remove();
@@ -429,19 +480,48 @@ class InitialPage {
                         .style("top", 0)
                         .html(``);
                     }
+                if(vis.clickedDecade == 'true') {
+                    d3.select(".col-4").append('p').text("Now that we've thoroughly explored the top Christmas music of the late 1950s through the 2000s, lets take a look at the specific years where they were most successful!")
+                        .attr('class', 'extraStory4')
+                        .style('margin-top', '10px')
+                        .style('margin-right', '75px')
+                        .style('width', '700px')
+                        .style('text-align', 'center')
+                        .style('color', '#237249');
+                }
+                if(vis.clickedInstance == 'true') {
+                    d3.select(".col-4").append('p').text("Next, click on 'By Decade' to explore the songs through the decades.")
+                        .attr('class', 'extraStory5')
+                        .style('margin-top', '10px')
+                        .style('margin-right', '75px')
+                        .style('width', '700px')
+                        .style('text-align', 'center')
+                        .style('color', '#237249');
+                }
+                if(vis.clickedWeeks == 'true') {
+                    d3.select(".col-4").append('p').text("Next, click on 'By Instance' to see how many times each song topped the charts.")
+                        .attr('class', 'extraStory6')
+                        .style('margin-top', '10px')
+                        .style('margin-right', '75px')
+                        .style('width', '700px')
+                        .style('text-align', 'center')
+                        .style('color', '#237249');
+
+                }
                     // d3.select(".col-4").append('p').html(`<p style="font-size: 24px; color:#237249; margin-right: 75px; width: 700px; text-align: center;"><em>"all i want for christmas is you"</em> by Mariah Carey spent <u>20 weeks</u> on the chart and reached a peak position of 11.<p></div>`)
                     //     .attr("class", "fact")
             })
+
         function showText(byVar) {
             if(byVar == 'all') {
-                d3.select(".col-4").append('p').text('First, we look at the top songs on the Billboard chart from 1958 through 2017. Since some songs appeared on the chart multiple times, they have more than one bubble.')
+                d3.select(".col-4").append('p').text('First, we look at the top songs on the Billboard chart from 1958 through 2017.')
                     .attr('class', 'extraStory0')
                     .style('margin-top', '120px')
                     .style('margin-right', '75px')
                     .style('width', '700px')
                     .style('text-align', 'center')
-                    .style('color', '#B51541');
-                d3.select(".col-4").append('p').text('Now, click on the \'By Weeks on Chart\' button to see how many weeks the top songs spent on the chart.')
+                    .style('color', '#237249');
+                d3.select(".col-4").append('p').text('Click through each button to see how many weeks the top songs spent on the chart, the number of times they appeared, and the decades they topped.')
                     .attr('class', 'extraStory01')
                     .style('margin-right', '75px')
                     .style('width', '700px')
@@ -449,50 +529,45 @@ class InitialPage {
                     .style('color', '#237249');
             }
             if(byVar == 'weeks_on_chart') {
-                d3.select(".col-4").append('p').text('This grouping represents the number of weeks each song spent on the Billboard chart. As we can see, most songs spent between 0 and 5 weeks on it, and those that reached a better peak position were on the chart for longer.')
+                d3.select(".col-4").append('p').text('Most songs spent fewer weeks on the chart, but those that reached a higher peak position were on the chart for longer.')
                     .attr('class', 'extraStory1')
                     .style('margin-top', '120px')
                     .style('margin-right', '75px')
                     .style('width', '700px')
                     .style('text-align', 'center')
-                    .style('color', '#B51541');
-                d3.select(".col-4").append('p').text('Hover over the bubbles to see exactly how many weeks a song spent on the chart!')
-                    .attr('class', 'extraStory02')
-                    .style('margin-right', '75px')
-                    .style('width', '700px')
-                    .style('text-align', 'center')
-                    .style('color', '#B51541');
+                    .style('color', '#237249');
 
                 // show interesting insight
                 // add placeholder before mouseover
-                d3.select(".col-4").append('p').html(`<p style="font-size: 24px; color:#237249; margin-right: 75px; width: 700px; text-align: center;"><em>"all i want for christmas is you"</em> by Mariah Carey spent <u>20 weeks</u> on the chart and reached a peak position of 11.<p></div>`)
+                d3.select(".col-4").append('p').html(`<p style="font-size: 22px; color:black; margin-right: 75px; width: 700px; text-align: center; border:thin solid black; border-radius: 5px; background:rgba(255, 255, 255, 0.9); padding: 5px;"><b style="color: #B3000C"><img style="width:100px; height:100px; border:thin solid black; border-radius: 5px; float: left" src="img/ALLIWANTFORCHRISTMASISYOU.jpg"/>"all i want for christmas is you"</b> by Mariah Carey spent <u>20 weeks</u> on the chart and reached a peak position of 11.<p></div>`)
                     .attr("class", "weeks-fact-placeholder")
             }
             if(byVar == 'instance') {
-                d3.select(".col-4").append('p').text('This grouping represents the number of instances a song has appeared on the chart. Most songs have only appeared once, but some have been on it up to six times!')
+                d3.select(".col-4").append('p').text('Most songs have only appeared on the Billboard chart one time, but the most popular have been on it up to six times!')
                     .attr('class', 'extraStory2')
                     .style('margin-top', '120px')
                     .style('margin-right', '75px')
                     .style('width', '700px')
                     .style('text-align', 'center')
-                    .style('color', '#B51541');
+                    .style('color', '#237249');
 
                 // placeholder: interesting insight
-                d3.select(".col-4").append('p').html(`<p style="font-size: 24px; color:#237249; margin-right: 75px; width: 700px; text-align: center;"><em>"all i want for christmas is you"</em> by Mariah Carey appears on the Billboard chart in the year 2017, its <u>6 time</u> since it was released.<p></div>`)
+                d3.select(".col-4").append('p').html(`<p style="font-size: 22px; color:black; margin-right: 75px; width: 700px; text-align: center; border:thin solid black; border-radius: 5px; background:rgba(255, 255, 255, 0.9); padding: 5px;"><b style="color: #B3000C"><img style="width:100px; height:100px; border:thin solid black; border-radius: 5px; float: left" src="img/ALLIWANTFORCHRISTMASISYOU.jpg" />"all i want for christmas is you"</b> by Mariah Carey appeared on the Billboard chart in 2016, its <u>sixth time</u> since it was released.<p></div>`)
                     .attr("class", "instance-fact-placeholder")
             }
             if(byVar == 'year') {
-                d3.select(".col-4").append('p').text("This grouping represents each decade the top songs were on the Billboard chart. It seems that most Christmas songs appeared on the chart in the 1950s through the 1960s, but recently they're making a comeback.")
+                d3.select(".col-4").append('p').text("Most Christmas songs appeared on the chart in the fifties and sixties, but recently they're making a comeback.")
                     .attr('class', 'extraStory3')
                     .style('margin-top', '120px')
                     .style('margin-right', '75px')
                     .style('width', '700px')
                     .style('text-align', 'center')
-                    .style('color', '#B51541');
+                    .style('color', '#237249');
 
                 // placeholder: interesting insight
-                d3.select(".col-4").append('p').html(`<p style="font-size: 24px; color:#237249; margin-right: 75px; width: 700px; text-align: center;"><em>"all i want for christmas is you"</em> by Mariah Carey appeared on the Billboard chart on <u>1/8/2000</u> and reached a peak position of 11.<p></div>`)
+                d3.select(".col-4").append('p').html(`<p style="font-size: 22px; color:black; margin-right: 75px; width: 700px; text-align: center; border:thin solid black; border-radius: 5px; background:rgba(255, 255, 255, 0.9); padding: 5px;"><b style="color: #B3000C"><img style="width:100px; height:100px; border:thin solid black; border-radius: 5px; float: left" src="img/ALLIWANTFORCHRISTMASISYOU.jpg"/> "all i want for christmas is you"</b> by Mariah Carey appeared on the Billboard chart on <u>1/8/00</u> and reached a peak position of 11.<p></div>`)
                     .attr("class", "decade-fact-placeholder")
+
             }
         }
         function removeText(byVar) {
@@ -502,6 +577,9 @@ class InitialPage {
                 d3.select(".decade-fact-placeholder").remove();
                 d3.select(".weeks-fact-placeholder").remove();
                 d3.select(".extraStory3").remove();
+                d3.select(".extraStory4").remove();
+                d3.select(".extraStory5").remove();
+                d3.select(".extraStory6").remove();
                 d3.select(".extraStory2").remove();
                 d3.select(".extraStory1").remove();
                 d3.select(".extraStory02").remove();
@@ -515,6 +593,8 @@ class InitialPage {
                 d3.select(".instance-fact-placeholder").remove();
                 d3.select(".decade-fact-placeholder").remove();
                 d3.select(".extraStory3").remove();
+                d3.select(".extraStory4").remove();
+                d3.select(".extraStory5").remove();
                 d3.select(".extraStory2").remove();
             }
             if(byVar == 'instance') {
@@ -527,15 +607,19 @@ class InitialPage {
                 d3.select(".decade-fact-placeholder").remove();
                 d3.select(".weeks-fact-placeholder").remove();
                 d3.select(".extraStory3").remove();
+                d3.select(".extraStory4").remove();
+                d3.select(".extraStory6").remove();
             }
             if(byVar == 'year') {
                 d3.select(".filler1").remove();
                 d3.select(".filler2").remove();
                 d3.select(".extraStory0").remove();
                 d3.select(".extraStory01").remove();
+                d3.select(".extraStory5").remove();
                 d3.select(".extraStory2").remove();
                 d3.select(".extraStory1").remove();
                 d3.select(".extraStory02").remove();
+                d3.select(".extraStory6").remove();
                 d3.select(".instance-fact-placeholder").remove();
                 d3.select(".weeks-fact-placeholder").remove();
             }
@@ -546,8 +630,8 @@ class InitialPage {
                 // if this button is clicked, change the clickedAll variable to true
                 vis.clickedAll = 'true';
                 vis.clickedDecade = 'false';
-                vis.clickedInstance = 'false';
                 vis.clickedWeeks = 'false';
+                vis.clickedInstance = 'false';
                 // d3.select(".col-4").append('p').text('You clicked the All button!');
                 // add html
                 removeText('all');
@@ -564,8 +648,8 @@ class InitialPage {
             if(vis.clickedWeeks != 'true') {
                 vis.clickedWeeks = 'true';
                 vis.clickedAll = 'false';
-                vis.clickedDecade = 'false';
                 vis.clickedInstance = 'false';
+                vis.clickedDecade = 'false';
 
                 removeText('weeks_on_chart');
                 showTitles('weeks_on_chart')
@@ -581,8 +665,8 @@ class InitialPage {
             if(vis.clickedDecade != 'true') {
                 vis.clickedDecade = 'true';
                 vis.clickedAll = 'false';
-                vis.clickedInstance = 'false';
                 vis.clickedWeeks = 'false';
+                vis.clickedInstance = 'false';
                 removeText('year');
                 vis.simulation
                     .force('x', vis.forceXDecade)
@@ -594,7 +678,7 @@ class InitialPage {
             }
         })
         d3.select("#instance").on('click', function() {
-            if(vis.clickedInstance != 'true') {
+            if (vis.clickedInstance != 'true') {
                 vis.clickedInstance = 'true';
                 vis.clickedDecade = 'false';
                 vis.clickedWeeks = 'false';

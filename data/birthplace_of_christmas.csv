@@ -1,70 +1,70 @@
-﻿performer,state,city,country,latitude,longitude
-98 Degrees,OH,Masillon,United States,40.7967,-81.5215
-Aly & AJ,CA,Torrance,United States,33.836319,-118.340042
-Andy Williams,IA,Wall Lake,United States,42.27086,-95.08916
-Ariana Grande,FL,Boca Raton,United States,26.350519,-80.089828
-Band-Aid,United Kingdom,London,United Kingdom,51.507351,-0.127758
-Bing Crosby,WA,Tacoma,United States,47.2529,-122.4443
-"Bobby ""Boris"" Pickett And The Crypt-Kickers",MA,Somerville,United States,42.3876,-71.0995
-Bobby Darin,NY,East Harlem,United States,40.7957,-73.9389
-Bobby Helms,IN,Bloomington,United States,39.1637, -86.524264
-Bobby Rydell/Chubby Checker,PA,Philadelphia,United States,40.009376,-75.133346
-Boyz II Men,PA,Philadelphia,United States,40.009376,-75.133346
-Brenda Lee,GA,Atlanta,United States,33.762909,-84.422675
-Brook Benton,SC,Camden,United States,34.255699,-80.608742
-Brooks & Dunn,TN,Nashville,United States,36.1718,-86.785002
-Burl Ives,IL,Hunt City Township,United States,39.0439,-88.0216
-Charles Brown,TX,Texas City,United States,29.433717,-94.892695
-Chris Brown,VA,Tappahannock,United States,37.912474,-76.86587
-Chuck Berry,MO,St. Louis,United States,38.635699, -90.244582
-Colbie Caillat,CA,Malibu,United States,34.036697,-118.781449
-Coldplay,UK,London,United States,51.507351,-0.127758
-Connie Francis,NJ ,Newark,United States,40.72422,-74.172574
-Dan Fogelberg,IL,Peoria,United States,40.752309,-89.617097
-"Dancer, Prancer And Nervous",CA,Los Angeles,United States, 34.019394,-118.410825
-David Seville And The Chipmunks,CA,Los Angeles,United States, 34.019395,-118.410825
-Eagles,CA,Los Angeles,United States, 34.019396,-118.410825
-Elmo & Patsy,KY,Lexington,United States,38.040157,-84.458443
-Engelbert Humperdinck,N/A,Chennai,India,13.0827,80.2707
-Faith Hill,MS,Ridgeland,United States,32.424718,-90.145668
-Glee Cast,CA,Los Angeles,United States, 34.019394,-118.410825
-Goo Goo Dolls,NY,Buffalo,United States,42.892492,-78.859686
-Greg Lake,N/A,Poole,United Kingdom,50.715,-1.9872
-Herb Alpert & The Tijuana Brass,CA,Los Angeles,United States, 34.019394,-118.410825
-Insane Clown Posse,MI,Detroit,United States,42.383037,-83.102237
-Jim Croce,PA,Philadelphia,United States,40.009376,-75.133346
-John Denver,NM,Roswell,United States,33.373442, -104.529393
-Jose Feliciano,Puerto Rico,Lares,United States,18.2947,-66.8771
-Justin Bieber,N/A,Ontario,Canada,51.2538,-85.3232
-Kelly Clarkson,TX,Fort Worth ,United States,32.779542,-97.346335
-Kenny G,WA,Seattle,United States,47.620499,-122.350876
-Kenny Rogers,TX,Houston,United States,29.780472,-95.386342
-Los Del Rio,N/A,Dos Hermanas,Spain,37.2866,-5.9242
-Mariah Carey,NY,Huntington,United States,40.878126,-73.407666
-Merle Haggard,CA,Oildale,United States,35.424942,-119.027914
-Michael Buble,N/A,British Columbia,Canada,53.7267,-127.6476
-Michael Holm,N/A,Szczecin,Poland,53.4285,14.5528
-Nat King Cole,AL,Montgomery,United States, 32.346251,-86.268593
-New Kids On The Block,MA,Boston,United States,42.33196,-71.020173
-NewSong,GA,Valdosta,United States,30.850126,-83.278833
-Perry Como,PA,Canonsburg,United States,40.264246,-80.186777
-Ray Stevens,GA,Clarkdale,United States,33.8311,-84.6497
-Roy Orbison,TX,Vernon,United States, 34.147664,-99.300427
-Sam Smith,N/A,London,United Kingdom,51.507351,-0.127758
-Santo & Johnny,NY,New York,United States,40.664274, -73.9385
-Sarah McLachlan,N/A,Halifax Regional Municipality,Canada,44.6476,-63.5728
-SHeDAISY,UT,Magna,United States, 40.70966,-112.082671
-Stan Freberg,CA,Pasadena,United States,34.160592,-118.139593
-The Browns Featuring Jim Edward Brown,AR,Sparkman,United States,33.917295,-92.849991
-The Chad Mitchell Trio,WA,Spokane,United States,47.673554, -117.416595
-The Drifters Featuring Clyde McPhatter And Bill Pinkney,NY,New York,United States,40.664274, -73.9385
-The Fray,CO,Denver,United States,39.761849, -104.880625
-The Impressions,TN,Chattanooga,United States,35.066463, -85.247065
-The Killers Featuring Toni Halliday,NV,Las Vegas,United States,36.227712,-115.264045
-The Platters,CA,Los Angeles,United States, 34.019394,-118.410825
-The Star Wars Intergalactic Droid Choir & Chorale,CA,Los Angeles,United States, 34.019395,-118.410825
-The Tractors,OK,Glencoe,United States,36.231277,-96.930303
-Train,CA,San Francisco,United States,37.727239,-123.032229
-Vic Dana,NY,Buffalo,United States,42.892492, -78.859686
-Wham!,United Kingdom,Hertfordshire,United States,51.8098,0.2377
-"Willis ""The Guard"" & Vigorish",OH,Akron,United States,41.080456,-81.521429
+﻿performer,state,city,country,latitude,longitude,song
+98 Degrees,OH,Masillon,United States,40.7967,-81.5215,THIS GIFT
+Aly & AJ,CA,Torrance,United States,33.836319,-118.340042,GREATEST TIME OF YEAR
+Andy Williams,IA,Wall Lake,United States,42.27086,-95.08916,IT'S THE MOST WONDERFUL TIME OF THE YEAR
+Ariana Grande,FL,Boca Raton,United States,26.350519,-80.089828,"LAST CHRISTMAS, SANTA TELL ME"
+Band-Aid,United Kingdom,London,United Kingdom,51.507351,-0.127758,DO THEY KNOW IT'S CHRISTMAS?
+Bing Crosby,WA,Tacoma,United States,47.2529,-122.4443,"SILENT NIGHT, WHITE CHRISTMAS "
+"Bobby ""Boris"" Pickett And The Crypt-Kickers",MA,Somerville,United States,42.3876,-71.0995,MONSTERS' HOLIDAY
+Bobby Darin,NY,East Harlem,United States,40.7957,-73.9389,"CHILD OF GOD, CHRISTMAS AULD LANG SYNE"
+Bobby Helms,IN,Bloomington,United States,39.1637, -86.524264,JINGLE BELL ROCK
+Bobby Rydell/Chubby Checker,PA,Philadelphia,United States,40.009376,-75.133346,JINGLE BELL ROCK
+Boyz II Men,PA,Philadelphia,United States,40.009376,-75.133346,LET IT SNOW
+Brenda Lee,GA,Atlanta,United States,33.762909,-84.422675,ROCKIN' AROUND THE CHRISTMAS TREE
+Brook Benton,SC,Camden,United States,34.255699,-80.608742,THIS TIME OF THE YEAR
+Brooks & Dunn,TN,Nashville,United States,36.1718,-86.785002,BELIEVE
+Burl Ives,IL,Hunt City Township,United States,39.0439,-88.0216,A HOLLY JOLLY CHRISTMAS
+Charles Brown,TX,Texas City,United States,29.433717,-94.892695,PLEASE COME HOME FOR CHRISTMAS
+Chris Brown,VA,Tappahannock,United States,37.912474,-76.86587,THIS CHRISTMAS
+Chuck Berry,MO,St. Louis,United States,38.635699, -90.244582,RUN RUDOLPH RUN
+Colbie Caillat,CA,Malibu,United States,34.036697,-118.781449,MISTLETOE
+Coldplay,UK,London,United States,51.507351,-0.127758,CHRISTMAS LIGHTS
+Connie Francis,NJ ,Newark,United States,40.72422,-74.172574,BABY'S FIRST CHRISTMAS
+Dan Fogelberg,IL,Peoria,United States,40.752309,-89.617097,SAME OLD LANG SYNE
+"Dancer, Prancer And Nervous",CA,Los Angeles,United States, 34.019394,-118.410825,THE HAPPY REINDEER
+David Seville And The Chipmunks,CA,Los Angeles,United States, 34.019395,-118.410825,THE CHIPMUNK SONG (CHRISTMAS DON'T BE LATE)
+Eagles,CA,Los Angeles,United States, 34.019396,-118.410825,PLEASE COME HOME FOR CHRISTMAS
+Elmo & Patsy,KY,Lexington,United States,38.040157,-84.458443,GRANDMA GOT RUN OVER BY A REINDEER
+Engelbert Humperdinck,N/A,Chennai,India,13.0827,80.2707,WINTER WORLD OF LOVE
+Faith Hill,MS,Ridgeland,United States,32.424718,-90.145668,WHERE ARE YOU CHRISTMAS?
+Glee Cast,CA,Los Angeles,United States, 34.019394,-118.410825,"BABY, IT'S COLD OUTSIDE, DO THEY KNOW IT'S CHRISTMAS?, LAST CHRISTMAS, WELCOME CHRISTMAS"
+Goo Goo Dolls,NY,Buffalo,United States,42.892492,-78.859686,BETTER DAYS
+Greg Lake,N/A,Poole,United Kingdom,50.715,-1.9872,I BELIEVE IN FATHER CHRISTMAS
+Herb Alpert & The Tijuana Brass,CA,Los Angeles,United States, 34.019394,-118.410825,MY FAVORITE THINGS
+Insane Clown Posse,MI,Detroit,United States,42.383037,-83.102237,SANTA'S A FAT BITCH
+Jim Croce,PA,Philadelphia,United States,40.009376,-75.133346,IT DOESN'T HAVE TO BE THAT WAY
+John Denver,NM,Roswell,United States,33.373442, -104.529393,CHRISTMAS FOR COWBOYS
+Jose Feliciano,Puerto Rico,Lares,United States,18.2947,-66.8771,FELIZ NAVIDAD
+Justin Bieber,N/A,Ontario,Canada,51.2538,-85.3232,MISTLETOE
+Kelly Clarkson,TX,Fort Worth ,United States,32.779542,-97.346335,"I'LL BE HOME FOR CHRISTMAS, UNDERNEATH THE TREE"
+Kenny G,WA,Seattle,United States,47.620499,-122.350876,AULD LANG SYNE
+Kenny Rogers,TX,Houston,United States,29.780472,-95.386342,THE GREATEST GIFT OF ALL
+Los Del Rio,N/A,Dos Hermanas,Spain,37.2866,-5.9242,MACARENA CHRISTMAS
+Mariah Carey,NY,Huntington,United States,40.878126,-73.407666,"ALL I WANT FOR CHRISTMAS IS YOU, OH SANTA! "
+Merle Haggard,CA,Oildale,United States,35.424942,-119.027914,IF WE MAKE IT THROUGH DECEMBER
+Michael Buble,N/A,British Columbia,Canada,53.7267,-127.6476,"ALL I WANT FOR CHRISTMAS IS YOU, IT'S BEGINNING TO LOOK A LOT LIKE CHRISTMAS"
+Michael Holm,N/A,Szczecin,Poland,53.4285,14.5528,WHEN A CHILD IS BORN
+Nat King Cole,AL,Montgomery,United States, 32.346251,-86.268593,THE CHRISTMAS SONG (MERRY CHRISTMAS TO YOU)
+New Kids On The Block,MA,Boston,United States,42.33196,-71.020173,THIS ONE'S FOR THE CHILDREN
+NewSong,GA,Valdosta,United States,30.850126,-83.278833,THE CHRISTMAS SHOES
+Perry Como,PA,Canonsburg,United States,40.264246,-80.186777,CHRISTMAS DREAM
+Ray Stevens,GA,Clarkdale,United States,33.8311,-84.6497,SANTA CLAUS IS WATCHING YOU
+Roy Orbison,TX,Vernon,United States, 34.147664,-99.300427,PRETTY PAPER
+Sam Smith,N/A,London,United Kingdom,51.507351,-0.127758,HAVE YOURSELF A MERRY LITTLE CHRISTMAS
+Santo & Johnny,NY,New York,United States,40.664274, -73.9385,TWISTIN' BELLS
+Sarah McLachlan,N/A,Halifax Regional Municipality,Canada,44.6476,-63.5728,RIVER
+SHeDAISY,UT,Magna,United States, 40.70966,-112.082671,DECK THE HALLS
+Stan Freberg,CA,Pasadena,United States,34.160592,-118.139593,GREEN CHRI$TMA$
+The Browns Featuring Jim Edward Brown,AR,Sparkman,United States,33.917295,-92.849991,BLUE CHRISTMAS
+The Chad Mitchell Trio,WA,Spokane,United States,47.673554, -117.416595,THE MARVELOUS TOY
+The Drifters Featuring Clyde McPhatter And Bill Pinkney,NY,New York,United States,40.664274, -73.9385,WHITE CHRISTMAS
+The Fray,CO,Denver,United States,39.761849, -104.880625,HAPPY XMAS (WAR IS OVER)
+The Impressions,TN,Chattanooga,United States,35.066463, -85.247065,AMEN
+The Killers Featuring Toni Halliday,NV,Las Vegas,United States,36.227712,-115.264045,A GREAT BIG SLED
+The Platters,CA,Los Angeles,United States, 34.019394,-118.410825,I'LL BE HOME
+The Star Wars Intergalactic Droid Choir & Chorale,CA,Los Angeles,United States, 34.019395,-118.410825,WHAT CAN YOU GET A WOOKIEE FOR CHRISTMAS (WHEN HE ALREADY OWNS A COMB?)
+The Tractors,OK,Glencoe,United States,36.231277,-96.930303,THE SANTA CLAUS BOOGIE
+Train,CA,San Francisco,United States,37.727239,-123.032229,SHAKE UP CHRISTMAS
+Vic Dana,NY,Buffalo,United States,42.892492, -78.859686,LITTLE ALTAR BOY
+Wham!,United Kingdom,Hertfordshire,United States,51.8098,0.2377,LAST CHRISTMAS
+"Willis ""The Guard"" & Vigorish",OH,Akron,United States,41.080456,-81.521429,MERRY CHRISTMAS IN THE NFL

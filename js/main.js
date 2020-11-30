@@ -54,6 +54,28 @@ let promises = [
         row.longitude = +row.longitude;
         return row;
     }),
+    d3.csv("data/christmas_songs_noDupes.csv", (row) => {
+        // convert all numeric values to numbers
+        row.day = +row.day;
+        row.instance = +row.instance;
+        row.month = +row.month;
+        row.peak_position = +row.peak_position;
+        row.previous_peak_position = +row.previous_peak_position;
+        row.week_position = +row.week_position;
+
+        let timeParse = d3.timeParse("%m/%d/%Y");
+        //row.weekid = timeParse(row.weekid);
+        let timeParseYear = d3.timeParse("%Y");
+        row.year = +row.year;
+
+        row.weeks_on_chart = +row.weeks_on_chart;
+        return row;
+    }),
+    d3.csv("data/birthplace_of_christmas.csv", (row) => {
+        row.latitude = +row.latitude;
+        row.longitude = +row.longitude;
+        return row;
+    }),
     d3.csv("data/christmas_songs_with_lyrics.csv", (row) => {
         // convert all numeric values to numbers
         row.day = +row.day;
@@ -92,19 +114,33 @@ function initMapPage(data) {
     var size = Object.keys(group).length;
     console.log(size);
 
-    let result = {};
-    for(const {url,weekid,week_position,song,performer,songid,instance,previous_week_position,peak_position,weeks_on_chart,year,month,day} of data) {
-        if(!result[song]) result[song] = [];
-        result[song].push({ url,weekid,week_position, performer,instance,previous_week_position,peak_position,weeks_on_chart,year,month,day });
-    }
-    //console.log(result, Object.keys(result).length);
+    // array = [{ id: 0, quantity: 1 }, { id: 1, quantity: 2 }, { id: 0, quantity: 4 }],
+    // unique returns only highest instance
+    let hash = Object.create(null)
+    let unique = data[1].reduce(function (r, o) {
+        if (!(o.performer in hash)) {
+            hash[o.performer] = r.push(o) - 1;
+            return r;
+        }
+        if (o.instance > r[hash[o.performer]].instance) {
+            r[hash[o.song]] = o;
+        }
+        return r;
+        }, []);
+    console.log("unique", unique)
     // log data
-    initialPage = new InitialPage("initialPage", data[1], group);
+    initialPage = new InitialPage("initialPage", data[3], group, unique);
+    let mapData = data[2]
+    for (var i = 0, j = mapData.length; i < j; i++) {
+        // Assuming the first is always circle
+        mapData[i]['pulse'] = false;
+    };
+    console.log(mapData)
 
     christmasMap = new ChristmasMap("mapVis", data[0], data[1], data[2]);
 
-    wordCountBarVis = new WordCountBarVis("wordCountBarDiv", data[3]);
-    setArtistSelect(data[3]);
+    wordCountBarVis = new WordCountBarVis("wordCountBarDiv", data[5]);
+    setArtistSelect(data[5]);
 
 }
 
