@@ -14,7 +14,7 @@ class ChristmasMap {
 
     initVis() {
         let vis = this;
-        vis.margin = {top: -70, right: 150, bottom: 70, left: 150};
+        vis.margin = {top: 20, right: 100, bottom: 20, left: 100};
         vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right;
         vis.height = $("#" + vis.parentElement).height() - vis.margin.top - vis.margin.bottom;
 
@@ -22,12 +22,15 @@ class ChristmasMap {
         vis.svg = d3.select("#" + vis.parentElement).append("svg")
             .attr("width", vis.width)
             .attr("height", vis.height)
-            .attr('transform', `translate (${vis.margin.left}, ${vis.margin.top})`);
+            .attr("append", "g")
+            .attr('transform', `translate (${vis.margin.left}, ${vis.margin.top})`)
 
         // create a projection
         vis.projection = d3.geoOrthographic() // d3.geoStereographic()
             .translate([vis.width / 2, vis.height / 2])
             .scale(0.8 * vis.height / 2)
+            .clipAngle(90);
+
 
         // define a geo generator and pass your projection to it
         vis.path = d3.geoPath()
@@ -35,6 +38,167 @@ class ChristmasMap {
 
         // convert your TopoJSON data into GEOJSON data structure
         vis.world = topojson.feature(vis.geoData, vis.geoData.objects.countries).features
+
+        const tRotation = 20000;
+
+        // pause button
+        var rotationOn = false;
+
+        vis.svg.append("text")
+            .attr("x", vis.width/2)
+            .attr("y", vis.height - 30)
+            .text("PLAY")
+            .attr("text-anchor", "middle")
+            .style("font-size", '20px')
+            .style("font-family", "Mountains of Christmas")
+            .style('cursor', 'pointer')
+            .style('fill', 'white')
+            .on("mouseover", function() { d3.select(this).style("text-decoration", "underline") })
+            .on("mouseout", function() { d3.select(this).style("text-decoration", "none") })
+            .on("click", function() {
+                rotationOn = !rotationOn;
+                d3.select(this).text(rotationOn ? "PAUSE" : "PLAY")
+            })
+
+        // vars for timer
+        var tNew, dt, steps, pos, tOld, oldPos;
+        tOld = 0;
+        oldPos = 0;
+
+        // start timer
+        d3.timer(myTimer);
+
+        // function that rotates the earth
+        function myTimer(now) {
+            if (rotationOn) {
+                tNew = now;
+                dt = tOld - tNew;
+                steps = dt * 360 / tRotation;
+
+                pos = oldPos - steps //the earth rotates towards the east
+
+                if (pos <= -180) {pos = pos+360}
+
+                vis.projection.rotate([pos, 0]);
+                vis.svg.selectAll("path").attr("d", vis.path)
+
+                tOld = tNew;
+                oldPos = pos;
+            }
+            else {
+                tOld = now;
+            }
+            drawMarkers();
+        }
+
+        function drawMarkers() {
+            vis.markers = vis.svg.selectAll('circle')
+                .data(vis.places)
+
+            vis.markers
+                .enter()
+                .append('circle')
+                .merge(vis.markers)
+                .attr('cx', d => vis.projection([d.longitude, d.latitude])[0])
+                .attr('cy', d => vis.projection([d.longitude, d.latitude])[1])
+                .attr('fill', d => {
+                    const coordinate = [d.longitude, d.latitude];
+                    let gdistance = d3.geoDistance(coordinate, vis.projection.invert([vis.width/2, vis.height/2]));
+                    return gdistance > 1.57 ? 'transparent' : '#b9f2ff';
+                })
+                .style('stroke', d => {
+                    const coordinate = [d.longitude, d.latitude];
+                    let gdistance = d3.geoDistance(coordinate, vis.projection.invert([vis.width/2, vis.height/2]));
+                    return gdistance > 1.57 ? 'transparent' : 'black';
+                })
+                .style('cursor', 'pointer')
+                .attr('r', 5)
+                .on('click', function(event, d) {
+                    // once another one is clicked, change color back to blue
+                    d3.select('.imgPlaceholder').remove();
+                    d3.select(".newDivInfo").remove();
+                    console.log("clicking me!")
+                    // fix for willis the guard
+                    vis.imagePath = d.performer.split(" ").join("") + '.jpg'
+                    console.log(vis.imagePath)
+                    if(vis.imagePath == 'Willis"TheGuard"&Vigorish.jpg') {
+                        vis.imagePath = 'WILLISTHEGUARD.jpg';
+                    }
+                    if(vis.imagePath == 'TheDriftersFeaturingClydeMcPhatterAndBillPinkney.jpg') {
+                        vis.imagePath = 'THEDRIFTERS.jpg';
+                    }
+                    if(vis.imagePath == 'TheBrownsFeaturingJimEdwardBrown.jpg') {
+                        vis.imagePath = 'THEBROWNS.jpg';
+                    }
+                    if(vis.imagePath == 'TheKillersFeaturingToniHalliday.jpg') {
+                        vis.imagePath = 'THEKILLERS.jpg';
+                    }
+                    vis.from = '';
+                    if(d.state == 'N/A') {
+                        vis.from = d.country;
+                    }
+                    else {
+                        vis.from = d.state;
+                    }
+                    if(d.performer == 'The Killers Featuring Toni Halliday') {
+                        d.performer = 'The Killers'
+                    }
+                    if(d.performer == 'The Browns Featuring Jim Edward Brown') {
+                        d.performer = 'The Browns'
+                    }
+                    if(d.performer == 'The Drifters Featuring Clyde McPhatter And Bill Pinkney') {
+                        d.performer = 'The Drifters'
+                    }
+                    d3.select(".newDiv").append('div')
+                        .html(`<div><p style="font-size: 22px; color: #B3000C; text-align: center;">
+                                <img style="margin-top: -60px; display: block; margin-left: auto; margin-right: auto; width: 50%; border:thin solid black; border-radius: 5px;" src="img/${vis.imagePath}"/>
+                                ${d.performer}</p>
+                                <h3 style="font-size: 22px; text-align: left; margin-left: 20px;">From: <strong>${d.city}, ${vis.from}</strong><h3>
+                                <h3 style="font-size: 22px; text-align: left; margin-left: 20px;">Song: <strong style="color: #B3000C">${d.song.toLowerCase()}</strong><h3>
+                                <h3 style="font-size: 22px; text-align: left; margin-left: 20px;">Read more here: <a href="https://en.wikipedia.org/wiki/${d.performer}" target="_blank">wikipedia</a><h3></div>`)
+                        .attr("class", 'newDivInfo')
+                })
+                .on('mouseover', function (event, d) {
+                    if(rotationOn == false) {
+                        d3.select(this)
+                            .attr("fill", 'rgba(181,0,0,0.48)')
+                            .attr("stroke", 'darkred')
+                        vis.tooltip
+                            .style("opacity", 1)
+                            .style("left", event.pageX + 20 + "px")
+                            .style("top", event.pageY + "px")
+                            .html(`<div style="border: thin solid grey; border-radius: 5px; background: white; padding: 5px;">
+                            <h3>Performer: <strong>${d.performer}</strong><h3>
+                            <h3>Country: <strong>${d.country}</strong><h3>
+                            <h3>State: <strong>${d.state}</strong><h3>
+                            <h3>City: <strong>${d.city}</strong><h3></div>`);
+                    }
+                })
+                .on('mouseout', function (event, d) {
+                    d3.select(this)
+                        .attr('fill', 'url(#gradient)')
+                        .attr("stroke", 'transparent')
+
+                    vis.tooltip
+                        .style("opacity", 0)
+                        .style("left", 0 +"px")
+                        .style("top", 0+ "px")
+                })
+            // markerGroup.each(function () {
+            //     this.parentNode.appendChild(this);
+            // })
+        }
+
+        d3.select(".newDiv").append('div')
+            .html(`<div><p style="font-size: 22px; color: #B3000C; text-align: center;">
+                    <img style="margin-top: -60px; display: block; margin-left: auto; margin-right: auto; width: 50%; border:thin solid black; border-radius: 5px;" src="img/MARIAHCAREY.jpg"/>
+                    Mariah Carey</p>
+                    <h3 style="font-size: 22px; text-align: left; margin-left: 20px;">From: <strong>Huntington, NY</strong><h3>
+                    <h3 style="font-size: 22px; text-align: left; margin-left: 20px;">Song: <strong>"all i want for christmas is you"</strong><h3>
+                    <h3 style="font-size: 22px; text-align: left; margin-left: 20px;">Read more here: <a href="https://en.wikipedia.org/wiki/Mariah_Carey" target="_blank">wikipedia</a><h3></div>`)
+            .attr("class", 'imgPlaceholder')
+            // d3.select(".col-4").append('p').html(`<p style="font-size: 22px; color:black; margin-right: 75px; width: 700px; text-align: center; border:thin solid black; border-radius: 5px; background:rgba(255, 255, 255, 0.9); padding: 5px;"><b style="color: #B3000C"><img style="width:100px; height:100px; border:thin solid black; border-radius: 5px; float: left" src="img/ALLIWANTFORCHRISTMASISYOU.jpg"/>"all i want for christmas is you"</b> by Mariah Carey spent <u>20 weeks</u> on the chart and reached a peak position of 11.<p></div>`)
+            //     .attr("class", "weeks-fact-placeholder")
 
         // tooltip
         vis.tooltip = d3.select("body").append('div')
@@ -75,101 +239,6 @@ class ChristmasMap {
             .attr('class', 'country')
             .attr('fill', 'url(#gradient)')
             .attr("d", vis.path)
-
-        let m0,
-            o0;
-
-        vis.svg.call(
-            d3.drag()
-                .on("start", function (event) {
-
-                    let lastRotationParams = vis.projection.rotate();
-                    m0 = [event.x, event.y];
-                    o0 = [-lastRotationParams[0], -lastRotationParams[1]];
-                })
-                .on("drag", function (event) {
-                    if (m0) {
-                        let m1 = [event.x, event.y],
-                            o1 = [o0[0] + (m0[0] - m1[0]) / 4, o0[1] + (m1[1] - m0[1]) / 4];
-                        vis.projection.rotate([-o1[0], -o1[1]]);
-                    }
-
-                    // Update the map
-                    vis.path = d3.geoPath().projection(vis.projection);
-                    d3.selectAll(".country").attr("d", vis.path)
-
-                    d3.selectAll(".airport")
-                        .attr('cx', d => vis.projection([d.longitude, d.latitude])[0])
-                        .attr('cy', d => vis.projection([d.longitude, d.latitude])[1])
-                })
-        )
-        vis.wrangleData()
-    }
-
-    wrangleData() {
-        let vis = this;
-
-        let filteredData = vis.christmasSongs
-
-        // prepare music data by grouping all rows by state
-        let musicDataByState = Array.from(d3.group(filteredData, d =>d.state), ([key, value]) => ({key, value}))
-        //console.log(musicDataByState);
-
-        vis.updateVis();
-    }
-
-    updateVis() {
-        let vis = this;
-
-        vis.airports = vis.svg.selectAll('.airport')
-            .data(vis.places)
-            .enter().append('circle')
-            .attr('class', 'airport')
-            // .merge(vis.airports)
-            .attr('cx', d => vis.projection([d.longitude, d.latitude])[0])
-            .attr('cy', d => vis.projection([d.longitude, d.latitude])[1])
-            //.attr('cx', d => vis.projection())
-            .attr('r', function (d,i) {
-                return 5
-            })
-            .style('fill', '#b9f2ff')
-            .style('stroke', 'black')
-            .style('opacity', function(d) {
-                const coordinate = [d.longitude, d.latitude];
-                let gdistance = d3.geoDistance(coordinate, vis.projection.invert([vis.width/2, vis.height/2]));
-                return gdistance > 1.57 ? 'none' : '1';})
-
-        // vis.airports.exit().remove()
-        vis.airports
-            .on('mouseover', function (event, d) {
-                d3.select(this)
-                    .attr("fill", 'rgba(181,0,0,0.48)')
-                    .attr("stroke", 'darkred')
-
-                console.log(d)
-                vis.tooltip
-                    .style("opacity", 1)
-                    .style("left", event.pageX + 20 + "px")
-                    .style("top", event.pageY + "px")
-                    .html(`<div style="border: thin solid grey; border-radius: 5px; background: white; padding: 5px;">
-                        <h3>Performer: <strong>${d.performer}</strong><h3>
-                        <h3>Country: <strong>${d.country}</strong><h3>
-                        <h3>State: <strong>${d.state}</strong><h3>
-                        <h3>City: <strong>${d.city}</strong><h3></div>`);
-            })
-            .on('mouseout', function (event, d) {
-                d3.select(this)
-                    .attr('fill', 'url(#gradient)')
-                    .attr("stroke", 'transparent')
-
-                vis.tooltip
-                    .style("opacity", 0)
-                    .style("left", 0 +"px")
-                    .style("top", 0+ "px")
-            })
-            .transition()
-            .duration(500)
-            .attr('fill', 'url(#gradient)')
 
     }
 }
