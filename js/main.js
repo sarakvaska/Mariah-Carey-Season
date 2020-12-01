@@ -9,6 +9,7 @@ let myWeeklyVis;
 let parseDate = d3.timeParse("%m/%d/%Y");
 let yearParse = d3.timeParse("%Y");
 let bisectDate = d3.bisector(function(d) { return d.day; }).left;
+let alternateParseDate = d3.timeParse("%Y-%m-%d");
 
 // Wrap every letter in a span
 var textWrapper = document.querySelector('.ml9 .letters');
@@ -167,3 +168,56 @@ function birthdayChange() {
     birthdayDate = $('#birthdayInput').val();
     myBirthdayVis.updateVis();
 }
+
+// Section: Mariah Carey Global Streams
+
+// load data using promises
+let globalStreamPromises = [
+    d3.csv("data/mariah_weekly.csv", (row) => {
+        row.streams = +row.streams
+        row.position = +row.position;
+        row.day = parseDate(row.day);
+        return row;
+    }),
+    d3.csv("data/ariana_weekly.csv", (row) => {
+        row.streams = +row.streams
+        row.day = parseDate(row.day);
+        return row;
+    }),
+    d3.csv("data/brenda_weekly.csv", (row) => {
+        row.streams = +row.streams
+        row.day = parseDate(row.day);
+        return row;
+    }),
+    d3.csv("data/wham_weekly.csv", (row) => {
+        row.streams = +row.streams
+        row.day = parseDate(row.day);
+        return row;
+    }),
+    d3.csv("data/michael_weekly.csv", (row) => {
+        row.streams = +row.streams
+        row.day = parseDate(row.day);
+        return row;
+    }),
+];
+
+Promise.all(globalStreamPromises)
+    .then( function(data){ initWeeklyVis(data) })
+    .catch( function (err){console.log(err)} );
+
+// initMainPage
+function initWeeklyVis(allDataArray) {
+    myGlobalStreamsVis = new GlobalStreamsVis('globalStreamsVis',
+        allDataArray[0],
+        allDataArray[1],
+        allDataArray[2],
+        allDataArray[3],
+        allDataArray[4],)
+}
+
+d3.csv("data/combined_weekly.csv", (row) => {
+    row.week = alternateParseDate(row.week);
+    return row;
+}).then( (data) => {
+    myStreamVis = new StreamVis('streamVis', data);
+});

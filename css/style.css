@@ -505,6 +505,12 @@ input[type=number] {
     padding-bottom: 1rem;
 }
 
+.centered-MariahMessage {
+}
+
+
+
+
 /*CSS SPINNER*/
 .loader {
     width: 20em;
@@ -585,4 +591,27 @@ input[type=number] {
 
 .reindeer-img:hover {
     cursor: pointer;
+}
+
+h12 {
+    font-family: 'Mountains of Christmas', cursive;
+    color: white;
+    font-size: 22px;
+    float: right;
+    /*width: 800px;*/
+    /*height: 100px;*/
+    /*margin-top: 20%;*/
+    /*margin-left: 20%;*/
+    text-align: center;
+    /*width: px;*/
+
+}
+#streamTooltip, #legendGlobalStreams {
+    font-family: 'Mountains of Christmas', cursive;
+    color: white;
+}
+
+#needToBeAligned {
+    padding-top: 15px;
+    padding-right: 50px;
 }
