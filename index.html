@@ -11,6 +11,11 @@
     <link rel="stylesheet" type="text/css" href="css/jquery.pagepiling.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas&display=swap">
     <link rel="stylesheet" href="css/style.css">
+
+<!--    Word Cloud-->
+    <link href="https://cdn.anychart.com/releases/v8/css/anychart-ui.min.css" type="text/css" rel="stylesheet">
+    <link href="https://cdn.anychart.com/releases/v8/fonts/css/anychart-font.min.css" type="text/css" rel="stylesheet">
+
 </head>
 <body>
     <div id="pagepiling">
@@ -127,21 +132,34 @@
                 <div class="row justify-content-center">
                     <div class="col-auto text-center">
                         <div class="row justify-content-center">
-                            <div id="wordCountBarDiv" style="width:500px; height:500px"></div>
+                            <div id="wordCloudDiv"></div>
                         </div>
 <!--                      removed style="padding-bottom:100px because it was making it janky -->
-                        <div class="row justify-content-center" >
+                        <div class="row justify-content-center" style="font-size: 2rem;">
                             The #1 most frequently used word from
-                            <select name="artistSelect" id="artistSelectEl" style="width: 180px"
-                                    onchange="onArtistSelect(this.value)"></select>'s Billboard 100 hits was
-                            <span id="topWordSpan"></span>. It was used <span id="topWordCountSpan"></span> time(s)
-                            throughout all the Billboard appearances.
+                            <select name="artistSelect" id="artistSelectEl" style="width: 180px; background: #ececec61;"
+                                    onchange="onArtistSelect(this.value)"></select>'s Billboard 100 Christmas hits was
+                            <span id="topWordSpan" style="font-weight: bold; color: #5f0000;
+                                text-decoration: underline;"></span>. It was used
+                            <span id="topWordCountSpan" style="color: #064202; text-decoration: underline;
+                                   font-weight: bold;">
+                            </span> time(s)
+                            throughout all the Billboard song appearances.
                         </div>
 
                         <div class="row justify-content-center" >
+                            <div style="font-weight: bold; padding: 50px; font-size: 2.5rem;
+                            text-decoration: underline;">Type in a word to see its frequency</div>
+                        </div>
+
+
+                        <div class="row justify-content-center" style="font-size: 2rem;">
                             <div id="lyricInputDiv">
-                                <input type="text" list="words" id="wordInputEl" onchange="onWordInput(this.value)"/>
-                                was used <span id="wordInputResultEl">0</span> time(s)
+                                <input type="text" list="words" id="wordInputEl" onchange="onWordInput(this.value)"
+                                style="background: #f0f8ff29; border: none;
+                                border-bottom: 2px solid white;"/>
+                                was used <span id="wordInputResultEl" style="font-weight: bold;
+                                text-decoration: underline;">0</span> time(s)
                                 <datalist id="words"></datalist>
                             </div>
                         </div>
@@ -153,15 +171,19 @@
         <div class="section">
         <!--   Jerry's section 2-->
             <div class="container-fluid">
-                <div class="row justify-content-center" style="padding-bottom:100px">
-                    <div class="col-3 text-center">
-<!--                        <h5>Rodney the Reindeer</h5>-->
-                        <p style="color:black">Now that you know some of the words that define Christmas, let us write you your very own
-                            Christmas Jingle, courtesy of Rodney the Reindeer. Rodney is a our in-house
-                            machine learning Reindeer, but he's still very young, so he makes mistakes. Rodney is training
-                            everyday on the top Christmas songs to learn the ropes of jolly songwriting</p>
-                        <p style="color:black; font-weight: bold">Click Rodney for a new jingle</p>
+                <div class="row justify-content-center">
+                    <div style="font-size: 2rem; font-weight: bold;
+                    padding-top: 50px; font-size: 2.5rem; text-decoration: underline;">Create your own unique Christmas Jingle</div>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div style="font-size: 1rem; color: gray; padding-bottom: 50px">
+                        (Click on Rodney to have him write a fully original Christmas Jingle, unique just for you! He won't
+                        write the same song twice, so take a picture once you get a jingle you like!)
                     </div>
+                </div>
+
+                <div class="row justify-content-center" style="padding-bottom:50px">
                     <div class="col-2 text-center d-flex flex-column">
                         <img class="mt-auto reindeer-img" src="img/reindeer.svg" onclick="generateLyrics(event)"
                              alt="Singing reindeer" style="width: 80%">
@@ -170,27 +192,42 @@
                         <div class="row justify-content-center lyricContainer">
                             <div class="col-auto text-center" id="lyricInnerContainer">
                                 <div class="row justify-content-center lyricLine">
-                                    <h3 class="neon" contenteditable="true" id="lyricDiv1">Generate</h3>
+                                    <h3 class="neon" id="lyricDiv1">Generate</h3>
                                 </div>
                                 <div class="row justify-content-center lyricLine">
-                                    <h3 class="neon" contenteditable="true" id="lyricDiv2">your</h3>
+                                    <h3 class="neon" id="lyricDiv2">your</h3>
                                 </div>
                                 <div class="row justify-content-center lyricLine">
-                                    <h3 class="neon" contenteditable="true" id="lyricDiv3">unique</h3>
+                                    <h3 class="neon" id="lyricDiv3">unique</h3>
                                 </div>
                                 <div class="row justify-content-center lyricLine">
-                                    <h3 class="neon" contenteditable="true" id="lyricDiv4">jingle...</h3>
+                                    <h3 class="neon" id="lyricDiv4">jingle...</h3>
                                 </div>
                             </div>
                         </div>
-
-                    </div>
-                    <div class="col-3 text-center text-generation-section">
-                        <h5 style="text-decoration: underline">Song Inspiration</h5>
-                        <p style="color:black">Rodney's inspiration is...</p>
-                        <p style="color:black">"<span id="originalLyricsEl"></span>"</p>
                     </div>
                 </div>
+
+                <div class="row justify-content-center" style="font-size: 1.5rem; padding-bottom: 10px">
+                    <div style="text-decoration:underline;">How this works</div>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-6 text-center">
+                        <div style="font-size: 1.2rem; padding-bottom: 20px;">
+                            We trained a long short-term memory machine learning model using the lyrics of
+                            Billboard 100 Christmas hits from 1958-2017. When you click Rodney, the model takes time
+                            to build a new song, word by word, based on the styles of the Billboard hits.
+                        </div>
+                    </div>
+                </div>
+
+<!--                <div class="row justify-content-center">-->
+<!--                    <div class="col-4 text-center" style="font-size: 1.5rem;">-->
+<!--                        <div style="color:black;">"<span id="originalLyricsEl"></span>"</div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
             </div>
         </div>
 
@@ -359,14 +396,20 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/jquery.pagepiling.js"></script>
 
-    <!-- own js files -->
+    <!-- word cloud -->
+        <script src="//cdn.amcharts.com/lib/4/core.js"></script>
+        <script src="//cdn.amcharts.com/lib/4/charts.js"></script>
+        <script src="//cdn.amcharts.com/lib/4/plugins/wordCloud.js"></script>
+
+
+        <!-- own js files -->
     <script src="js/main.js"></script>
     <script src="js/initialPage.js"></script>
     <script src="js/mapVis.js"></script>
     <script src="js/birthdayVis.js"></script>
-    <script src="js/wordCountBarVis.js"></script>
     <script src="js/lyricGenerator.js"></script>
-    <script src="js/globalStreamsVis.js"></script>
+        <script src="js/wordCloudVis.js"></script>
+        <script src="js/globalStreamsVis.js"></script>
     <script src="js/streamVis.js"></script>
 
 </body>

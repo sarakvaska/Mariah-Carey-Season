@@ -615,3 +615,16 @@ h12 {
     padding-top: 15px;
     padding-right: 50px;
 }
+
+/*STYLE FOR WORD CLOUD*/
+
+#wordCloudDiv {
+    width: 80vw;
+    height: 60vh;
+}
+
+#wordCloudDiv text {
+    font: unset;
+    /*font-size: unset;*/
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
