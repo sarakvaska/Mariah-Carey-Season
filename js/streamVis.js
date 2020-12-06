@@ -57,7 +57,7 @@ class StreamVis {
         // color palette
         let color = d3.scaleOrdinal()
             .domain(vis.keys)
-            .range(['#d9990b', '#fedfb0', '#CECECE', '#f04554', "#01bf2b"]);
+            .range(['#d9990b', '#82CFFD', '#fedfb0', '#f04554', "#01bf2b"]);
 
                 //stack the data?
         let stackedData = d3.stack()
@@ -68,6 +68,7 @@ class StreamVis {
         vis.svg.append("g")
             .attr("transform", "translate(0," + vis.height*2 + ")")
             .call(d3.axisBottom(vis.x).tickSize(-vis.height*.7).tickValues([alternateParseDate('2017-12-01'), alternateParseDate('2017-12-05'), alternateParseDate('2017-12-10'), alternateParseDate('2017-12-15'), alternateParseDate('2017-12-22')]))
+            .style("color", "white")
             .select(".domain").remove();
 
         // create a tooltip

@@ -82,32 +82,32 @@ class GlobalStreamsVis {
 
         vis.svg.append('vis.svg:path')
             .attr('d', line(vis.mariahData))
-            .attr('stroke', 'red')
-            .attr('stroke-width', 2)
+            .attr('stroke', '#82CFFD')
+            .attr('stroke-width', 4)
             .attr('fill', 'none');
 
         vis.svg.append('vis.svg:path')
             .attr('d', line(vis.whamData))
             .attr('stroke', 'lightgray')
-            .attr('stroke-width', 1)
+            .attr('stroke-width', 0.6)
             .attr('fill', 'none');
 
         vis.svg.append('vis.svg:path')
             .attr('d', line(vis.arianaData))
             .attr('stroke', 'lightgray')
-            .attr('stroke-width', 1)
+            .attr('stroke-width', 0.6)
             .attr('fill', 'none');
 
         vis.svg.append('vis.svg:path')
             .attr('d', line(vis.brendaData))
             .attr('stroke', 'lightgray')
-            .attr('stroke-width', 1)
+            .attr('stroke-width', 0.6)
             .attr('fill', 'none');
 
         vis.svg.append('vis.svg:path')
             .attr('d', line(vis.michaelData))
             .attr('stroke', 'lightgray')
-            .attr('stroke-width', 1)
+            .attr('stroke-width', 0.6)
             .attr('fill', 'none');
 
         //Line  mouse over
@@ -134,9 +134,9 @@ class GlobalStreamsVis {
 
         var legend = vis.svg.append("g").attr("class","legend")
             .attr("transform","translate(0,15)");
-        legend.append("circle").attr("cx",50).attr("cy",20).attr("r", 6).style("fill", "red")
+        legend.append("circle").attr("cx",50).attr("cy",20).attr("r", 6).style("fill", "#82CFFD")
         legend.append("text").attr("x", 60).attr("y", 20).text("All I Want For Christmas").attr("id", "legendGlobalStreams")
-            .style("font-size", "22px").style("fill", "red").attr("alignment-baseline","middle")
+            .style("font-size", "28px").style("fill", "#82CFFD").attr("alignment-baseline","middle")
 
         var footnote = vis.svg.append("g").attr("class","footnote")
             .attr("transform","translate(80,200)");
@@ -153,12 +153,12 @@ class GlobalStreamsVis {
             .attr('width', vis.width+10)
             .attr('class', 'curtain')
             .attr('transform', 'rotate(180)')
-            .style('fill', '#DFAD56')
+            .style('fill', '#B51541')
 
         // shared transition
         var t = vis.svg.transition()
-            .delay(5000)
-            .duration(4000)
+            .delay(500)
+            .duration(3000)
             .ease(d3.easeLinear)
 
         t.select('rect.curtain')
@@ -167,15 +167,15 @@ class GlobalStreamsVis {
         vis.svg.append("g")
             .attr("class", "x-axis axis")
             .attr("transform", "translate(0," + vis.height + ")")
-            .style("color", "#162a72");
+            .style("color", "white");
 
         vis.svg.append("g")
             .attr("class", "y-axis axis")
             .attr("transform", "translate(0,0)")
-            .style("color", "#162a72");
+            .style("color", "white");
 
         // Update the xy-axis
-        vis.svg.select(".y-axis").call(vis.yAxis).style("color", "#162a72");
+        vis.svg.select(".y-axis").call(vis.yAxis).style("color", "white");
 
         vis.svg.select(".x-axis").call(vis.xAxis)
             .selectAll("text")
@@ -184,12 +184,12 @@ class GlobalStreamsVis {
             .attr("dy", ".35em")
             .attr("transform", "rotate(90)")
             .style("text-anchor", "start")
-            .style("color", "#162a72");
+            .style("color", "white");
 
         // append the x line
         vis.focus.append("line")
             .attr("class", "x")
-            .style("stroke", "#162a72")
+            .style("stroke", "white")
             .style("stroke-dasharray", "3,3")
             .style("opacity", 0.5)
             .attr("y1", 0)
@@ -198,7 +198,7 @@ class GlobalStreamsVis {
         // append the y line
         vis.focus.append("line")
             .attr("class", "y")
-            .style("stroke", "#162a72")
+            .style("stroke", "white")
             .style("stroke-dasharray", "3,3")
             .style("opacity", 0.5)
             .attr("x1", vis.width)
@@ -209,33 +209,33 @@ class GlobalStreamsVis {
             .attr("class", "y")
             .style("fill", "none")
             .style("stroke", "white")
-            .attr("r", 4);
+            .attr("r", 5.5);
 
         // place the value at the intersection
         vis.focus.append("text")
             .attr("class", "y1")
-            .style("stroke", "white")
-            .style("stroke-width", "3.5px")
-            .style("opacity", 0.8)
+            .style("stroke", "#82CFFD")
+            .style("stroke-width", "4px")
+            .style("opacity", 1)
             .attr("dx", 8)
-            .attr("dy", "-.3em");
+            .attr("dy", "3em");
         vis.focus.append("text")
             .attr("class", "y2")
             .attr("dx", 8)
-            .attr("dy", "-.3em");
+            .attr("dy", "3em");
 
         // place the date at the intersection
         vis.focus.append("text")
             .attr("class", "y3")
-            .style("stroke", "white")
-            .style("stroke-width", "3.5px")
-            .style("opacity", 0.8)
+            .style("stroke", "#82CFFD")
+            .style("stroke-width", "4px")
+            .style("opacity", 1)
             .attr("dx", 8)
-            .attr("dy", "1em");
+            .attr("dy", "2em");
         vis.focus.append("text")
             .attr("class", "y4")
             .attr("dx", 8)
-            .attr("dy", "1em");
+            .attr("dy", "2em");
 
         // append the rectangle to capture mouse
         vis.svg.append("rect")
