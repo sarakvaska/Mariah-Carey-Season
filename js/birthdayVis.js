@@ -75,13 +75,13 @@ class BirthdayVis {
 
                 })
                 .attr('x', 150)
-                .attr('y', -55)
-                .attr("height", 420)
+                .attr('y', -80)
+                .attr("height", 550)
                 .attr("width", 420);
 
             // Song name
             vis.svg.append("text")
-                .attr("y", 420)
+                .attr("y", 440)
                 .attr("x", 150)
                 .attr("id", "song-name")
                 .attr("class", "birthdayText")
@@ -91,7 +91,7 @@ class BirthdayVis {
 
             // Artist
             vis.svg.append("text")
-                .attr("y", 460)
+                .attr("y", 470)
                 .attr("x", 150)
                 .attr("id", "performer-name")
                 .attr("class", "birthdayTextSmaller")

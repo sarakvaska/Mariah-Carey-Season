@@ -138,7 +138,7 @@ function initMapPage(data) {
     };
     console.log(mapData)
 
-    christmasMap = new ChristmasMap("mapVis", data[0], data[1], data[2]);
+    christmasMap = new ChristmasMap("mapVis", data[0], data[1], mapData);
 
     wordCountBarVis = new WordCountBarVis("wordCountBarDiv", data[5]);
     setArtistSelect(data[5]);

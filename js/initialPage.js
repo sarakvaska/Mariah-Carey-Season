@@ -10,7 +10,12 @@ class InitialPage {
         //this.circleColors = ['#f1eef6', '#d7b5d8', '#df65b0', '#ce1256'];
         // this.circleColors = ['#f1eef6', '#bdc9e1', '#74a9cf', '#0570b0'];
         this.circleColors = ['#fee5d9', '#fcae91', '#ec746a', '#cb181d'];
-        //this.circleColors = ['#edf8e9', '#bae4b3', '#74c476', '#238b45'];
+        this.instanceColors = ['#fee5d9', '#fcbba1', '#fc9272', '#fb6a4a', '#de2d26', '#a50f15'];
+        this.yearColors = ['#fee5d9', '#fcbba1', '#fc9272', '#fb6a4a', '#de2d26', '#a50f15']
+        // create a list of keys
+        this.weeksKey = ["0-5 Weeks", "6-10 Weeks", "11-15 Weeks", "16-20 Weeks"]
+        this.instanceKey = ["First", "Second", "Third", "Fourth", "Fifth", "Sixth"]
+        this.decadeKey = ['1958-1968', '1969-1978', '1979-1988', '1989-1998', '1999-2008', '2009-2017']
         this.clickedWeeks = 'false';
         this.clickedDecade = 'false';
         this.clickedAll = 'true';
@@ -40,197 +45,176 @@ class InitialPage {
             .attr("class", "tooltip")
             .attr("id", "myTooltip")
 
-        function showTitles(byVar, groupNumber) {
-            vis.titles = vis.svg.selectAll('.title')
-                .data(vis.christmasSongs)
+        vis.size = 25
+        function showWeekTitles() {
+            vis.weekBoxes = vis.svg.selectAll("weekDots")
+                .data(vis.weeksKey)
 
-            vis.titles.enter().append('text')
-                .attr('class', 'title')
-                .merge(vis.titles)
-                .attr('x', function (d, i) {
-                    if (i < 4 && byVar == 'weeks_on_chart') {
-                        if(i == 0) {
-                            return 140;
-                        }
-                        if(i == 1) {
-                            return 410;
-                        }
-                        if(i == 2) {
-                            return 140;
-                        }
-                        if(i == 3) {
-                            return 410;
-                        }
-                    }
-                    else if(i < 6 && byVar == 'instance') {
-                        if(i == 0) {
-                            return 120;
-                        }
-                        if(i == 1) {
-                            return 340;
-                        }
-                        if(i == 2) {
-                            return 400;
-                        }
-                        if(i == 3) {
-                            return 420;
-                        }
-                        if(i == 4) {
-                            return 415;
-                        }
-                        if(i == 5) {
-                            return 380;
-                        }
-                    }
-                    else if (i < 6 && byVar == 'year') {
-                        if(i == 0) {
-                            return 130;
-                        }
-                        if(i == 1) {
-                            return 400;
-                        }
-                        if(i == 2) {
-                            return 130;
-                        }
-                        if(i == 3) {
-                            return 400;
-                        }
-                        if(i == 4) {
-                            return 130;
-                        }
-                        if(i == 5) {
-                            return 400;
-                        }
-                    }
+            vis.weekBoxes
+                .enter()
+                .append("rect")
+                .attr('class', 'weekDots')
+                .attr("x", function (d, i) {
+                    return 10 + i * (vis.size + 115)
                 })
-                .attr('y',  function (d, i) {
-                    if (i < 4 && byVar == 'weeks_on_chart') {
-                        if(i == 0) {
-                            return 170;
-                        }
-                        if(i == 1) {
-                            return 170;
-                        }
-                        if(i == 2) {
-                            return 430;
-                        }
-                        if(i == 3) {
-                            return 430;
-                        }
-                    }
-                    else if(byVar == 'instance' && i < 6) {
-                        if(i == 0) {
-                            return 310;
-                        }
-                        if(i == 1) {
-                            return 70;
-                        }
-                        if(i == 2) {
-                            return 175;
-                        }
-                        if(i == 3) {
-                            return 310;
-                        }
-                        if(i == 4) {
-                            return 440;
-                        }
-                        if(i == 5) {
-                            return 540;
-                        }
-                    }
-                    else if (i < 6 && byVar == 'year') {
-                        if(i == 0) {
-                            return 160;
-                        }
-                        if(i == 1) {
-                            return 160;
-                        }
-                        if(i == 2) {
-                            return 330;
-                        }
-                        if(i == 3) {
-                            return 330;
-                        }
-                        if(i == 4) {
-                            return 470;
-                        }
-                        if(i == 5) {
-                            return 470;
-                        }
-                    }
+                .attr("y", 560) // 100 is where the first dot appears. 25 is the distance between dots
+                .attr("width", vis.size)
+                .attr("height", vis.size)
+                .style("fill", function (d, i) {
+                    return vis.circleColors[i]
                 })
+
+            vis.weekBoxes.exit().remove()
+
+            vis.weekTitles = vis.svg.selectAll("weekLabels")
+                .data(vis.weeksKey)
+
+            vis.weekTitles
+                .enter()
+                .append("text")
+                .attr('class', 'weekLabels')
+                .attr("x", function (d, i) {
+                    return 30 + i * (vis.size + 115) + (vis.size / 2)
+                })
+                .attr("y", 560 + vis.size / 2) // 100 is where the first dot appears. 25 is the distance between dots
+                .style("fill", function (d, i) {
+                    return vis.circleColors[i]
+                })
+                .text(function (d) {
+                    return d
+                })
+                .attr("text-anchor", "left")
+                .style("alignment-baseline", "middle")
                 .style("font-size", "25px")
                 .style("fill", "white")
                 .style("font-family", 'Mountains of Christmas')
                 .style('text-shadow', ' -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black')
-                .text(function (d, i) {
-                    if (i < 4 && byVar == 'weeks_on_chart') {
-                        if(i == 0) {
-                            return '0-5 Weeks';
-                        }
-                        if(i == 1) {
-                            return '6-10 Weeks';
-                        }
-                        if(i == 2) {
-                            return '11-15 Weeks';
-                        }
-                        if(i == 3) {
-                            return '16-20 Weeks';
-                        }
-                    }
-                    else if(i < 6 && byVar == 'instance') {
-                        if(i == 0) {
-                            return '1st Instance';
-                        }
-                        if(i == 1) {
-                            return '2nd Instance';
-                        }
-                        if(i == 2) {
-                            return '3rd Instance';
-                        }
-                        if(i == 3) {
-                            return '4th Instance';
-                        }
-                        if(i == 4) {
-                            return '5th Instance';
-                        }
-                        if(i == 5) {
-                            return '6th Instance';
-                        }
-                    }
-                    else if(i < 6 && byVar == 'year') {
-                        if(i == 0) {
-                            return '1958 - 1968';
-                        }
-                        if(i == 1) {
-                            return '1969 - 1978';
-                        }
-                        if(i == 2) {
-                            return '1979 - 1988';
-                        }
-                        if(i == 3) {
-                            return '1989 - 1998';
-                        }
-                        if(i == 4) {
-                            return '1999 - 2008';
-                        }
-                        if(i == 5) {
-                            return '2008 - 2017';
-                        }
-                    }
-                })
-                .on('mouseover', function(event, d) {
-                    d3.select(this).style('visibility', 'hidden')
-                })
-                .on('mouseout', function(event, d) {
-                    d3.select(this).transition().delay(2000).style('visibility', 'visible')
-                })
 
-            vis.titles.exit().remove()
+            vis.weekTitles.exit().remove()
         }
 
-        function hideTitles() {
-            vis.svg.selectAll('.title').remove();
+        function hideWeeks() {
+            console.log("firing")
+            vis.svg.selectAll('.weekDots').remove();
+            vis.svg.selectAll('.weekLabels').remove();
+        }
+
+        function showInstanceTitles() {
+            vis.iDots = vis.svg.selectAll("instanceDots")
+                .data(vis.instanceKey)
+
+            vis.iDots.enter()
+                .append("rect")
+                .attr("class", 'instanceDots')
+                .attr("x", function (d, i) {
+                    return 10 + i * (vis.size + 75)
+                })
+                .attr("y", 560) // 100 is where the first dot appears. 25 is the distance between dots
+                .attr("width", vis.size)
+                .attr("height", vis.size)
+                .style("fill", function (d, i) {
+                    return vis.instanceColors[i]
+                })
+            vis.iTitles = vis.svg.selectAll("instanceLabels")
+                .data(vis.instanceKey)
+
+            vis.iTitles.enter()
+                .append("text")
+                .attr("class", 'instanceLabels')
+                .attr("x", function (d, i) {
+                    return 30 + i * (vis.size + 75) + (vis.size / 2)
+                })
+                .attr("y", 560 + vis.size / 2) // 100 is where the first dot appears. 25 is the distance between dots
+                .style("fill", function (d, i) {
+                    return vis.instanceColors[i]
+                })
+                .text(function (d) {
+                    return d
+                })
+                .attr("text-anchor", "left")
+                .style("alignment-baseline", "middle")
+                .style("font-size", "25px")
+                .style("fill", "white")
+                .style("font-family", 'Mountains of Christmas')
+                .style('text-shadow', ' -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black')
+            }
+
+        function hideInstanceTitles() {
+            vis.svg.selectAll('.instanceDots').remove();
+            vis.svg.selectAll('.instanceLabels').remove();
+        }
+
+        function showDecadeTitles() {
+            vis.dDots = vis.svg.selectAll("decadeDots")
+                .data(vis.decadeKey)
+
+            vis.dDots.enter()
+                .append("rect")
+                .attr("class", 'decadeDots')
+                .attr("x", function (d, i) {
+                    if(i == 4) {
+                        return 40 + 1 * (vis.size + 115) + (vis.size / 2)
+                    }
+                    if(i == 5) {
+                        return 40 + 2 * (vis.size + 115) + (vis.size / 2)
+                    }
+                    return 10 + i * (vis.size + 115)
+                })
+                .attr("y", function(d, i) {
+                    if(i == 4) {
+                        return 570
+                    }
+                    if(i == 5) {
+                        return 570
+                    }
+                    return 530
+                }) // 100 is where the first dot appears. 25 is the distance between dots
+                .attr("width", vis.size)
+                .attr("height", vis.size)
+                .style("fill", function (d, i) {
+                    return vis.yearColors[i]
+                })
+            vis.dTitles = vis.svg.selectAll("decadeLabels")
+                .data(vis.decadeKey)
+
+            vis.dTitles.enter()
+                .append("text")
+                .attr("class", 'decadeLabels')
+                .attr("x", function (d, i) {
+                    if(i == 4) {
+                        return 70 + 1 * (vis.size + 115) + (vis.size / 2)
+                    }
+                    if(i == 5) {
+                        return 70 + 2 * (vis.size + 115) + (vis.size / 2)
+                    }
+                    return 30 + i * (vis.size + 115) + (vis.size / 2)
+                })
+                .attr("y", function(d, i) {
+                    if(i == 4) {
+                        return 570 + vis.size / 2
+                    }
+                    if(i == 5) {
+                        return 570 + vis.size / 2
+                    }
+                    return 530 + vis.size / 2
+                }) // 100 is where the first dot appears. 25 is the distance between dots
+                .style("fill", function (d, i) {
+                    return vis.yearColors[i]
+                })
+                .text(function (d) {
+                    return d
+                })
+                .attr("text-anchor", "left")
+                .style("alignment-baseline", "middle")
+                .style("font-size", "25px")
+                .style("fill", "white")
+                .style("font-family", 'Mountains of Christmas')
+                .style('text-shadow', ' -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black')
+        }
+
+        function hideDecadeTitles() {
+            vis.svg.selectAll('.decadeDots').remove();
+            vis.svg.selectAll('.decadeLabels').remove();
         }
 
         vis.radiusScale = d3.scaleSqrt().domain([0, 1/7]).range([1, 30])
@@ -261,7 +245,7 @@ class InitialPage {
                 return 350;
             }
             else if(d.weeks_on_chart > 15 && d.weeks_on_chart <= 20) {
-                return 375;
+                return 350;
             }
         }).strength(0.06)
 
@@ -270,7 +254,7 @@ class InitialPage {
                 return 200;
             }
             if(d.year > 1968 && d.year <= 1978) {
-                return 400;
+                return 210;return 400;
             }
             if(d.year > 1978 && d.year <= 1988) {
                 return 210;
@@ -278,8 +262,8 @@ class InitialPage {
             if(d.year > 1988 && d.year <= 1998) {
                 return 400;
             }
-            else if (d.year > 1988 && d.year <= 2008) {
-                return 210;
+            else if (d.year > 1998 && d.year <= 2008) {
+                return 400;
             }
             else {
                 return 410;
@@ -288,22 +272,22 @@ class InitialPage {
 
         vis.forceYDecade = d3.forceY(function(d) {
             if(d.year <= 1968) {
-                return 200;
+                return 150;
             }
             if(d.year > 1968 && d.year <= 1978) {
-                return 200;
+                return 250;return 350;
             }
             if(d.year > 1978 && d.year <= 1988) {
-                return 300;
-            }
-            if(d.year > 1988 && d.year <= 1998) {
                 return 350;
             }
-            else if (d.year > 1988 && d.year <= 2008) {
-                return 420;
+            if(d.year > 1988 && d.year <= 1998) {
+                return 150;
+            }
+            else if (d.year > 1998 && d.year <= 2008) {
+                return 250;
             }
             else {
-                return 430;
+                return 350;
             }
         }).strength(0.08)
 
@@ -312,19 +296,19 @@ class InitialPage {
                 return 190;
             }
             else if(d.instance == 2) {
-                return 300;
+                return 220;
             }
             else if(d.instance == 3) {
-                return 320;
+                return 310;
             }
             else if(d.instance == 4) {
-                return 330;
+                return 320;
             }
             else if (d.instance == 5) {
-                return 340;
+                return 310;
             }
             else if(d.instance == 6){
-                return 335;
+                return 220;
             }
         }).strength(0.073)
 
@@ -333,7 +317,7 @@ class InitialPage {
                 return 300;
             }
             else if(d.instance == 2) {
-                return 150;
+                return 200;
             }
             else if(d.instance == 3) {
                 return 215;
@@ -345,7 +329,7 @@ class InitialPage {
                 return 375;
             }
             else if(d.instance == 6) {
-                return 440;
+                return 380;
             }
         }).strength(0.07)
 
@@ -365,6 +349,153 @@ class InitialPage {
                 return vis.radiusScale(1/d.peak_position) * -1.50})
             );
 
+        d3.select("#all").on('click', function() {
+            if(vis.clickedAll != 'true') {
+                // if this button is clicked, change the clickedAll variable to true
+                vis.clickedAll = 'true';
+                vis.clickedDecade = 'false';
+                vis.clickedWeeks = 'false';
+                vis.clickedInstance = 'false';
+                // d3.select(".col-4").append('p').text('You clicked the All button!');
+                // add html
+                hideWeeks();
+                hideInstanceTitles();
+                hideDecadeTitles();
+                removeText('all');
+                showText('all')
+                vis.simulation
+                    .force('x', vis.forceXAll)
+                    .force('y', vis.forceYAll)
+                    .alphaTarget(1)
+                    .restart()
+                //hideTitles();
+                vis.circles.style("fill", function(d) {
+                    return fillColor(d, "all")
+                })
+            }
+        })
+        d3.select("#weeks_on_chart").on('click', function() {
+            if(vis.clickedWeeks != 'true') {
+                vis.clickedWeeks = 'true';
+                vis.clickedAll = 'false';
+                vis.clickedInstance = 'false';
+                vis.clickedDecade = 'false';
+                removeText('weeks_on_chart');
+                showWeekTitles();
+                hideInstanceTitles();
+                hideDecadeTitles();
+                showText('weeks_on_chart')
+                vis.simulation
+                    .force('x', vis.forceXWeeks)
+                    .force('y', vis.forceYWeeks)
+                    .alphaTarget(1)
+                    .restart()
+                vis.circles.style("fill", function(d) {
+                    return fillColor(d, "weeks_on_chart")
+                })
+            }
+        })
+        d3.select("#year").on('click', function() {
+            if(vis.clickedDecade != 'true') {
+                vis.clickedDecade = 'true';
+                vis.clickedAll = 'false';
+                vis.clickedWeeks = 'false';
+                vis.clickedInstance = 'false';
+                removeText('year');
+                vis.simulation
+                    .force('x', vis.forceXDecade)
+                    .force('y', vis.forceYDecade)
+                    .alphaTarget(1)
+                    .restart()
+                showDecadeTitles();
+                hideWeeks();
+                hideInstanceTitles();
+                showText('year')
+                vis.circles.style("fill", function(d) {
+                    return fillColor(d, "year")
+                })
+            }
+        })
+        d3.select("#instance").on('click', function() {
+            if (vis.clickedInstance != 'true') {
+                vis.clickedInstance = 'true';
+                vis.clickedDecade = 'false';
+                vis.clickedWeeks = 'false';
+                vis.clickedAll = 'false';
+                removeText('instance');
+                vis.simulation
+                    .force('x', vis.forceXInstance)
+                    .force('y', vis.forceYInstance)
+                    .alphaTarget(1)
+                    .restart()
+                showInstanceTitles();
+                hideWeeks();
+                hideDecadeTitles();
+                showText('instance')
+                vis.circles.style("fill", function(d) {
+                    return fillColor(d, "instance")
+                })
+            }
+        })
+        function fillColor(d, variable) {
+            if(variable == 'weeks_on_chart' || variable == 'all') {
+                console.log("coloring weeks")
+                if(d.weeks_on_chart <= 5) {
+                    return vis.circleColors[0]
+                }
+                else if(d.weeks_on_chart > 5 && d.weeks_on_chart <= 10) {
+                    return vis.circleColors[1]
+                }
+                else if(d.weeks_on_chart > 10 && d.weeks_on_chart <= 15) {
+                    return vis.circleColors[2]
+                }
+                else if(d.weeks_on_chart > 15 && d.weeks_on_chart <= 20) {
+                    return vis.circleColors[3]
+                }
+            }
+            if(variable == 'instance') {
+                console.log("coloring instance")
+                if(d.instance == 1) {
+                    return vis.instanceColors[0]
+                }
+                else if(d.instance == 2) {
+                    return vis.instanceColors[1]
+                }
+                else if(d.instance == 3) {
+                    return vis.instanceColors[2]
+                }
+                else if(d.instance == 4) {
+                    return vis.instanceColors[3]
+                }
+                else if(d.instance == 5) {
+                    return vis.instanceColors[4]
+                }
+                else if(d.instance == 6) {
+                    return vis.instanceColors[5]
+                }
+            }
+            if(variable == 'year') {
+                console.log("coloring by year")
+                if(d.year <= 1968) {
+                    return vis.yearColors[0];
+                }
+                if(d.year > 1968 && d.year <= 1978) {
+                    return vis.yearColors[1];
+                }
+                if(d.year > 1978 && d.year <= 1988) {
+                    return vis.yearColors[2];
+                }
+                if(d.year > 1988 && d.year <= 1998) {
+                    return vis.yearColors[3];
+                }
+                else if (d.year > 1998 && d.year <= 2008) {
+                    return vis.yearColors[4];
+                }
+                else if(d.year > 2008 && d.year <= 2017) {
+                    return vis.yearColors[5];
+                }
+            }
+        }
         vis.circles = vis.svg.selectAll("circle")
             .data(vis.christmasSongs)
             .enter().append("circle")
@@ -373,17 +504,16 @@ class InitialPage {
                 return vis.radiusScale(1/d.peak_position);
             })
             .attr("fill", function(d) {
-                if (d.weeks_on_chart <= 5) {
+                if(d.weeks_on_chart <= 5) {
                     return vis.circleColors[0]
-                    //return "url(#img/exampleOrnament.png)"
                 }
-                if (d.weeks_on_chart > 5 && d.weeks_on_chart <= 10) {
+                else if(d.weeks_on_chart > 5 && d.weeks_on_chart <= 10) {
                     return vis.circleColors[1]
                 }
-                if (d.weeks_on_chart > 10 && d.weeks_on_chart <= 15) {
+                else if(d.weeks_on_chart > 10 && d.weeks_on_chart <= 15) {
                     return vis.circleColors[2]
                 }
-                if (d.weeks_on_chart > 15 && d.weeks_on_chart <= 20) {
+                else if(d.weeks_on_chart > 15 && d.weeks_on_chart <= 20) {
                     return vis.circleColors[3]
                 }
             })
@@ -480,15 +610,15 @@ class InitialPage {
                         .style("top", 0)
                         .html(``);
                     }
-                if(vis.clickedDecade == 'true') {
-                    d3.select(".col-4").append('p').text("Now that we've thoroughly explored the top Christmas music of the late 1950s through the 2000s, lets take a look at the specific years where they were most successful!")
-                        .attr('class', 'extraStory4')
-                        .style('margin-top', '10px')
-                        .style('margin-right', '75px')
-                        .style('width', '700px')
-                        .style('text-align', 'center')
-                        .style('color', '#237249');
-                }
+                // if(vis.clickedDecade == 'true') {
+                //     d3.select(".col-4").append('p').text("Now that we've thoroughly explored the top Christmas music of the late 1950s through the 2000s, lets take a look at the specific years where they were most successful!")
+                //         .attr('class', 'extraStory4')
+                //         .style('margin-top', '10px')
+                //         .style('margin-right', '75px')
+                //         .style('width', '700px')
+                //         .style('text-align', 'center')
+                //         .style('color', '#237249');
+                // }
                 if(vis.clickedInstance == 'true') {
                     d3.select(".col-4").append('p').text("Next, click on 'By Decade' to explore the songs through the decades.")
                         .attr('class', 'extraStory5')
@@ -496,7 +626,7 @@ class InitialPage {
                         .style('margin-right', '75px')
                         .style('width', '700px')
                         .style('text-align', 'center')
-                        .style('color', '#237249');
+                        .style('color', 'black');
                 }
                 if(vis.clickedWeeks == 'true') {
                     d3.select(".col-4").append('p').text("Next, click on 'By Instance' to see how many times each song topped the charts.")
@@ -505,7 +635,7 @@ class InitialPage {
                         .style('margin-right', '75px')
                         .style('width', '700px')
                         .style('text-align', 'center')
-                        .style('color', '#237249');
+                        .style('color', 'black');
 
                 }
                     // d3.select(".col-4").append('p').html(`<p style="font-size: 24px; color:#237249; margin-right: 75px; width: 700px; text-align: center;"><em>"all i want for christmas is you"</em> by Mariah Carey spent <u>20 weeks</u> on the chart and reached a peak position of 11.<p></div>`)
@@ -514,19 +644,20 @@ class InitialPage {
 
         function showText(byVar) {
             if(byVar == 'all') {
-                d3.select(".col-4").append('p').text('First, we look at the top songs on the Billboard chart from 1958 through 2017.')
-                    .attr('class', 'extraStory0')
-                    .style('margin-top', '120px')
-                    .style('margin-right', '75px')
-                    .style('width', '700px')
-                    .style('text-align', 'center')
-                    .style('color', '#237249');
+                // d3.select(".col-4").append('p').text('First, we look at the top songs on the Billboard chart from 1958 through 2017.')
+                //     .attr('class', 'extraStory0')
+                //     .style('margin-top', '120px')
+                //     .style('margin-right', '75px')
+                //     .style('width', '700px')
+                //     .style('text-align', 'center')
+                //     .style('color', 'black');
                 d3.select(".col-4").append('p').text('Click through each button to see how many weeks the top songs spent on the chart, the number of times they appeared, and the decades they topped.')
                     .attr('class', 'extraStory01')
+                    .style('margin-top', '110px')
                     .style('margin-right', '75px')
                     .style('width', '700px')
                     .style('text-align', 'center')
-                    .style('color', '#237249');
+                    .style('color', 'black');
             }
             if(byVar == 'weeks_on_chart') {
                 d3.select(".col-4").append('p').text('Most songs spent fewer weeks on the chart, but those that reached a higher peak position were on the chart for longer.')
@@ -535,7 +666,7 @@ class InitialPage {
                     .style('margin-right', '75px')
                     .style('width', '700px')
                     .style('text-align', 'center')
-                    .style('color', '#237249');
+                    .style('color', 'black');
 
                 // show interesting insight
                 // add placeholder before mouseover
@@ -549,7 +680,7 @@ class InitialPage {
                     .style('margin-right', '75px')
                     .style('width', '700px')
                     .style('text-align', 'center')
-                    .style('color', '#237249');
+                    .style('color', 'black');
 
                 // placeholder: interesting insight
                 d3.select(".col-4").append('p').html(`<p style="font-size: 22px; color:black; margin-right: 75px; width: 700px; text-align: center; border:thin solid black; border-radius: 5px; background:rgba(255, 255, 255, 0.9); padding: 5px;"><b style="color: #B3000C"><img style="width:100px; height:100px; border:thin solid black; border-radius: 5px; float: left" src="img/ALLIWANTFORCHRISTMASISYOU.jpg" />"all i want for christmas is you"</b> by Mariah Carey appeared on the Billboard chart in 2016, its <u>sixth time</u> since it was released.<p></div>`)
@@ -562,7 +693,7 @@ class InitialPage {
                     .style('margin-right', '75px')
                     .style('width', '700px')
                     .style('text-align', 'center')
-                    .style('color', '#237249');
+                    .style('color', 'black');
 
                 // placeholder: interesting insight
                 d3.select(".col-4").append('p').html(`<p style="font-size: 22px; color:black; margin-right: 75px; width: 700px; text-align: center; border:thin solid black; border-radius: 5px; background:rgba(255, 255, 255, 0.9); padding: 5px;"><b style="color: #B3000C"><img style="width:100px; height:100px; border:thin solid black; border-radius: 5px; float: left" src="img/ALLIWANTFORCHRISTMASISYOU.jpg"/> "all i want for christmas is you"</b> by Mariah Carey appeared on the Billboard chart on <u>1/8/00</u> and reached a peak position of 11.<p></div>`)
@@ -624,75 +755,6 @@ class InitialPage {
                 d3.select(".weeks-fact-placeholder").remove();
             }
         }
-
-        d3.select("#all").on('click', function() {
-            if(vis.clickedAll != 'true') {
-                // if this button is clicked, change the clickedAll variable to true
-                vis.clickedAll = 'true';
-                vis.clickedDecade = 'false';
-                vis.clickedWeeks = 'false';
-                vis.clickedInstance = 'false';
-                // d3.select(".col-4").append('p').text('You clicked the All button!');
-                // add html
-                removeText('all');
-                showText('all')
-                vis.simulation
-                    .force('x', vis.forceXAll)
-                    .force('y', vis.forceYAll)
-                    .alphaTarget(1)
-                    .restart()
-                hideTitles();
-            }
-        })
-        d3.select("#weeks_on_chart").on('click', function() {
-            if(vis.clickedWeeks != 'true') {
-                vis.clickedWeeks = 'true';
-                vis.clickedAll = 'false';
-                vis.clickedInstance = 'false';
-                vis.clickedDecade = 'false';
-
-                removeText('weeks_on_chart');
-                showTitles('weeks_on_chart')
-                showText('weeks_on_chart')
-                vis.simulation
-                    .force('x', vis.forceXWeeks)
-                    .force('y', vis.forceYWeeks)
-                    .alphaTarget(1)
-                    .restart()
-            }
-        })
-        d3.select("#year").on('click', function() {
-            if(vis.clickedDecade != 'true') {
-                vis.clickedDecade = 'true';
-                vis.clickedAll = 'false';
-                vis.clickedWeeks = 'false';
-                vis.clickedInstance = 'false';
-                removeText('year');
-                vis.simulation
-                    .force('x', vis.forceXDecade)
-                    .force('y', vis.forceYDecade)
-                    .alphaTarget(1)
-                    .restart()
-                showTitles('year')
-                showText('year')
-            }
-        })
-        d3.select("#instance").on('click', function() {
-            if (vis.clickedInstance != 'true') {
-                vis.clickedInstance = 'true';
-                vis.clickedDecade = 'false';
-                vis.clickedWeeks = 'false';
-                vis.clickedAll = 'false';
-                removeText('instance');
-                vis.simulation
-                    .force('x', vis.forceXInstance)
-                    .force('y', vis.forceYInstance)
-                    .alphaTarget(1)
-                    .restart()
-                showTitles('instance')
-                showText('instance')
-            }
-        })
 
         vis.simulation.nodes(vis.christmasSongs)
             .on('tick', ticked)
