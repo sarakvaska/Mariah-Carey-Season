@@ -5,6 +5,7 @@ let myChartVis;
 let myBirthdayVis;
 let myGlobalStreamsVis;
 let myWeeklyVis;
+let wordCloudVis;
 
 let parseDate = d3.timeParse("%m/%d/%Y");
 let yearParse = d3.timeParse("%Y");
@@ -140,7 +141,8 @@ function initMapPage(data) {
 
     christmasMap = new ChristmasMap("mapVis", data[0], data[1], mapData);
 
-    wordCountBarVis = new WordCountBarVis("wordCountBarDiv", data[5]);
+    // wordCountBarVis = new WordCountBarVis("wordCountBarDiv", data[5]);
+    wordCloudVis = new WordCloudVis("wordCloudDiv", data[5]);
     setArtistSelect(data[5]);
 
 }

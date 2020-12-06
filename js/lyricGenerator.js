@@ -1,6 +1,6 @@
 let url = "https://christmas-lyrics-script.nn.r.appspot.com/new";
 
-let originalLyrics, wordCountBarVis, orderedlyricWordCountArr;
+let originalLyrics, wordCountBarVis, lyricCountUnfiltered;
 
 let loadingSpinner = `<div class="row justify-content-center">
                         <div class="loader" style="padding-bottom: 50px">
@@ -11,22 +11,24 @@ let loadingSpinner = `<div class="row justify-content-center">
                                 <div class="circle"></div>
                             </div>
                         </div>
+                        Rodney is thinking and scribbling your song in his jingles notebook...
+                           <p>Rodney is thinking and writing your song in his jingles notebook...</p>
                     </div>
                     <div class="row justify-content-center">
                          <p>Rodney is thinking and writing your song in his jingles notebook...</p>
                     </div>`;
 
 let lyricElements = `<div class="row justify-content-center lyricLine">
-                                    <h3 class="neon" contenteditable="true" id="lyricDiv1">Generate</h3>
+                                    <h3 class="neon" id="lyricDiv1">Generate</h3>
                                 </div>
                                 <div class="row justify-content-center lyricLine">
-                                    <h3 class="neon" contenteditable="true" id="lyricDiv2">your</h3>
+                                    <h3 class="neon" id="lyricDiv2">your</h3>
                                 </div>
                                 <div class="row justify-content-center lyricLine">
-                                    <h3 class="neon" contenteditable="true" id="lyricDiv3">unique</h3>
+                                    <h3 class="neon" id="lyricDiv3">unique</h3>
                                 </div>
                                 <div class="row justify-content-center lyricLine">
-                                    <h3 class="neon" contenteditable="true" id="lyricDiv4">jingle...</h3>
+                                    <h3 class="neon" id="lyricDiv4">jingle...</h3>
                                 </div>`;
 
 
@@ -40,54 +42,54 @@ function generateLyrics(event) {
 
     fetch(url)
         .then(response => response.text())
-        .then(lyric => {
-            lyric = lyric.toString().split("|");
-            originalLyrics = lyric[0];
-            let formattedLyricArr = lyric[1]
-                .replace(/ ill /g, " I'll ")
-                .replace(/ i /g, " I ")
-                .replace(/ christ /g, " Christ ")
-                .replace(/ everythings /g, " everything's ")
-                .replace(/ its /g, " it's ")
-                .replace(/ christmas /g, " Christmas ")
-                .replace(/ ill /g, " I'll ")
-                .replace(/ wont /g, " won't ")
-                .replace(/ hed /g, " he'd ")
-                .replace(/ santas /g, " santa's ")
-                .replace(/ theyll /g, " they'll ")
-                .replace(/ dont /g, " don't ")
-                .replace(/ youre /g, " you're ")
-                .replace(/ theyre /g, " they're ")
-                .replace(/ theres /g, " there's ")
-                .replace(/ cant /g, " can't ")
-            formattedLyricArr = (formattedLyricArr.charAt(0).toUpperCase() +
-                formattedLyricArr.slice(1))
-                .split(" ");
+.then(lyric => {
+        lyric = lyric.toString().split("|");
+    originalLyrics = lyric[0];
+    let formattedLyricArr = lyric[1]
+        .replace(/ ill /g, " I'll ")
+        .replace(/ i /g, " I ")
+        .replace(/ christ /g, " Christ ")
+        .replace(/ everythings /g, " everything's ")
+        .replace(/ its /g, " it's ")
+        .replace(/ christmas /g, " Christmas ")
+        .replace(/ ill /g, " I'll ")
+        .replace(/ wont /g, " won't ")
+        .replace(/ hed /g, " he'd ")
+        .replace(/ santas /g, " santa's ")
+        .replace(/ theyll /g, " they'll ")
+        .replace(/ dont /g, " don't ")
+        .replace(/ youre /g, " you're ")
+        .replace(/ theyre /g, " they're ")
+        .replace(/ theres /g, " there's ")
+        .replace(/ cant /g, " can't ")
+    formattedLyricArr = (formattedLyricArr.charAt(0).toUpperCase() +
+        formattedLyricArr.slice(1))
+        .split(" ");
 
-            lyricInnerContainerDiv.innerHTML = lyricElements;
+    lyricInnerContainerDiv.innerHTML = lyricElements;
 
-            let line1 = formattedLyricArr.slice(0,6).join(" ");
-            let line2 = formattedLyricArr.slice(6,15).join(" ");
-            let line3 = formattedLyricArr.slice(15,22).join(" ");
-            let line4 = formattedLyricArr.slice(22,31).join(" ");
+    let line1 = formattedLyricArr.slice(0,6).join(" ");
+    let line2 = formattedLyricArr.slice(6,15).join(" ");
+    let line3 = formattedLyricArr.slice(15,22).join(" ");
+    let line4 = formattedLyricArr.slice(22,31).join(" ");
 
-            // Fill in lyrics
-            lyricDiv1.innerHTML = line1;
-            lyricDiv2.innerHTML = line2;
-            lyricDiv3.innerHTML = line3;
-            lyricDiv4.innerHTML = line4;
+    // Fill in lyrics
+    lyricDiv1.innerHTML = line1;
+    lyricDiv2.innerHTML = line2;
+    lyricDiv3.innerHTML = line3;
+    lyricDiv4.innerHTML = line4;
 
-            // Fill in original lyrics
-            let originalLyricsDiv = document.getElementById("originalLyricsEl");
-            originalLyricsDiv.innerHTML = originalLyrics;
+    // Fill in original lyrics
+    // let originalLyricsDiv = document.getElementById("originalLyricsEl");
+    // originalLyricsDiv.innerHTML = originalLyrics;
 
-        })
-        .catch( function (err){
-            console.log(err);
-            lyricInnerContainerDiv.innerHTML = lyricElements;
-            let originalLyricsDiv = document.getElementById("originalLyricsEl");
-            originalLyricsDiv.innerHTML = "";
-        });
+})
+.catch( function (err){
+        console.log(err);
+        lyricInnerContainerDiv.innerHTML = lyricElements;
+        // let originalLyricsDiv = document.getElementById("originalLyricsEl");
+        // originalLyricsDiv.innerHTML = "";
+    });
 }
 
 function updateInputDiv(wordList, wordListFiltered, artist = false) {
@@ -103,7 +105,7 @@ function updateInputDiv(wordList, wordListFiltered, artist = false) {
     let topWordSpan = document.getElementById("topWordSpan");
     let topWordCountSpan = document.getElementById("topWordCountSpan");
     topWordSpan.innerHTML = "&nbsp;" + wordListFiltered[0].word;
-    topWordCountSpan.innerHTML = "&nbsp;" + wordListFiltered[0].count + "&nbsp;";
+    topWordCountSpan.innerHTML = "&nbsp;" + wordListFiltered[0].value + "&nbsp;";
 }
 
 function setArtistSelect(fullLyricData) {
@@ -123,15 +125,17 @@ function setArtistSelect(fullLyricData) {
 
 function onWordInput(value = false) {
     let wordInputResultEl = document.getElementById("wordInputResultEl");
-    let inputWordInLyric = orderedlyricWordCountArr.find(d => d.word === value);
+    console.log("onWordInput, lyricCountUnfiltered = ", lyricCountUnfiltered);
+    let inputWordInLyric = lyricCountUnfiltered.find(d => d.word === value);
     wordInputResultEl.innerHTML =
         value && inputWordInLyric ? inputWordInLyric.count : 0;
 
-    wordCountBarVis.updateVis(value);
+    // wordCountBarVis.updateVis(value);
 }
 
 function onArtistSelect(artist = false) {
-    wordCountBarVis.wrangleData(artist);
+    // wordCountBarVis.wrangleData(artist);
+    wordCloudVis.wrangleData(artist);
     let currentInputValue = document.getElementById("wordInputEl").value;
     onWordInput(currentInputValue);
 }
