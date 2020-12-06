@@ -263,8 +263,6 @@
                 </div>
             </div>
         </div>
-
-<<<<<<< HEAD
         <div class="section">
             <div class="container-fluid" style="text-align: center; font-size: 25px;">
                 <h3 style="color: white; font-size: 45px;padding-right: 50px; padding-left:50px;">
@@ -276,18 +274,17 @@
             <div class="container-fluid" style="text-align: center; font-size: 25px;">
                 <h3 style="color: black; font-size: 45px;padding-right: 50px; padding-left:50px;">
                     Remember our interactive component which showed the top Christmas </br> song of any year?
-                    In case you didn't notice, "All I Want For Christmas?" <br> by Mariah Carey
-                    is the top Christmas song for the past 7 years, since 2013.</h3>
+                    In case you didn't notice, "All I Want For Christmas is You" <br> by Mariah Carey
+                    has been the top Christmas song for the past 7 years, since 2013.</h3>
             </div>
         </div>
         <div class="section" id="linechart-sec">
             <!--    Gustavo's section 2 -->
-            <div class="container-fluid" style="padding-bottom:10px; padding-top: 20px">
+            <div class="container-fluid">
                 <div class="row justify-content-center">
-                    <p class="center"  style="color:white">
-
-                        Early December, the phenomenon "All I Want For Christmas" starts. <br>
-                        It slowly climbs through the charts, amassing an incredible number of streams
+                    <p class="center"  style="color:white; margin-top: 20px; font-size:30px;">
+                        In early December, the phenomenon "All I Want For Christmas" starts. <br>
+                        It slowly climbs through the charts, amassing an incredible number of streams.
                          </p>
                 </div>
                 <div class="row justify-content-center">
@@ -295,10 +292,10 @@
                         Hover through visualization to see details
                     </p>
                 </div>
-                <div class="row justify-content-center" style="padding-top:10px">
+                <div class="row justify-content-center">
                     <div class="col-6 text-center">
                         <p class="center" id="checkMariahStreamsText" style="color:#82CFFD"> Streams over December 2017</p>
-                        <div id="globalStreamsVis" style="height: 100%; width:100%;"> </div>
+                        <div id="globalStreamsVis" style="height: 100%; width:100%;"></div>
                     </div>
                     <div class="col-6">
                         <p class="center" id="compareMariahStreamsText" style="color:#82CFFD">
@@ -311,7 +308,42 @@
         </div>
 
         <div class="section">
-            <!--    Gustavo's section 4 -->
+            <div class="snowflake">
+                ❅
+            </div>
+            <div class="snowflake">
+                ❆
+            </div>
+            <div class="snowflake">
+                ❅
+            </div>
+            <div class="snowflake">
+                ❆
+            </div>
+            <div class="snowflake">
+                ❅
+            </div>
+            <div class="snowflake">
+                ❆
+            </div>
+            <div class="snowflake">
+                ❅
+            </div>
+            <div class="snowflake">
+                ❆
+            </div>
+            <div class="snowflake">
+                ❅
+            </div>
+            <div class="snowflake">
+                ❆
+            </div>
+            <div class="snowflake">
+                ❅
+            </div>
+            <div class="snowflake">
+                ❆
+            </div>
             <div class="row justify-content-center" style="margin-right:0px; margin-left:0px;text-align: center;">
                     <h4 style="margin-right:0px; margin-left:0px;padding-bottom:25px;">Oh well, there is no doubt that Mariah is the Queen of Christmas.
                         <br> Let us wish you Happy Holidays with the season's most emblematic song</h4>
@@ -331,11 +363,11 @@
     <script>
         $(document).ready(function() {
             $('#pagepiling').pagepiling({
-                anchors: ['', 'page2', 'page3', 'page4', 'page5', 'page6', 'page7', 'page8', 'page9', 'page10'],
+                anchors: ['', 'page2', 'page3', 'page4', 'page5', 'page6', 'page7', 'page8', 'page9', 'page10', 'page11', 'page12', 'page13'],
                 menu: '#myMenu',
                 direction: 'vertical',
                 verticalCentered: true,
-                sectionsColor: ['#B51541', '#000', '#DFAD56', '#B51541', '#DFAD56', '#B51541', '#110019', '#DFAD56', '#B51541', '#B51541', '#DFAD56', '#B51541', '#DFAD56'],
+                sectionsColor: ['#B51541', '#000', '#DFAD56', '#B51541', '#DFAD56', '#B51541', '#110019', '#DFAD56', '#DFAD56', '#B51541', '#DFAD56', '#B51541', '#B51541'],
                 scrollingSpeed: 700,
                 easing: 'swing',
                 loopBottom: false,
@@ -358,8 +390,7 @@
                 onLeave: function(index, nextIndex, direction){
                 },
                 afterLoad: function(anchorLink, index){
-                    if(anchorLink == 'page10') {
-                        // var secId = 'linechart-sec';
+                    if(anchorLink == 'page12') {
                         drawLineChartVis();
                         //break;
                     }
