@@ -135,7 +135,7 @@
                         <button id="weeks_on_chart" class="button" onclick="hideImage();">By Weeks on Chart</button>
                         <button id="year" class="button" onclick="addimage();">By Decade</button>
                         <button id="instance" class="button" onclick="hideImage();">By Instance</button>
-                        <p class="filler2" style="margin-right: 75px; margin-top:110px;width: 700px; text-align: center; color: black">
+                        <p class="filler2" style="margin-right: 75px; margin-top:100px;width: 700px; text-align: center; color: black">
                             Click through each button to see how many weeks the top songs spent on the chart, the number of times they appeared, and the decades they topped.</p>
                         <a id="secondArrow" href="#page4"></a>
                     </div>
@@ -181,7 +181,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-4">
-                        <h5 style="margin-top: 50px; margin-right:-25%; width:550px;">Press 'PLAY' to start the globe's rotation, then press 'PAUSE' to click on a point and read more about the artist who was born there!</h5>
+                        <h5 style="margin-top: 40px; margin-right:-25%; width:550px;">Press 'PLAY' to start the globe's rotation, then press 'PAUSE' to click on a point and read more about the artist who was born there!</h5>
                         <div class="newDiv"></div>
                         <h5 style="margin-right:-25%; width:550px; margin-top: 30px;">Most artists who created the top Christmas songs are from North America, but a handful have come from Europe and even India!</h5>
                     </div>
@@ -352,6 +352,28 @@
                             allowfullscreen></iframe>
             </div>
         </div>
+<!--        <div class="section">-->
+<!--            <div class="row justify-content-center">-->
+<!--                <h4 style="margin-right:0px; margin-left:0px;padding-bottom:25px;"> All our data and source code can be found here <a href="https://github.com/sarakvaska/Mariah-Carey-Season" target="_blank">GitHub repo</a>.</h4>-->
+<!--                <h3>Data Sources and Methods</h3>-->
+<!--                <div class="row">-->
+<!--                    <div class="col" style="font-size:15px;">-->
+<!--                        <b>Data</b>-->
+<!--                        <ul>-->
+<!--                            <li><a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-12-24" target="_blank">Christmas Music Billboards</a>: We downloaded all of our Billboard data from this repo, which included songs and lyrics.</li>-->
+<!--                            <li><a href="https://flourish.studio/2018/12/18/all-i-want-christmas-mariah-spotify-data/" target="_blank">All I Want for Christmas... is data</a>: To visualize Mariah Carey's hit song against others, we scraped data from this website.</li>-->
+<!--                        </ul>-->
+<!--                        <b>Methods</b>-->
+<!--                        <ul>-->
+<!--                            <li>We organized all the data by artist and number of weeks spent on the chart. We also pulled images of the artists and their album covers to better represent them!</li>-->
+<!--                        </ul>-->
+<!--                        <b>Images</b>: None of the images in this project are ours (except for the ones of us!) We collected the images from Google image search. You can find the source links inside a our source links text file on Github.-->
+<!--                        </p>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--            </div>-->
+<!--        </div>-->
     </div>
 
 
@@ -363,11 +385,11 @@
     <script>
         $(document).ready(function() {
             $('#pagepiling').pagepiling({
-                anchors: ['', 'page2', 'page3', 'page4', 'page5', 'page6', 'page7', 'page8', 'page9', 'page10', 'page11', 'page12', 'page13'],
+                anchors: ['', 'page2', 'page3', 'page4', 'page5', 'page6', 'page7', 'page8', 'page9', 'page10', 'page11', 'page12', 'page13', 'page14'],
                 menu: '#myMenu',
                 direction: 'vertical',
                 verticalCentered: true,
-                sectionsColor: ['#B51541', '#000', '#DFAD56', '#B51541', '#DFAD56', '#B51541', '#110019', '#DFAD56', '#DFAD56', '#B51541', '#DFAD56', '#B51541', '#B51541'],
+                sectionsColor: ['#B51541', '#000', '#DFAD56', '#B51541', '#DFAD56', '#B51541', '#110019', '#DFAD56', '#DFAD56', '#B51541', '#DFAD56', '#B51541', '#B51541', '#DFAD56'],
                 scrollingSpeed: 700,
                 easing: 'swing',
                 loopBottom: false,
@@ -377,7 +399,7 @@
                     'textColor': '#000',
                     'bulletsColor': '#000',
                     'position': 'right',
-                    'tooltips': ['Page One', 'Page Two', 'Page Three', 'Page Four', 'Page Five', 'Page Six', 'Page Seven', 'Page Eight', 'Page Nine', 'Page Ten', 'Page Eleven', 'Page Twelve', 'Page Thirteen']
+                    'tooltips': ['Page One', 'Page Two', 'Page Three', 'Page Four', 'Page Five', 'Page Six', 'Page Seven', 'Page Eight', 'Page Nine', 'Page Ten', 'Page Eleven', 'Page Twelve', 'Page Thirteen', 'Page Fourteen']
                 },
                 normalScrollElements: null,
                 normalScrollElementTouchThreshold: 5,
