@@ -202,35 +202,7 @@ class ChristmasMap {
                         .style("left", 0 +"px")
                         .style("top", 0+ "px")
                 })
-            // markerGroup.each(function () {
-            //     this.parentNode.appendChild(this);
-            // })
         }
-        // want to change back to blue when another circle is clicked
-        // function pulse(circle) {
-        //     (function repeat() {
-        //         circle
-        //             .style("fill", d => {
-        //                 const coordinate = [d.longitude, d.latitude];
-        //                 let gdistance = d3.geoDistance(coordinate, vis.projection.invert([vis.width/2, vis.height/2]));
-        //                 return gdistance > 1.57 ? 'transparent' : 'yellow';
-        //             })
-        //             .transition()
-        //             .duration(500)
-        //             .attr("stroke-width", 0)
-        //             .attr('stroke-opacity', 0)
-        //             .transition()
-        //             .duration(500)
-        //             .attr("stroke-width", 0)
-        //             .attr('stroke-opacity', 0.5)
-        //             .transition()
-        //             .duration(1000)
-        //             .attr("stroke-width", 65)
-        //             .attr('stroke-opacity', 0)
-        //             .ease(d3.easeSin)
-        //             .on("end", repeat);
-        //     })();
-        // }
 
         d3.select(".newDiv").append('div')
             .html(`<div><p style="font-size: 22px; color: #B3000C; text-align: center;">

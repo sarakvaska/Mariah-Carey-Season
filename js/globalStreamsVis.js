@@ -12,6 +12,7 @@ class GlobalStreamsVis {
         this.brendaData = brendaData;
         this.whamData = whamData;
         this.michaelData = michaelData;
+        this.drawn = false;
         this.displayData = [];
 
         this.initVis()
@@ -60,7 +61,7 @@ class GlobalStreamsVis {
     wrangleData() {
         let vis = this;
 
-        vis.updateVis();
+        //vis.updateVis();
 
     }
     updateVis() {
@@ -135,7 +136,7 @@ class GlobalStreamsVis {
         var legend = vis.svg.append("g").attr("class","legend")
             .attr("transform","translate(0,15)");
         legend.append("circle").attr("cx",50).attr("cy",20).attr("r", 6).style("fill", "#82CFFD")
-        legend.append("text").attr("x", 60).attr("y", 20).text("All I Want For Christmas").attr("id", "legendGlobalStreams")
+        legend.append("text").attr("x", 60).attr("y", 20).text("All I Want For Christmas is You").attr("id", "legendGlobalStreams")
             .style("font-size", "28px").style("fill", "#82CFFD").attr("alignment-baseline","middle")
 
         var footnote = vis.svg.append("g").attr("class","footnote")
@@ -158,8 +159,7 @@ class GlobalStreamsVis {
         // shared transition
         var t = vis.svg.transition()
             .delay(500)
-            .duration(3000)
-            .ease(d3.easeLinear)
+            .duration(4500)
 
         t.select('rect.curtain')
             .attr('width', 0);
@@ -298,5 +298,6 @@ class GlobalStreamsVis {
                     vis.y(d.streams) + ")")
                 .attr("x2", vis.width + vis.width);
         }
+        vis.drawn = true;
     }
 }

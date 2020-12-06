@@ -16,7 +16,7 @@ class StreamVis {
         let vis = this;
 
         // vis.margin = {top: 50, right: 50, bottom: 20, left: 50};
-        vis.margin = {top: 90, right: 20, bottom: 300, left: 95};
+        vis.margin = {top: 90, right: 50, bottom: 300, left: 80};
         vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right;
         vis.height = $("#" + vis.parentElement).height() - vis.margin.top - vis.margin.bottom;
 
