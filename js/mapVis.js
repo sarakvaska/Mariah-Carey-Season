@@ -99,6 +99,7 @@ class ChristmasMap {
                 .enter()
                 .append('circle')
                 .merge(vis.markers)
+                .attr('class', 'allCircles')
                 .attr('cx', d => vis.projection([d.longitude, d.latitude])[0])
                 .attr('cy', d => vis.projection([d.longitude, d.latitude])[1])
                 .attr('fill', d => {
@@ -113,24 +114,34 @@ class ChristmasMap {
                 })
                 .style('cursor', 'pointer')
                 .attr('r', 5)
+
+            vis.markers
                 .on('click', function(event, d) {
+                    // d3.selectAll('circle').attr('fill', d => {
+                    //     const coordinate = [d.longitude, d.latitude];
+                    //     let gdistance = d3.geoDistance(coordinate, vis.projection.invert([vis.width/2, vis.height/2]));
+                    //     return gdistance > 1.57 ? 'transparent' : '#b9f2ff';
+                    // });
+                    // d3.select(this).style("fill", 'yellow');
                     // once another one is clicked, change color back to blue
+                    // set selected one to yellow
+                    //pulse(d3.select(this));
+
                     d3.select('.imgPlaceholder').remove();
                     d3.select(".newDivInfo").remove();
-                    console.log("clicking me!")
                     // fix for willis the guard
-                    vis.imagePath = d.performer.split(" ").join("") + '.jpg'
+                    vis.imagePath = d.performer.split(" ").join("").toUpperCase() + '.jpg'
                     console.log(vis.imagePath)
-                    if(vis.imagePath == 'Willis"TheGuard"&Vigorish.jpg') {
+                    if(vis.imagePath == 'WILLIS"THEGUARD"&VIGORISH.jpg') {
                         vis.imagePath = 'WILLISTHEGUARD.jpg';
                     }
-                    if(vis.imagePath == 'TheDriftersFeaturingClydeMcPhatterAndBillPinkney.jpg') {
+                    if(vis.imagePath == 'THEDRIFTERSFEATURINGCLYDEMCPHATTERANDBILLPINKNEY.jpg') {
                         vis.imagePath = 'THEDRIFTERS.jpg';
                     }
-                    if(vis.imagePath == 'TheBrownsFeaturingJimEdwardBrown.jpg') {
+                    if(vis.imagePath == 'THEBROWNSFEATURINGJIMEDWARDBROWN.jpg') {
                         vis.imagePath = 'THEBROWNS.jpg';
                     }
-                    if(vis.imagePath == 'TheKillersFeaturingToniHalliday.jpg') {
+                    if(vis.imagePath == 'THEKILLERSFEATURINGTONIHALLIDAY.jpg') {
                         vis.imagePath = 'THEKILLERS.jpg';
                     }
                     vis.from = '';
@@ -140,14 +151,21 @@ class ChristmasMap {
                     else {
                         vis.from = d.state;
                     }
+                    vis.filler = d.performer;
                     if(d.performer == 'The Killers Featuring Toni Halliday') {
-                        d.performer = 'The Killers'
+                        vis.filler = 'The Killers';
                     }
                     if(d.performer == 'The Browns Featuring Jim Edward Brown') {
-                        d.performer = 'The Browns'
+                        vis.filler = 'The Browns';
                     }
                     if(d.performer == 'The Drifters Featuring Clyde McPhatter And Bill Pinkney') {
-                        d.performer = 'The Drifters'
+                        vis.filler = 'The Drifters';
+                    }
+                    if(d.performer == 'Engelbert Humperdinck') {
+                        vis.filler = 'Engelbert Humperdinck_(singer)';
+                    }
+                    if(d.performer == 'Willis "The Guard" & Vigorish') {
+                        vis.filler = 'Buckner_%26_Garcia';
                     }
                     d3.select(".newDiv").append('div')
                         .html(`<div><p style="font-size: 22px; color: #B3000C; text-align: center;">
@@ -155,7 +173,7 @@ class ChristmasMap {
                                 ${d.performer}</p>
                                 <h3 style="font-size: 22px; text-align: left; margin-left: 20px;">From: <strong>${d.city}, ${vis.from}</strong><h3>
                                 <h3 style="font-size: 22px; text-align: left; margin-left: 20px;">Song: <strong style="color: #B3000C">${d.song.toLowerCase()}</strong><h3>
-                                <h3 style="font-size: 22px; text-align: left; margin-left: 20px;">Read more here: <a href="https://en.wikipedia.org/wiki/${d.performer}" target="_blank">wikipedia</a><h3></div>`)
+                                <h3 style="font-size: 22px; text-align: left; margin-left: 20px;">Read more here: <a href="https://en.wikipedia.org/wiki/${vis.filler}" target="_blank">wikipedia</a><h3></div>`)
                         .attr("class", 'newDivInfo')
                 })
                 .on('mouseover', function (event, d) {
@@ -188,13 +206,38 @@ class ChristmasMap {
             //     this.parentNode.appendChild(this);
             // })
         }
+        // want to change back to blue when another circle is clicked
+        // function pulse(circle) {
+        //     (function repeat() {
+        //         circle
+        //             .style("fill", d => {
+        //                 const coordinate = [d.longitude, d.latitude];
+        //                 let gdistance = d3.geoDistance(coordinate, vis.projection.invert([vis.width/2, vis.height/2]));
+        //                 return gdistance > 1.57 ? 'transparent' : 'yellow';
+        //             })
+        //             .transition()
+        //             .duration(500)
+        //             .attr("stroke-width", 0)
+        //             .attr('stroke-opacity', 0)
+        //             .transition()
+        //             .duration(500)
+        //             .attr("stroke-width", 0)
+        //             .attr('stroke-opacity', 0.5)
+        //             .transition()
+        //             .duration(1000)
+        //             .attr("stroke-width", 65)
+        //             .attr('stroke-opacity', 0)
+        //             .ease(d3.easeSin)
+        //             .on("end", repeat);
+        //     })();
+        // }
 
         d3.select(".newDiv").append('div')
             .html(`<div><p style="font-size: 22px; color: #B3000C; text-align: center;">
-                    <img style="margin-top: -60px; display: block; margin-left: auto; margin-right: auto; width: 50%; border:thin solid black; border-radius: 5px;" src="img/MARIAHCAREY.jpg"/>
+                    <img style="margin-top: -70px; display: block; margin-left: auto; margin-right: auto; width: 50%; border:thin solid black; border-radius: 5px;" src="img/MARIAHCAREY.jpg"/>
                     Mariah Carey</p>
                     <h3 style="font-size: 22px; text-align: left; margin-left: 20px;">From: <strong>Huntington, NY</strong><h3>
-                    <h3 style="font-size: 22px; text-align: left; margin-left: 20px;">Song: <strong>"all i want for christmas is you"</strong><h3>
+                    <h3 style="font-size: 22px; text-align: left; margin-left: 20px;">Song: <strong style="color: #B3000C">"all i want for christmas is you"</strong><h3>
                     <h3 style="font-size: 22px; text-align: left; margin-left: 20px;">Read more here: <a href="https://en.wikipedia.org/wiki/Mariah_Carey" target="_blank">wikipedia</a><h3></div>`)
             .attr("class", 'imgPlaceholder')
             // d3.select(".col-4").append('p').html(`<p style="font-size: 22px; color:black; margin-right: 75px; width: 700px; text-align: center; border:thin solid black; border-radius: 5px; background:rgba(255, 255, 255, 0.9); padding: 5px;"><b style="color: #B3000C"><img style="width:100px; height:100px; border:thin solid black; border-radius: 5px; float: left" src="img/ALLIWANTFORCHRISTMASISYOU.jpg"/>"all i want for christmas is you"</b> by Mariah Carey spent <u>20 weeks</u> on the chart and reached a peak position of 11.<p></div>`)
