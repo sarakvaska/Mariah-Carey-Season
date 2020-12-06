@@ -58,7 +58,7 @@
             </h1>
             <h2>An Interactive Visualization of the Top Christmas Songs</h2>
             <input type="button" value="Play ▶" id="playButton" style="position: absolute; top: 65%; left:48%; display: block; border-radius: 5px; background-color: white; width: 80px;"><audio id="my_audio" src="AIWFCIY.mp3" loop="loop"></audio></input>
-            <a href="#Page2"><img id="arrow" src="https://www.codehaven.co.uk/wp-content/uploads/2019/12/arrow-down-white-300x157.png" class="bounce arrow"></a>
+            <a href="#page2"><img id="arrow" src="https://www.codehaven.co.uk/wp-content/uploads/2019/12/arrow-down-white-300x157.png" class="bounce arrow"></a>
         </div>
         <div class="section" style="-webkit-animation: fadein 4s;">
             <div class="container-fluid" style="-webkit-animation: fadein 4s;">
@@ -121,7 +121,6 @@
                 </div>
             </div>
         </div>
-        <!-- section to introduce first visualization   -->
         <div class="section" style="-webkit-animation: fadein 4s;">
             <div class="container-fluid">
                 <div class="row">
@@ -136,8 +135,6 @@
                         <button id="weeks_on_chart" class="button" onclick="hideImage();">By Weeks on Chart</button>
                         <button id="year" class="button" onclick="addimage();">By Decade</button>
                         <button id="instance" class="button" onclick="hideImage();">By Instance</button>
-<!--                        <p class="filler1" style="margin-top: 130px; margin-right: 75px; width: 700px; text-align: center; color: #237249">-->
-<!--                            First, we look at the top songs on the Billboard chart from 1958 through 2017.</p>-->
                         <p class="filler2" style="margin-right: 75px; margin-top:110px;width: 700px; text-align: center; color: black">
                             Click through each button to see how many weeks the top songs spent on the chart, the number of times they appeared, and the decades they topped.</p>
                         <a id="secondArrow" href="#page4"></a>
@@ -267,6 +264,7 @@
             </div>
         </div>
 
+<<<<<<< HEAD
         <div class="section">
             <div class="container-fluid" style="text-align: center; font-size: 25px;">
                 <h3 style="color: white; font-size: 45px;padding-right: 50px; padding-left:50px;">
@@ -282,8 +280,7 @@
                     is the top Christmas song for the past 7 years, since 2013.</h3>
             </div>
         </div>
-
-        <div class="section">
+        <div class="section" id="linechart-sec">
             <!--    Gustavo's section 2 -->
             <div class="container-fluid" style="padding-bottom:10px; padding-top: 20px">
                 <div class="row justify-content-center">
@@ -315,13 +312,12 @@
 
         <div class="section">
             <!--    Gustavo's section 4 -->
-            <div class="row justify-content-center">
-                <h4 style="padding-bottom:25px"> Oh well, there is no doubt that Mariah is the Queen of Christmas.
-                    <br> Let us wish you Happy Holidays with the season's most emblematic song</h4>
-
-                <iframe width="700" height=" 393.75" src="https://www.youtube.com/embed/aAkMkVFwAoo" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
+            <div class="row justify-content-center" style="margin-right:0px; margin-left:0px;text-align: center;">
+                    <h4 style="margin-right:0px; margin-left:0px;padding-bottom:25px;">Oh well, there is no doubt that Mariah is the Queen of Christmas.
+                        <br> Let us wish you Happy Holidays with the season's most emblematic song</h4>
+                    <iframe width="700" height=" 393.75" src="https://www.youtube.com/embed/aAkMkVFwAoo" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
             </div>
         </div>
     </div>
@@ -359,22 +355,23 @@
                 animateAnchor: false,
 
                 //events
-                onLeave: function(index, nextIndex, direction){},
-                // afterLoad: function(anchorLink, index){
-                //     //using index
-                //     if(index == 3){
-                //         alert("Section 3 ended loading");
-                //     }
-                //
-                //     //using anchorLink
-                //     if(anchorLink == 'secondPage'){
-                //         alert("Section 2 ended loading");
-                //     }
-                // },
+                onLeave: function(index, nextIndex, direction){
+                },
+                afterLoad: function(anchorLink, index){
+                    if(anchorLink == 'page10') {
+                        // var secId = 'linechart-sec';
+                        drawLineChartVis();
+                        //break;
+                    }
+                },
                 afterRender: function(){},
             });
         });
-
+        function drawLineChartVis() {
+            if (!myGlobalStreamsVis.drawn) {
+                myGlobalStreamsVis.updateVis();
+            }
+        }
         function addimage() {
             if(document.getElementById('secondArrow').style.display== 'none') {
                 document.getElementById('secondArrow').style.display='block';

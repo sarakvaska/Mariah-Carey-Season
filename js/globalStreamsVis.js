@@ -12,6 +12,7 @@ class GlobalStreamsVis {
         this.brendaData = brendaData;
         this.whamData = whamData;
         this.michaelData = michaelData;
+        this.drawn = false;
         this.displayData = [];
 
         this.initVis()
@@ -60,7 +61,7 @@ class GlobalStreamsVis {
     wrangleData() {
         let vis = this;
 
-        vis.updateVis();
+        //vis.updateVis();
 
     }
     updateVis() {
@@ -298,5 +299,6 @@ class GlobalStreamsVis {
                     vis.y(d.streams) + ")")
                 .attr("x2", vis.width + vis.width);
         }
+        vis.drawn = true;
     }
 }

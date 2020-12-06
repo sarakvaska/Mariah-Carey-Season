@@ -216,6 +216,13 @@ h2 {
     height:80px;
     -webkit-animation: fadein 4s;
 }
+#section3 .intro{
+    left: -150%;
+    position: relative;
+}
+#section3 p{
+    display: none;
+}
 h4 {
     font-family: 'Mountains of Christmas', cursive;
     color: white;
@@ -512,7 +519,10 @@ h3 {
     z-index: 1;
     overflow: hidden;
 }
-
+/*.row {*/
+/*    margin-left: 0px !important;*/
+/*    margin-right: 0px !important;*/
+/*}*/
 .shine {
     display: block;
     position: absolute;
@@ -735,7 +745,7 @@ input[type=number] {
     cursor: pointer;
 }
 
-h12 {
+h1 {
     font-family: 'Mountains of Christmas', cursive;
     color: white;
     font-size: 22px;
