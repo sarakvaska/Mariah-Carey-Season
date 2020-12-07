@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1875774d-66c6-435b-ae41-1221a5a43efc" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -72,11 +73,11 @@
       <screen x="0" y="23" width="1440" height="829" />
     </state>
     <state x="509" y="185" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.829@0.23.1440.829" timestamp="1605485366615" />
-    <state x="0" y="38" width="1440" height="624" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1607310624244">
-      <screen x="0" y="23" width="1440" height="825" />
+    <state x="1" y="38" width="1440" height="624" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1607313148826">
+      <screen x="0" y="23" width="1440" height="827" />
     </state>
     <state x="0" y="38" width="1440" height="624" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1440.825@0.23.1440.825" timestamp="1607310624244" />
-    <state x="0" y="123" width="1440" height="624" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1440.827@0.23.1440.827" timestamp="1607308635754" />
+    <state x="1" y="38" width="1440" height="624" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1440.827@0.23.1440.827" timestamp="1607313148826" />
     <state x="330" y="23" width="1173" height="798" key="dock-window-1" timestamp="1606090737922">
       <screen x="0" y="23" width="1440" height="821" />
     </state>
