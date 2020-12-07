@@ -21,7 +21,7 @@ class GlobalStreamsVis {
     initVis() {
         let vis = this;
 
-        vis.margin = {top: 50, right: 20, bottom: 50, left: 95};
+        vis.margin = {top: 50, right: 100, bottom: 50, left: 95};
         vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right;
         vis.height = $("#" + vis.parentElement).height() + vis.margin.top + vis.margin.bottom;
 
@@ -154,7 +154,7 @@ class GlobalStreamsVis {
             .attr('width', vis.width+10)
             .attr('class', 'curtain')
             .attr('transform', 'rotate(180)')
-            .style('fill', '#B51541')
+            .style('fill', '#000')
 
         // shared transition
         var t = vis.svg.transition()
@@ -266,7 +266,7 @@ class GlobalStreamsVis {
                 .attr("transform",
                     "translate(" + vis.x(d.day) + "," +
                     vis.y(d.streams) + ")")
-                .text('Streams: ' + millionFormat(d.streams));
+                .text('Streams: ' + millionFormat(d.streams))
 
             vis.focus.select("text.y2")
                 .attr("transform",

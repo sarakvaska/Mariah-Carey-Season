@@ -5,7 +5,7 @@
     overflow: hidden;
     position: absolute;
     z-index: 1;
-    margin: -100px 0 0 0;
+    margin: -130px 0 0 0;
     padding: 0;
     pointer-events: none;
     width: 100%;
@@ -132,9 +132,9 @@ body {
     font-weight: 200;
     font-size: 4em;
     margin: 0;
-    margin-right: -50%;
+    /*margin-right: -50%;*/
     top: 45%;
-    left: 33%;
+    /*left: 33%;*/
     display: block;
     color: white;
 }
@@ -254,6 +254,16 @@ h5 {
     -webkit-animation: fadein 4s;
     /*margin-left:-104px;*/
     /*position: absolute;*/
+}
+h6 {
+    color: lightgray;
+    font-family: 'Mountains of Christmas', cursive;
+    font-weight: bolder;
+    font-size: 25px;
+}
+h7 {
+    color: lightgray;
+    font-size: 20px;
 }
 p {
     font-family: 'Mountains of Christmas', cursive;
