@@ -77,7 +77,7 @@ class WordCloudVis {
 
         // Create chart
         let chart = am4core.create("wordCloudDiv", am4plugins_wordCloud.WordCloud);
-        chart.fontFamily = "Mountains of Christmas";
+        // chart.fontFamily = "Mountains of Christmas";
 
         // Create series
         let series = chart.series.push(new am4plugins_wordCloud.WordCloudSeries());
@@ -96,6 +96,8 @@ class WordCloudVis {
             "max": am4core.color("#dc0202"),
             "dataField": "value"
         });
+        series.minFontSize = am4core.percent(5);
+        series.maxFontSize = am4core.percent(40);
 
         series.labels.template.tooltipText = "{word}:\n[bold]{value}[/]";
 
