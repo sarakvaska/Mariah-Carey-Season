@@ -78,7 +78,9 @@ class StreamVis {
             .attr("x", 0)
             .attr("y", -20)
             .style("opacity", 0)
-            .style("font-size", 17)
+            // .style("font-size", 17)
+            .style("font-size", "28px")
+            .style("fill", "white")
 
         // Three function that change the tooltip when user hover / move / leave a cell
         let mouseover = function(d) {
