@@ -91,7 +91,7 @@ class WordCloudVis {
         series.heatRules.push({
             "target": series.labels.template,
             "property": "fill",
-            "min": am4core.color("gray"),
+            "min": am4core.color("white"),
             "max": am4core.color("#dc0202"),
             "dataField": "value"
         });
@@ -102,9 +102,10 @@ class WordCloudVis {
         subtitle.text = "(hover over words for frequency, and change the artist using the dropdown below)";
 
         let title = chart.titles.create();
-        title.text = "Most Popular Words Used in Billboard Christmas Hits";
-        title.fontSize = 20;
-        title.fontWeight = "800";
+        title.text = "What are the most popular words used in Billboard Christmas hits?";
+        title.fontSize = "2rem";
+        title.fontWeight = "bold";
+        title.textDecoration = "underline";
 
 
         vis.firstLoad = false;

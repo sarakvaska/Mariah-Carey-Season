@@ -781,7 +781,7 @@ h1 {
 /*STYLE FOR WORD CLOUD*/
 #wordCloudDiv {
     width: 80vw;
-    height: 60vh;
+    height: 50vh;
 }
 
 #wordCloudDiv text {
