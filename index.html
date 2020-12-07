@@ -125,25 +125,21 @@
         </div>
         <div class="section" style="-webkit-animation: fadein 4s;">
             <div class="container-fluid">
-                <div class="row justify-content-around">
-                    <div class="col-auto"">
+                <div class="row">
+                    <div class="col-8"style="height: 100%; width:100%;">
                         <div id="initialPage" style="height: 100%; width:100%;"></div>
                     </div>
-                    <div class="col-6 text-center">
-                        <div class="row justify-content-center" style="font-size:2.5rem; font-weight: bold; color: white; text-decoration: underline">What are the top songs on the Billboard Chart?</div>
-                        <div class="row justify-content-center" style="font-size:1.5rem; color: white; padding-bottom: 20px;">Each bubble represents a song, sized according to its peak Billboard position reached (bigger = better!) Songs appearing on the chart multiple times over the years have more than one bubble.</div>
-                        <div class="row justify-content-center" style="font-size:2rem; color: white; padding-bottom: 80px;">Hover over each song bubble to see its title, performer and album art!</div>
-
-                        <div class="row justify-content-center" style="font-size:2rem; color: white; padding-bottom: 30px;">Click through each button to see how many weeks the top songs spent on the chart, the number of times they appeared, and the decades they topped.</div>
-                        <div class="row justify-content-around" style="font-size:1.5rem; color: white; height: 80px; padding-right: 70px; padding-bottom: 30px;">
-                            <div class="col"><button id="all" class="button active" onclick="hideImage();">All Songs</button></div>
-                            <div class="col"><button id="weeks_on_chart" class="button" onclick="hideImage();">By Weeks on Chart</button></div>
-                            <div class="col"><button id="year" class="button" onclick="addimage();">By Decade</button></div>
-                            <div class="col"><button id="instance" class="button" onclick="hideImage();">By Instance</button></div>
-                            <a id="secondArrow" href="#page4"></a>
-                        </div>
-                        <div id="song-bubble-popup" class="row justify-content-center song-bubble-popup" style="height:120px;"></div>
-<!--                        style="font-size:1.5rem; color: white; padding-bottom: 30px;"-->
+                    <div class="col-4">
+                        <h4 style="font-size:35px;">What are the top songs on the Billboard Chart?</h4>
+                        <h5>Each bubble represents a song on the Billboard Chart, sized according to peak position reached (where bigger = better!) Because some songs have appeared on the chart multiple times over the years, they have more than one bubble.</h5>
+                        <h5>Hover over each one to see its title, performer and album art!</h5>
+                        <button id="all" class="button active" onclick="hideImage();">All Songs</button>
+                        <button id="weeks_on_chart" class="button" onclick="hideImage();">By Weeks on Chart</button>
+                        <button id="year" class="button" onclick="addimage();">By Decade</button>
+                        <button id="instance" class="button" onclick="hideImage();">By Instance</button>
+                        <p class="filler2" style="margin-right: 75px; margin-top:100px;width: 700px; text-align: center; color: black">
+                            Click through each button to see how many weeks the top songs spent on the chart, the number of times they appeared, and the decades they topped.</p>
+                        <a id="secondArrow" href="#page4"></a>
                     </div>
                 </div>
             </div>
@@ -179,7 +175,7 @@
         </div>
         <div class="section">
             <div class="container-fluid" style="text-align: center; font-size: 25px;">
-                <h3 style="color: white; font-size: 45px;padding-right: 50px; padding-left:50px;">Now that we've explored the top songs through the years, let's take a look at the artists who created them.</h3>
+                <h3 style="color: white; font-size: 45px;padding-right: 50px; padding-left:50px;">Now that we've explored the top songs through the years, let's take a look at the artists who created them and where they're from.</h3>
             </div>
         </div>
         <div class="section" id="starshine" style="-webkit-animation: fadein 4s;">
@@ -229,7 +225,7 @@
                         </div>
 
                         <div class="row justify-content-center" >
-                            <div style="font-weight: bold; padding: 50px; font-size: 2.5rem;
+                            <div style="font-weight: bold; padding: 20px; font-size: 2rem;
                             text-decoration: underline;">Type in a word to see its frequency</div>
                         </div>
 
@@ -254,9 +250,9 @@
             <h3 style="color: white; font-size: 45px;padding-right: 50px; padding-left:50px;">Now
                 that we've explored the words artists have used to describe Christmas, allow us to
                 write you your very own Christmas Jingle, courtesy of Rodney the Reindeer.
-                Rodney is a our in-house machine learning Reindeer. He's been trained on Christmas classics, and
+                Rodney is our in-house machine learning Reindeer. He's been trained on Christmas classics, and
                 he can now write his very own Christmas hits. He's still very young, so he makes mistakes at times,
-                but Rodney is training everyday to learn the ropes of jolly songwriting</h3>
+                but Rodney is training everyday to learn the ropes of jolly songwriting.</h3>
         </div>
     </div>
 
@@ -265,11 +261,11 @@
             <div class="container-fluid">
                 <div class="row justify-content-center">
                     <div style="font-size: 2rem; font-weight: bold;
-                    padding-top: 50px; font-size: 2.5rem; text-decoration: underline;">Create your own unique Christmas Jingle</div>
+                    padding-top: 20px; font-size: 2.5rem; text-decoration: underline;">Create your own unique Christmas Jingle</div>
                 </div>
 
                 <div class="row justify-content-center">
-                    <div style="font-size: 1rem; color: gray; padding-bottom: 50px">
+                    <div style="font-size: 1rem; color: black; padding-bottom: 50px">
                         (Click on Rodney to have him write a fully original Christmas Jingle, unique just for you! He won't
                         write the same song twice, so take a picture once you get a jingle you like!)
                     </div>
@@ -327,16 +323,9 @@
     <div class="section">
             <div class="container-fluid" style="text-align: center; font-size: 25px;">
                 <h3 style="color: white; font-size: 45px;padding-right: 50px; padding-left:50px;">
-                    This is project isn't called 'Mariah Carey Season' for no reason. <br> Christmas is Mariah's holiday and we're just living in her world.</h3>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="container-fluid" style="text-align: center; font-size: 25px;">
-                <h3 style="color: black; font-size: 45px;padding-right: 50px; padding-left:50px;">
-                    Remember our interactive component which showed the top Christmas </br> song of any year?
-                    In case you didn't notice, "All I Want For Christmas is You" <br> by Mariah Carey
-                    has been the top Christmas song for the past 7 years, since 2013.</h3>
+                    This project isn't called 'Mariah Carey Season' for no reason. <br> Christmas is Mariah's holiday and we're just living in her world.</h3>
+                <h3 style="color: white; font-size: 35px;padding-right: 50px; padding-left:50px;">"All I Want For Christmas is You" by Mariah Carey has been the top Christmas song for the past 7 years, since 2013.
+                Let's see how it compares to others!</h3>
             </div>
         </div>
         <div class="section" id="linechart-sec">
@@ -405,36 +394,35 @@
             <div class="snowflake">
                 ❆
             </div>
-            <div class="row justify-content-center" style="margin-right:0px; margin-left:0px;text-align: center;">
-                    <h4 style="margin-right:0px; margin-left:0px;padding-bottom:25px;">Oh well, there is no doubt that Mariah is the Queen of Christmas.
-                        <br> Let us wish you Happy Holidays with the season's most emblematic song</h4>
-                    <iframe width="700" height=" 393.75" src="https://www.youtube.com/embed/aAkMkVFwAoo" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen></iframe>
+            <div class="row justify-content-center" style="margin-right:0px; margin-left:0px;text-align: center;width:100%;">
+                <h4 style="margin-right:0px; margin-left:0px;padding-bottom: 10px;">Oh well, there is no doubt that Mariah is the Queen of Christmas.
+                    <br> Let us wish you Happy Holidays with the season's most emblematic song.</h4>
+                <iframe style="padding-bottom: 10px;" width="700" height=" 393.75" src="https://www.youtube.com/embed/aAkMkVFwAoo" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col" style="text-align: center;">
+                            <h6>About Us</h6>
+                            <h7>This website was completed as a final project for CS171: Visualization at Harvard. It was created by Sara Kvaska, Jerry Registre, and Gustavo Coutinho, 3 undergrads at the University.
+                                <br>It couldn't have been finished without the incredible mentorship and teaching done by the staff, as well as our friends and Sara's mom, who provided many design suggestions! Thank you all!</h7>
+                        </div>
+                        <div class="col" style="text-align: center;">
+                            <h6>Methods</h6>
+                            <h7>View our github repo here: <u><a style="color: lightgray;"href="https://github.com/sarakvaska/Mariah-Carey-Season" target="_blank">Mariah Carey Season</a></u></h7>
+                            <br>
+                            <h7>We used the following data to complete this project: </h7>
+                            <br>
+                            <u><a style="color:lightgray; text-align: left;font-size:20px;" href="https://flourish.studio/2018/12/18/all-i-want-christmas-mariah-spotify-data/" target="_blank">All I Want for Christmas is...data</a></u>
+                            <br>
+                            <u><a style="color:lightgray; text-align: left;font-size:20px;" href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-12-24" target="_blank">Christmas Music Billboards</a></u>
+                            <br>
+                            <h7>No images used belong to us. They were found on Google Image Search, and you can find their source links in our images folder on github.</h7>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-<!--        <div class="section">-->
-<!--            <div class="row justify-content-center">-->
-<!--                <h4 style="margin-right:0px; margin-left:0px;padding-bottom:25px;"> All our data and source code can be found here <a href="https://github.com/sarakvaska/Mariah-Carey-Season" target="_blank">GitHub repo</a>.</h4>-->
-<!--                <h3>Data Sources and Methods</h3>-->
-<!--                <div class="row">-->
-<!--                    <div class="col" style="font-size:15px;">-->
-<!--                        <b>Data</b>-->
-<!--                        <ul>-->
-<!--                            <li><a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-12-24" target="_blank">Christmas Music Billboards</a>: We downloaded all of our Billboard data from this repo, which included songs and lyrics.</li>-->
-<!--                            <li><a href="https://flourish.studio/2018/12/18/all-i-want-christmas-mariah-spotify-data/" target="_blank">All I Want for Christmas... is data</a>: To visualize Mariah Carey's hit song against others, we scraped data from this website.</li>-->
-<!--                        </ul>-->
-<!--                        <b>Methods</b>-->
-<!--                        <ul>-->
-<!--                            <li>We organized all the data by artist and number of weeks spent on the chart. We also pulled images of the artists and their album covers to better represent them!</li>-->
-<!--                        </ul>-->
-<!--                        <b>Images</b>: None of the images in this project are ours (except for the ones of us!) We collected the images from Google image search. You can find the source links inside a our source links text file on Github.-->
-<!--                        </p>-->
-<!--                    </div>-->
-<!--                </div>-->
-
-<!--            </div>-->
-<!--        </div>-->
     </div>
 
 
@@ -450,7 +438,7 @@
                 menu: '#myMenu',
                 direction: 'vertical',
                 verticalCentered: true,
-                sectionsColor: ['#B51541', '#000', '#DFAD56', '#B51541', '#DFAD56', '#B51541', '#110019', '#B51541', '#DFAD56', '#B51541', '#DFAD56', '#B51541', '#DFAD56', '#B51541', '#B51541', '#DFAD56'],
+                sectionsColor: ['#B51541', '#000', '#DFAD56', '#B51541', '#DFAD56', '#B51541', '#110019', '#B51541', '#DFAD56', '#B51541', '#DFAD56', '#B51541', '#000', '#B51541'],
                 scrollingSpeed: 700,
                 easing: 'swing',
                 loopBottom: false,
@@ -473,7 +461,7 @@
                 onLeave: function(index, nextIndex, direction){
                 },
                 afterLoad: function(anchorLink, index){
-                    if(anchorLink == 'page12') {
+                    if(anchorLink == 'page13') {
                         drawLineChartVis();
                         //break;
                     }

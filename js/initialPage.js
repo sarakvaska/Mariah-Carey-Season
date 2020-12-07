@@ -563,7 +563,7 @@ class InitialPage {
                 }
                 vis.yourImagePath = vis.newText
                 if (vis.clickedAll == 'true'){
-                    d3.select(".song-bubble-popup").append('p').html(`<div><p style="font-size: 25px; color:black; margin-right: 70px; width: 700px; text-align: center; border:thin solid black; border-radius: 5px; background:rgba(255, 255, 255, 0.9); padding:5px;"><b style="color: #B3000C"><img style="width:100px; height:100px; border:thin solid black; border-radius: 5px; float: left" src="img/${vis.yourImagePath}" /> "${d.song.toLowerCase()}"</b> by ${d.performer} reached a peak position of <b>${d.peak_position}</b> in <b>${d.year}</b>, its ${vis.keyWord} time on the chart.<p>`)
+                    d3.select(".col-4").append('p').html(`<div><p style="font-size: 25px; color:black; margin-right: 70px; width: 700px; text-align: center; border:thin solid black; border-radius: 5px; background:rgba(255, 255, 255, 0.9); padding:5px;"><b style="color: #B3000C"><img style="width:100px; height:100px; border:thin solid black; border-radius: 5px; float: left" src="img/${vis.yourImagePath}" /> "${d.song.toLowerCase()}"</b> by ${d.performer} reached a peak position of <b>${d.peak_position}</b> in <b>${d.year}</b>, its ${vis.keyWord} time on the chart.<p>`)
                         .attr("class", 'weeks-all')
                 }
                 else if(vis.clickedWeeks == 'true') {
