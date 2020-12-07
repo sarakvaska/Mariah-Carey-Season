@@ -300,22 +300,27 @@ p {
     -webkit-animation: fadein 4s;
 }
 
-#all {
-    top: 30%;
-    left: -50%;
+#all, #instance, #weeks_on_chart, #year {
+    /*width: 200px;*/
+    height: 65px;
 }
-#weeks_on_chart {
-    top: 30%;
-    left: -25%;
-}
-#instance {
-    top: 30%;
-    left: 15%;
-}
-#year {
-    top: 30%;
-    left: 44%;
-}
+
+/*#all {*/
+/*    top: 30%;*/
+/*    left: -50%;*/
+/*}*/
+/*#weeks_on_chart {*/
+/*    top: 30%;*/
+/*    left: -25%;*/
+/*}*/
+/*#instance {*/
+/*    top: 30%;*/
+/*    left: 15%;*/
+/*}*/
+/*#year {*/
+/*    top: 30%;*/
+/*    left: 44%;*/
+/*}*/
 
 .button::before {
     content: '';

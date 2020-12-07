@@ -125,21 +125,25 @@
         </div>
         <div class="section" style="-webkit-animation: fadein 4s;">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-8"style="height: 100%; width:100%;">
+                <div class="row justify-content-around">
+                    <div class="col-auto"">
                         <div id="initialPage" style="height: 100%; width:100%;"></div>
                     </div>
-                    <div class="col-4">
-                        <h4 style="font-size:35px;">What are the top songs on the Billboard Chart?</h4>
-                        <h5>Each bubble represents a song on the Billboard Chart, sized according to peak position reached (where bigger = better!) Because some songs have appeared on the chart multiple times over the years, they have more than one bubble.</h5>
-                        <h5>Hover over each one to see its title, performer and album art!</h5>
-                        <button id="all" class="button active" onclick="hideImage();">All Songs</button>
-                        <button id="weeks_on_chart" class="button" onclick="hideImage();">By Weeks on Chart</button>
-                        <button id="year" class="button" onclick="addimage();">By Decade</button>
-                        <button id="instance" class="button" onclick="hideImage();">By Instance</button>
-                        <p class="filler2" style="margin-right: 75px; margin-top:100px;width: 700px; text-align: center; color: black">
-                            Click through each button to see how many weeks the top songs spent on the chart, the number of times they appeared, and the decades they topped.</p>
-                        <a id="secondArrow" href="#page4"></a>
+                    <div class="col-6 text-center">
+                        <div class="row justify-content-center" style="font-size:2.5rem; font-weight: bold; color: white; text-decoration: underline">What are the top songs on the Billboard Chart?</div>
+                        <div class="row justify-content-center" style="font-size:1.5rem; color: white; padding-bottom: 20px;">Each bubble represents a song, sized according to its peak Billboard position reached (bigger = better!) Songs appearing on the chart multiple times over the years have more than one bubble.</div>
+                        <div class="row justify-content-center" style="font-size:2rem; color: white; padding-bottom: 80px;">Hover over each song bubble to see its title, performer and album art!</div>
+
+                        <div class="row justify-content-center" style="font-size:2rem; color: white; padding-bottom: 30px;">Click through each button to see how many weeks the top songs spent on the chart, the number of times they appeared, and the decades they topped.</div>
+                        <div class="row justify-content-around" style="font-size:1.5rem; color: white; height: 80px; padding-right: 70px; padding-bottom: 30px;">
+                            <div class="col"><button id="all" class="button active" onclick="hideImage();">All Songs</button></div>
+                            <div class="col"><button id="weeks_on_chart" class="button" onclick="hideImage();">By Weeks on Chart</button></div>
+                            <div class="col"><button id="year" class="button" onclick="addimage();">By Decade</button></div>
+                            <div class="col"><button id="instance" class="button" onclick="hideImage();">By Instance</button></div>
+                            <a id="secondArrow" href="#page4"></a>
+                        </div>
+                        <div id="song-bubble-popup" class="row justify-content-center song-bubble-popup" style="height:120px;"></div>
+<!--                        style="font-size:1.5rem; color: white; padding-bottom: 30px;"-->
                     </div>
                 </div>
             </div>
