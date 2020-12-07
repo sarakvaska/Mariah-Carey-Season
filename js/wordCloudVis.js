@@ -77,7 +77,8 @@ class WordCloudVis {
 
         // Create chart
         let chart = am4core.create("wordCloudDiv", am4plugins_wordCloud.WordCloud);
-        chart.fontFamily = "Courier New";
+        chart.fontFamily = "Mountains of Christmas";
+
         // Create series
         let series = chart.series.push(new am4plugins_wordCloud.WordCloudSeries());
         series.randomness = 0.1;

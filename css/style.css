@@ -310,27 +310,23 @@ p {
     -webkit-animation: fadein 4s;
 }
 
-#all, #instance, #weeks_on_chart, #year {
-    /*width: 200px;*/
-    height: 65px;
-}
 
-/*#all {*/
-/*    top: 30%;*/
-/*    left: -50%;*/
-/*}*/
-/*#weeks_on_chart {*/
-/*    top: 30%;*/
-/*    left: -25%;*/
-/*}*/
-/*#instance {*/
-/*    top: 30%;*/
-/*    left: 15%;*/
-/*}*/
-/*#year {*/
-/*    top: 30%;*/
-/*    left: 44%;*/
-/*}*/
+#all {
+    top: 30%;
+    left: -50%;
+}
+#weeks_on_chart {
+    top: 30%;
+    left: -25%;
+}
+#instance {
+    top: 30%;
+    left: 15%;
+}
+#year {
+    top: 30%;
+    left: 44%;
+}
 
 .button::before {
     content: '';
@@ -494,7 +490,7 @@ h3 {
     height: 40px;
     display: block;
     margin-left: 40%;
-    top: 90%;
+    top: 100%;
     color: white;
 }
 #arrow2 {
@@ -503,7 +499,7 @@ h3 {
     height: 40px;
     display: block;
     margin: 0;
-    top: 90%;
+    top: 100%;
     color: white;
 }
 
@@ -645,7 +641,7 @@ input[type=number] {
 /*LYRIC TEXT FORMATTING*/
 .neon {
     /*color: #fff;*/
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     text-shadow:
             0 0 5px #fff,
             0 0 10px #fff,

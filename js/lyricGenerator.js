@@ -11,11 +11,9 @@ let loadingSpinner = `<div class="row justify-content-center">
                                 <div class="circle"></div>
                             </div>
                         </div>
-                        Rodney is thinking and scribbling your song in his jingles notebook...
-                           <p>Rodney is thinking and writing your song in his jingles notebook...</p>
                     </div>
                     <div class="row justify-content-center">
-                         <p>Rodney is thinking and writing your song in his jingles notebook...</p>
+                         <p>Rodney is thinking and scribbling your song in his jingles notebook...</p>
                     </div>`;
 
 let lyricElements = `<div class="row justify-content-center lyricLine">
