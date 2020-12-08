@@ -4,7 +4,8 @@
     <list default="true" id="1875774d-66c6-435b-ae41-1221a5a43efc" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/wordCloudVis.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/wordCloudVis.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/globalStreamsVis.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/globalStreamsVis.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,7 +23,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/img" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -64,6 +65,8 @@
       <workItem from="1605376688658" duration="26704000" />
       <workItem from="1605497484759" duration="207994000" />
       <workItem from="1607320603403" duration="884000" />
+      <workItem from="1607363005503" duration="282000" />
+      <workItem from="1607384785228" duration="1229000" />
     </task>
     <servers />
   </component>
