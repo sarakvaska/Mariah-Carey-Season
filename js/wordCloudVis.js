@@ -92,8 +92,8 @@ class WordCloudVis {
         series.heatRules.push({
             "target": series.labels.template,
             "property": "fill",
-            "min": am4core.color("white"),
-            "max": am4core.color("#dc0202"),
+            "min": am4core.color("gray"),
+            "max": am4core.color("red"),
             "dataField": "value"
         });
         series.minFontSize = am4core.percent(5);
