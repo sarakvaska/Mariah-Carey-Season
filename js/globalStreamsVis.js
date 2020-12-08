@@ -30,7 +30,7 @@ class GlobalStreamsVis {
         // init drawing area
         vis.svg = d3.select("#" + vis.parentElement).append("svg")
             .attr("width", vis.width + vis.margin.left + vis.margin.right)
-            .attr("height", vis.height + vis.margin.top + vis.margin.bottom + 170)
+            .attr("height", vis.height + vis.margin.top + vis.margin.bottom + 120)
             .append('g')
             .attr('transform', `translate (${vis.margin.left}, ${vis.margin.top})`);
 
